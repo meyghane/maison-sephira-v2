@@ -75,13 +75,9 @@
         .grad-text { background: linear-gradient(to right, #000, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         /* CALCULATEUR ROI */
-        .roi-card { background: #000; color: #fff; border-radius: 30px; padding: 2.5rem; margin-top: -5rem; position: relative; z-index: 30; box-shadow: 0 40px 100px rgba(249, 168, 212, 0.2); }
-        @media (min-width: 768px) { .roi-card { padding: 4rem; } }
-        .roi-input { background: transparent; border: none; border-bottom: 2px solid #333; color: var(--sephira-pink); font-size: 1.5rem; font-weight: 900; width: 100%; text-align: center; outline: none; margin-bottom: 1rem; }
-        @media (min-width: 768px) { .roi-input { font-size: 2.5rem; width: 180px; margin-bottom: 0; } }
-        .roi-result-text { font-size: 3.5rem; font-weight: 900; color: #fff; line-height: 1; margin-top: 1rem; }
-        @media (min-width: 768px) { .roi-result-text { font-size: 6rem; margin-top: 0; } }
-        @media (min-width: 1024px) { .roi-result-text { font-size: 8rem; } }
+        .roi-card { background: #000; color: #fff; border-radius: 30px; padding: 4rem; margin-top: -5rem; position: relative; z-index: 30; box-shadow: 0 40px 100px rgba(249, 168, 212, 0.2); }
+        .roi-input { background: transparent; border: none; border-bottom: 2px solid #333; color: var(--sephira-pink); font-size: 2rem; font-weight: 900; width: 150px; text-align: center; outline: none; }
+        .roi-input:focus { border-color: var(--sephira-pink); }
         
         .ba-box { padding: 2.5rem; border-radius: 20px; transition: all 0.5s; }
         .ba-old { background: #f9f9f9; border: 1px solid #eee; filter: grayscale(1); opacity: 0.6; }
@@ -97,7 +93,7 @@
         <nav class="hidden md:flex gap-12 text-[0.6rem] uppercase tracking-widest font-bold">
             <a href="#expertises" class="text-black hover:text-pink-400 transition">Traitements Cliniques</a>
             <a href="#offres" class="text-black hover:text-pink-400 transition">Ordonnances Express</a>
-            <a href="blog.html" class="text-pink-400">Blog</a>
+            <a href="blog.html" class="text-pink-400">Journal de Bord</a>
             <a href="#contact" class="text-black">Prendre l'Examen</a>
         </nav>
     </header>
@@ -134,24 +130,24 @@
         <section class="py-20 px-8 md:px-16" id="roi">
             <div class="max-w-5xl mx-auto roi-card">
                 <div class="text-center mb-12">
-                    <h2 class="text-2xl md:text-3xl font-black uppercase mb-4 text-pink-300">L'Audit de Vérité.</h2>
-                    <p class="text-gray-400 uppercase tracking-widest text-[0.6rem] md:text-xs">Calculez ce que votre site actuel vous fait perdre chaque mois.</p>
+                    <h2 class="text-3xl font-black uppercase mb-4 text-pink-300">L'Audit de Vérité.</h2>
+                    <p class="text-gray-400 uppercase tracking-widest text-xs">Calculez ce que votre site actuel vous fait perdre chaque mois.</p>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                     <div class="space-y-8">
                         <div class="flex flex-col">
-                            <label class="text-[0.6rem] uppercase tracking-widest text-gray-500 mb-2">Prix prestation (€)</label>
+                            <label class="text-xs uppercase tracking-widest text-gray-500 mb-2">Prix moyen d'une prestation (€)</label>
                             <input type="number" id="roi-price" class="roi-input" value="120">
                         </div>
                         <div class="flex flex-col">
-                            <label class="text-[0.6rem] uppercase tracking-widest text-gray-500 mb-2">Visiteurs mensuels</label>
+                            <label class="text-xs uppercase tracking-widest text-gray-500 mb-2">Visiteurs mensuels (Insta/Web)</label>
                             <input type="number" id="roi-traffic" class="roi-input" value="1000">
                         </div>
                     </div>
-                    <div class="text-center lg:text-right">
-                        <div class="text-[0.6rem] uppercase tracking-widest text-pink-400 mb-2 font-bold">Perte estimée par mois :</div>
-                        <div class="roi-result-text" id="roi-result">- 4 800 €</div>
-                        <p class="text-gray-500 text-[0.6rem] uppercase tracking-widest mt-4">Basé sur un taux de conversion de 1% vs 5%.</p>
+                    <div class="text-center md:text-right">
+                        <div class="text-xs uppercase tracking-widest text-pink-400 mb-2">Perte estimée par mois :</div>
+                        <div class="text-6xl md:text-8xl font-black text-white" id="roi-result">- 4 800 €</div>
+                        <p class="text-gray-500 text-xs mt-4">Basé sur un taux de conversion moyen de 1% (actuel) vs 5% (Maison Sephira).</p>
                     </div>
                 </div>
             </div>
@@ -164,9 +160,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20">
                     <div class="ba-box ba-old">
                         <div class="text-xs font-bold uppercase mb-4">Branding Standard / Cheap</div>
-                        <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center mb-6 overflow-hidden">
-                            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_4.jpg" class="w-full h-full object-cover opacity-30" alt="Old Branding">
-                        </div>
+                        <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center mb-6 text-4xl">❌</div>
                         <ul class="text-sm space-y-3 text-gray-500">
                             <li>• Image générique et non rassurante</li>
                             <li>• Invisible sur Google (SEO nul)</li>
@@ -177,7 +171,7 @@
                     <div class="ba-box ba-new">
                         <div class="text-xs font-bold uppercase mb-4 text-pink-400">Maison Sephira Elite</div>
                         <div class="h-64 bg-pink-50 rounded-lg flex items-center justify-center mb-6 overflow-hidden">
-                            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_5.jpg" class="w-full h-full object-cover" alt="Branding Luxe">
+                            <img src="site-web-maisonsephira733/img/imageee.png" class="w-full h-full object-cover" alt="Branding Luxe">
                         </div>
                         <ul class="text-sm space-y-3 text-black font-medium">
                             <li>✓ Positionnement Elite et Luxe incontestable</li>
@@ -483,99 +477,80 @@
         <p class="text-[0.45rem] tracking-[0.4em] text-gray-400 uppercase">© 2026 — Maison Sephira — Luxury Digital Science</p>
     </footer>
 
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
-            }
-        }
-    </script>
-
-    <script type="module">
-        import * as THREE from 'three';
-        import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
-        import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-
+    <script>
         window.addEventListener('load', () => {
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 0, 40);
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 40;
 
             const renderer = new THREE.WebGLRenderer({ 
-                canvas: document.getElementById('main-canvas'),
-                antialias: true, 
-                alpha: true,
-                powerPreference: "high-performance"
+                canvas: document.getElementById('main-canvas'), 
+                alpha: true, 
+                antialias: true 
             });
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            renderer.toneMappingExposure = 1.2;
+            renderer.setPixelRatio(window.devicePixelRatio);
 
-            // --- 1. ENVIRONNEMENT HDR ---
-            const rgbeLoader = new RGBELoader();
-            rgbeLoader.load('https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/studio_small_03_1k.hdr', (texture) => {
-                texture.mapping = THREE.EquirectangularReflectionMapping;
-                scene.environment = texture;
-            });
-
-            // --- 2. LE LOGO MAISON SEPHIRA ---
-            const textureLoader = new THREE.TextureLoader();
-            const logoTex = textureLoader.load('MAISON_SEPHIRA_LOGO-removebg-preview.png');
-            const photoGeo = new THREE.PlaneGeometry(12, 12);
-            const photoMat = new THREE.MeshStandardMaterial({ 
-                map: logoTex,
-                transparent: true,
-                opacity: 0.9,
-                roughness: 0.2,
-                metalness: 0.1,
-                side: THREE.DoubleSide
-            });
-            const logoMesh = new THREE.Mesh(photoGeo, photoMat);
-            
-            // --- 3. LA LENTILLE DE VERRE LUXE ---
-            const glassMat = new THREE.MeshPhysicalMaterial({
-                color: 0xffffff,
-                transmission: 1.0,      
-                ior: 1.5,
-                thickness: 2.0,
-                roughness: 0.0,
-                metalness: 0.0,
-                clearcoat: 1.0,
-                transparent: true,
-                side: THREE.DoubleSide
-            });
-            const glassGeo = new RoundedBoxGeometry(14, 14, 2, 32, 1.5);
-            const glassMesh = new THREE.Mesh(glassGeo, glassMat);
-            
-            const lensGroup = new THREE.Group();
-            lensGroup.add(logoMesh);
-            lensGroup.add(glassMesh);
-            lensGroup.position.set(15, 0, 10);
-            scene.add(lensGroup);
-
-            // --- 4. NEON 3D TUBE ---
+            // --- 1. NEON 3D TUBE (SHARP PINK GLOW) ---
             const points = [];
             for(let i=0; i<25; i++) points.push(new THREE.Vector3(0,0,0));
+            
+            // Core Line
             const coreLine = new THREE.Mesh(
-                new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 64, 0.05, 8, false),
+                new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 64, 0.04, 8, false),
                 new THREE.MeshBasicMaterial({ color: 0xffffff })
             );
-            const glowOuter = new THREE.Mesh(
-                new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 64, 0.3, 8, false),
-                new THREE.MeshBasicMaterial({ color: 0xf9a8d4, transparent: true, opacity: 0.4 })
-            );
             scene.add(coreLine);
+            
+            // Glow Outer
+            const glowOuter = new THREE.Mesh(
+                new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 64, 0.25, 8, false),
+                new THREE.MeshBasicMaterial({ color: 0xf9a8d4, transparent: true, opacity: 0.6 })
+            );
             scene.add(glowOuter);
 
-            // LUMIÈRES
-            scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-            const pointLight = new THREE.PointLight(0xffffff, 2);
-            pointLight.position.set(10, 10, 20);
-            scene.add(pointLight);
+            // --- 2. 3D GLASS PHOTO LENS (HERO) ---
+            const lensGroup = new THREE.Group();
+            const lens = new THREE.Mesh(
+                new THREE.SphereGeometry(8, 64, 64),
+                new THREE.MeshPhysicalMaterial({ 
+                    transmission: 1, thickness: 5, ior: 2.4, roughness: 0,
+                    clearcoat: 1, reflectivity: 1, color: 0xffffff
+                })
+            );
+            const logoTex = new THREE.TextureLoader().load('MAISON_SEPHIRA_LOGO-removebg-preview.png');
+            const logo = new THREE.Mesh(
+                new THREE.PlaneGeometry(16, 16),
+                new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, opacity: 0.9 })
+            );
+            logo.position.z = -5;
+            lensGroup.add(lens);
+            lensGroup.add(logo);
+            lensGroup.position.set(15, 0, 15);
+            scene.add(lensGroup);
 
-            // INTERACTIONS
+            // --- 3. ARCHIVE 733 (GALERIE 3D) ---
+            const archiveGroup = new THREE.Group();
+            for(let i=0; i<4; i++) {
+                const img = new THREE.Mesh(
+                    new THREE.PlaneGeometry(15, 20),
+                    new THREE.MeshPhysicalMaterial({ 
+                        color: 0xffffff, transparent: true, opacity: 0.05,
+                        roughness: 0, transmission: 0.9, thickness: 1
+                    })
+                );
+                img.position.set((i % 2 - 0.5) * 40, i * -35 - 70, 0);
+                archiveGroup.add(img);
+            }
+            scene.add(archiveGroup);
+
+            // LUMIÈRES STUDIO
+            scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+            const studioLight = new THREE.PointLight(0xffffff, 5, 100);
+            studioLight.position.set(20, 20, 20);
+            scene.add(studioLight);
+
+            // --- INTERACTIONS ---
             let mouse = new THREE.Vector2();
             let targetMouse = new THREE.Vector2();
             window.addEventListener('mousemove', (e) => {
@@ -587,18 +562,21 @@
                 mouse.x += (targetMouse.x - mouse.x) * 0.1;
                 mouse.y += (targetMouse.y - mouse.y) * 0.1;
 
+                // Position 3D
                 const v = new THREE.Vector3(mouse.x, mouse.y, 0.5).unproject(camera);
                 const dir = v.sub(camera.position).normalize();
-                const pos = camera.position.clone().add(dir.multiplyScalar(45));
+                const pos = camera.position.clone().add(dir.multiplyScalar(40));
+                
                 points.shift(); points.push(pos);
                 const curve = new THREE.CatmullRomCurve3(points);
-                coreLine.geometry.dispose(); coreLine.geometry = new THREE.TubeGeometry(curve, 64, 0.05, 8, false);
-                glowOuter.geometry.dispose(); glowOuter.geometry = new THREE.TubeGeometry(curve, 64, 0.3, 8, false);
+                coreLine.geometry.dispose(); coreLine.geometry = new THREE.TubeGeometry(curve, 64, 0.04, 8, false);
+                glowOuter.geometry.dispose(); glowOuter.geometry = new THREE.TubeGeometry(curve, 64, 0.25, 8, false);
 
+                // Scroll & Positions
                 const s = window.scrollY;
                 lensGroup.position.y = -s * 0.05 + 5;
-                lensGroup.rotation.y = mouse.x * 0.4;
-                lensGroup.rotation.x = -mouse.y * 0.2;
+                lensGroup.rotation.y = mouse.x * 0.5;
+                archiveGroup.position.y = s * 0.08;
 
                 renderer.render(scene, camera);
                 requestAnimationFrame(update);
@@ -606,11 +584,15 @@
             update();
 
             window.addEventListener('resize', () => {
+                renderer.setSize(window.innerWidth, window.innerHeight);
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
             });
 
+            gsap.registerPlugin(ScrollTrigger);
+            document.querySelectorAll('.service-item').forEach(el => {
+                gsap.from(el, { scrollTrigger: el, opacity: 0, y: 50, duration: 1.5, delay: 0.2 });
+            });
             // --- CALCULATEUR ROI INTERACTIF ---
             const roiPrice = document.getElementById('roi-price');
             const roiTraffic = document.getElementById('roi-traffic');
@@ -619,9 +601,11 @@
             function calculateROI() {
                 const price = parseFloat(roiPrice.value) || 0;
                 const traffic = parseFloat(roiTraffic.value) || 0;
+                // Formule : Trafic * (5% Sephira - 1% Actuel) * Prix
                 const loss = Math.round(traffic * (0.05 - 0.01) * price);
                 roiResult.innerText = `- ${loss.toLocaleString()} €`;
             }
+
             roiPrice.addEventListener('input', calculateROI);
             roiTraffic.addEventListener('input', calculateROI);
 
@@ -632,22 +616,31 @@
             qualifForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 qualifForm.innerHTML = `<div class='text-center py-10'><h3 class='text-pink-400 font-black text-2xl uppercase mb-4'>Éligibilité Confirmée</h3><p class='text-sm text-gray-500 uppercase tracking-widest'>Votre profil correspond à nos protocoles. Réservez votre créneau à droite.</p></div>`;
-                calendlyArea.innerHTML = `<iframe src="https://calendly.com/meyghvne/30min" width="100%" height="600" frameborder="0"></iframe>`;
+                
+                // Ici, on injecte le vrai Calendly
+                calendlyArea.innerHTML = `<iframe src="https://calendly.com/VOTRE_LIEN" width="100%" height="600" frameborder="0"></iframe>`;
                 calendlyArea.classList.remove('bg-gray-100', 'text-gray-400');
                 calendlyArea.style.border = 'none';
             });
 
-            // --- INITIALISATION SWIPER ---
+            // --- INITIALISATION SWIPER (DIAPORAMA FLYERS) ---
             const swiper = new Swiper('.swiper-container', {
-                effect: 'coverflow', grabCursor: true, centeredSlides: true,
-                slidesPerView: 'auto', loop: true,
-                autoplay: { delay: 2500, disableOnInteraction: false },
-                coverflowEffect: { rotate: 20, stretch: 0, depth: 200, modifier: 1, slideShadows: true }
-            });
-
-            gsap.registerPlugin(ScrollTrigger);
-            document.querySelectorAll('.service-item').forEach(el => {
-                gsap.from(el, { scrollTrigger: el, opacity: 0, y: 50, duration: 1.5, delay: 0.2 });
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                loop: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                coverflowEffect: {
+                    rotate: 20,
+                    stretch: 0,
+                    depth: 200,
+                    modifier: 1,
+                    slideShadows: true,
+                }
             });
         });
     </script>
