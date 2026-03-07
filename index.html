@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Sephira 733 | Agence Marketing Luxe & SEO Performance Paris</title>
-    <meta name="description" content="Maison Sephira 733 transforme les marques de beauté en empires numériques. Stratégie luxe, SEO local chirurgical et design haute performance. Audit gratuit.">
+    <title>Maison Sephira 733 | Agence Marketing Luxe & SEO Performance</title>
+    <meta name="description" content="Maison Sephira 733 transforme les marques de beauté en empires numériques. Stratégie luxe, SEO local et design haute performance. Audit gratuit.">
     
-    <!-- Google Love: Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -19,15 +18,13 @@
         "streetAddress": "Champs-Élysées",
         "addressLocality": "Paris",
         "addressCountry": "FR"
-      },
-      "description": "Agence de marketing digital d'élite pour marques de beauté et luxe.",
-      "openingHours": "Mo-Fr 09:00-19:00"
+      }
     }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,500;0,700;0,900;1,300&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,500;0,700;0,900;1,300&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -38,146 +35,119 @@
     
     <style>
         :root { --sephira-pink: #f9a8d4; --sephira-bg: #ffffff; }
-        body { background-color: var(--sephira-bg); font-family: 'Raleway', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; margin: 0; }
-
-        section { position: relative; z-index: 10; background: transparent !important; }
+        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: var(--sephira-bg); font-family: 'Raleway', sans-serif; -webkit-font-smoothing: antialiased; }
         
-        .hero-content { position: relative; z-index: 20; display: flex; align-items: center; justify-content: space-between; }
-        .hero-text { flex: 1; }
-        .hero-logo-container { width: 450px; height: 450px; position: relative; display: flex; align-items: center; justify-content: center; }
-
-        .nominee-badge { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); color: #000; padding: 10px 20px; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; border-radius: 100px; display: inline-block; }
-        .btn-luxury { border: 1px solid rgba(0,0,0,0.1); padding: 18px 45px; font-size: 0.7rem; text-transform: uppercase; color: #000; border-radius: 100px; background: rgba(255,255,255,0.5); backdrop-filter: blur(10px); transition: all 0.4s; cursor: pointer; }
+        section { position: relative; z-index: 10; background: transparent; }
+        
+        .btn-luxury { border: 1px solid rgba(0,0,0,0.1); padding: 18px 45px; font-size: 0.7rem; text-transform: uppercase; color: #000; border-radius: 100px; background: rgba(255,255,255,0.5); backdrop-filter: blur(10px); transition: all 0.4s; cursor: pointer; display: inline-block; }
         .btn-luxury:hover { background: #000; color: #fff; transform: scale(1.05); }
-        
-        .btn-pink { background: #000; color: #fff; border: none; }
-        .btn-pink:hover { background: var(--sephira-pink); color: #000; }
+        .btn-pink { background: #000 !important; color: #fff !important; }
+        .btn-pink:hover { background: var(--sephira-pink) !important; color: #000 !important; }
 
-        .section-title { font-size: 3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 2rem; line-height: 1; }
-        .section-subtitle { font-size: 1rem; color: #666; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 4rem; }
-        
-        .stat-box { border-left: 2px solid var(--sephira-pink); padding-left: 1.5rem; margin-bottom: 2rem; }
-        .stat-number { font-size: 4rem; font-weight: 900; color: #000; line-height: 1; }
-        
-        .pricing-card { background: #fff; border: 1px solid rgba(0,0,0,0.05); border-radius: 20px; padding: 3rem; transition: transform 0.3s; box-shadow: 0 20px 40px rgba(0,0,0,0.02); }
-        .pricing-card:hover { transform: translateY(-10px); }
-        .price { font-size: 3.5rem; font-weight: 900; margin: 1rem 0; }
-        .price span { font-size: 1rem; font-weight: 400; color: #888; }
-        
-        .swiper-container { width: 100%; padding: 50px 0; }
-        .swiper-slide { width: 300px; height: 400px; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .grad-text { background: linear-gradient(to right, #000, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* ROI CALCULATOR - DESIGN ÉLITE */
+        .roi-card { background: #000; color: #fff; border-radius: 40px; padding: 3rem; margin-top: -5rem; position: relative; z-index: 30; box-shadow: 0 50px 100px rgba(0,0,0,0.2); }
+        @media (min-width: 1024px) { .roi-card { padding: 5rem; } }
+        .roi-input { background: transparent; border: none; border-bottom: 2px solid #222; color: var(--sephira-pink); font-size: 2.5rem; font-weight: 900; width: 100%; outline: none; transition: border-color 0.3s; padding: 10px 0; }
+        .roi-input:focus { border-color: var(--sephira-pink); }
+        .roi-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3em; font-weight: 800; color: #555; margin-bottom: 1rem; display: block; }
+        .roi-result-text { font-size: 4rem; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.05em; }
+        @media (min-width: 768px) { .roi-result-text { font-size: 7rem; } }
 
-        /* CALCULATEUR ROI - FIXÉ */
-        .roi-card { background: #000; color: #fff; border-radius: 30px; padding: 2.5rem; margin-top: -5rem; position: relative; z-index: 30; box-shadow: 0 40px 100px rgba(249, 168, 212, 0.2); }
-        @media (min-width: 768px) { .roi-card { padding: 4rem; } }
-        .roi-input { background: transparent; border: none; border-bottom: 2px solid #333; color: var(--sephira-pink); font-size: 1.5rem; font-weight: 900; width: 100%; text-align: center; outline: none; margin-bottom: 1rem; }
-        @media (min-width: 768px) { .roi-input { font-size: 2.5rem; width: 180px; margin-bottom: 0; } }
-        .roi-result-text { font-size: 3.5rem; font-weight: 900; color: #fff; line-height: 1; margin-top: 1rem; }
-        @media (min-width: 768px) { .roi-result-text { font-size: 6rem; margin-top: 0; } }
-        
-        .ba-box { padding: 2.5rem; border-radius: 20px; transition: all 0.5s; }
+        .ba-box { padding: 2.5rem; border-radius: 30px; transition: all 0.5s; }
         .ba-old { background: #f9f9f9; border: 1px solid #eee; filter: grayscale(1); opacity: 0.6; }
         .ba-new { background: #fff; border: 1px solid var(--sephira-pink); box-shadow: 0 20px 50px rgba(249, 168, 212, 0.15); }
+        
+        .swiper-container { width: 100%; padding: 50px 0; }
+        .swiper-slide { width: 300px; height: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
 <body>
 
     <header class="fixed w-full z-50 px-8 py-6 md:px-16 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-black/5">
-        <img src="MAISON_SEPHIRA_LOGO-removebg-preview.png" alt="Maison Sephira" style="height: 30px;">
-        <nav class="hidden md:flex gap-12 text-[0.6rem] uppercase tracking-widest font-bold text-black">
-            <a href="#expertises" class="hover:text-pink-400 transition">Traitements Cliniques</a>
-            <a href="#offres" class="hover:text-pink-400 transition">Ordonnances Express</a>
-            <a href="blog.html" class="text-pink-400">Blog</a>
-            <a href="#contact">Prendre l'Examen</a>
+        <img src="MAISON_SEPHIRA_LOGO-removebg-preview.png" alt="Maison Sephira" style="height: 35px;">
+        <nav class="hidden md:flex gap-12 text-[0.6rem] uppercase tracking-[0.2em] font-black">
+            <a href="#expertises" class="text-black hover:text-pink-400 transition">Traitements Cliniques</a>
+            <a href="#offres" class="text-black hover:text-pink-400 transition">Ordonnances Express</a>
+            <a href="blog.html" class="text-black hover:text-pink-400 transition">Blog</a>
+            <a href="#contact" class="text-pink-400">Prendre l'Examen</a>
         </nav>
     </header>
 
     <main>
         <!-- 1. HERO SECTION -->
-        <section class="h-screen flex items-center px-8 md:px-16 pt-20">
-            <div class="hero-content w-full">
-                <div class="hero-text max-w-3xl">
-                    <div class="nominee-badge mb-8 uppercase">L'Ingénierie du Luxe Digital</div>
-                    <h1 class="text-6xl md:text-[7rem] font-black leading-[0.85] tracking-tighter uppercase mb-8 text-black">
-                        VOTRE MARQUE<br><span class="text-pink-400 font-light italic text-4xl md:text-6xl lg:text-[6rem]">MÉRITE</span><br>L'EXCELLENCE.
+        <section class="min-h-screen flex items-center px-8 md:px-16 pt-32 pb-20">
+            <div class="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-20">
+                <div class="max-w-3xl">
+                    <div class="bg-black/5 border border-black/5 text-[0.6rem] tracking-[0.4em] font-bold px-5 py-2 rounded-full inline-block mb-10 uppercase text-black/60">L'INGÉNIERIE DU LUXE DIGITAL</div>
+                    <h1 class="text-6xl md:text-[8rem] font-black leading-[0.82] tracking-tighter uppercase mb-10 text-black">
+                        VOTRE MARQUE<br><span class="text-pink-400 font-light italic text-4xl md:text-6xl lg:text-[6.5rem]">MÉRITE</span><br>L'EXCELLENCE.
                     </h1>
-                    <p class="text-lg text-gray-600 mb-10 max-w-xl font-light">
+                    <p class="text-xl text-gray-500 mb-12 max-w-2xl font-light leading-relaxed">
                         Maison Sephira transforme votre expertise en un empire numérique. Design clinique, SEO local agressif et stratégies de conversion haute performance.
                     </p>
-                    <div class="flex gap-4">
-                        <a href="#roi" class="btn-luxury btn-pink shadow-lg shadow-pink-100">Simuler mon ROI</a>
+                    <div class="flex flex-wrap gap-6">
+                        <a href="#roi" class="btn-luxury btn-pink shadow-2xl shadow-pink-200">Simuler mon ROI</a>
                         <a href="#offres" class="btn-luxury">Nos Packs Express</a>
                     </div>
                 </div>
-                <div class="hero-logo-container hidden lg:block">
-                    <img src="MAISON_SEPHIRA_LOGO-removebg-preview.png" class="w-full max-w-sm opacity-20" alt="Logo Sephira">
+                <div class="hidden lg:block w-full max-w-md opacity-20">
+                    <img src="MAISON_SEPHIRA_LOGO-removebg-preview.png" class="w-full h-auto" alt="Sephira Clinic">
                 </div>
             </div>
         </section>
 
-        <!-- SECTION PREUVE SOCIALE -->
-        <section class="py-10 border-y border-black/5 opacity-40 grayscale">
-            <div class="flex justify-around items-center px-8 md:px-16 gap-8 overflow-hidden whitespace-nowrap font-black text-xl uppercase tracking-widest text-black/20">
-                <span>Esthétique Pro</span> <span>Luxury Spa</span> <span>Clinique 733</span> <span>Beauty Group</span> <span>Institut Elite</span>
-            </div>
-        </section>
-
-        <!-- 2. LE CALCULATEUR ROI (DÉMONSTRATION DE FORCE) -->
-        <section class="py-20 px-8 md:px-16" id="roi">
-            <div class="max-w-5xl mx-auto roi-card">
-                <div class="text-center mb-12">
-                    <h2 class="text-2xl md:text-3xl font-black uppercase mb-4 text-pink-300">L'Audit de Vérité.</h2>
-                    <p class="text-gray-400 uppercase tracking-widest text-[0.6rem] md:text-xs">Calculez ce que votre site actuel vous fait perdre chaque mois.</p>
+        <!-- 2. LE CALCULATEUR ROI -->
+        <section class="py-32 px-8 md:px-16 bg-white" id="roi">
+            <div class="max-w-6xl mx-auto roi-card">
+                <div class="text-center mb-20">
+                    <h2 class="text-3xl font-black uppercase mb-4 text-pink-300 tracking-widest">Le Diagnostic de Vérité.</h2>
+                    <p class="text-gray-500 uppercase tracking-[0.4em] text-[0.6rem]">Identifiez les failles financières de votre écosystème actuel.</p>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-8">
-                        <div class="flex flex-col">
-                            <label class="text-[0.6rem] uppercase tracking-widest text-gray-500 mb-2">Prix prestation (€)</label>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="space-y-16">
+                        <div class="flex flex-col border-l-2 border-pink-400/20 pl-8">
+                            <span class="roi-label">Prix prestation moyen (€)</span>
                             <input type="number" id="roi-price" class="roi-input" value="120">
                         </div>
-                        <div class="flex flex-col">
-                            <label class="text-[0.6rem] uppercase tracking-widest text-gray-500 mb-2">Visiteurs mensuels</label>
+                        <div class="flex flex-col border-l-2 border-pink-400/20 pl-8">
+                            <span class="roi-label">Visiteurs mensuels (Insta/Web)</span>
                             <input type="number" id="roi-traffic" class="roi-input" value="1000">
                         </div>
                     </div>
                     <div class="text-center lg:text-right">
-                        <div class="text-[0.6rem] uppercase tracking-widest text-pink-400 mb-2 font-bold text-right">Perte estimée par mois :</div>
+                        <div class="text-[0.7rem] uppercase tracking-[0.5em] text-pink-400 mb-6 font-black">Manque à gagner estimé :</div>
                         <div class="roi-result-text" id="roi-result">- 4 800 €</div>
-                        <p class="text-gray-500 text-[0.6rem] uppercase tracking-widest mt-4 text-right">Basé sur un taux de conversion de 1% vs 5%.</p>
+                        <p class="text-gray-500 text-[0.6rem] uppercase tracking-[0.3em] mt-12 leading-loose">Basé sur un taux de conversion de 1% vs 5% (Maison Sephira).</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 3. AVANT / APRÈS -->
-        <section class="py-32 px-8 md:px-16 bg-white">
+        <section class="py-40 px-8 md:px-16 bg-white border-t border-black/5">
             <div class="max-w-7xl mx-auto">
-                <h2 class="section-title text-center">Transformation<br>Radicale.</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20">
-                    <div class="ba-box ba-old">
-                        <div class="text-xs font-bold uppercase mb-4">Branding Standard / Cheap</div>
-                        <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center mb-6 overflow-hidden">
-                            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_4.jpg" class="w-full h-full object-cover opacity-30" alt="Old Branding">
-                        </div>
-                        <ul class="text-sm space-y-3 text-gray-500">
+                <h2 class="text-5xl md:text-7xl font-black uppercase text-center mb-32 tracking-tighter text-black">Transformation<br><span class="text-pink-400 font-light italic">Radicale.</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div class="ba-box ba-old text-left">
+                        <div class="text-[0.6rem] font-black uppercase tracking-[0.4em] mb-8 text-gray-400">Branding Standard / Cheap</div>
+                        <div class="h-80 bg-gray-200 rounded-3xl mb-8 overflow-hidden flex items-center justify-center text-4xl">❌</div>
+                        <ul class="space-y-4 text-[0.7rem] uppercase tracking-widest text-gray-500 font-bold">
                             <li>• Image générique et non rassurante</li>
                             <li>• Invisible sur Google (SEO nul)</li>
                             <li>• Site lent et non optimisé mobile</li>
-                            <li>• Clientèle instable qui négocie les prix</li>
+                            <li>• Clientèle qui négocie les prix</li>
                         </ul>
                     </div>
-                    <div class="ba-box ba-new border-2 border-pink-200">
-                        <div class="text-xs font-bold uppercase mb-4 text-pink-400">Maison Sephira Elite</div>
-                        <div class="h-64 bg-pink-50 rounded-lg flex items-center justify-center mb-6 overflow-hidden">
-                            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_5.jpg" class="w-full h-full object-cover" alt="Branding Luxe">
+                    <div class="ba-box ba-new text-left border-2 border-pink-100 shadow-2xl">
+                        <div class="text-[0.6rem] font-black uppercase tracking-[0.4em] mb-8 text-pink-400">Maison Sephira Elite</div>
+                        <div class="h-80 bg-pink-50 rounded-3xl mb-8 overflow-hidden">
+                            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_5.jpg" class="w-full h-full object-cover" alt="Elite Result">
                         </div>
-                        <ul class="text-sm space-y-3 text-black font-medium">
-                            <li>✓ Positionnement Elite et Luxe incontestable</li>
-                            <li>✓ Domination de la 1ère page Google (SEO Local)</li>
-                            <li>✓ Expérience immersive ultra-fluide (0.8s)</li>
+                        <ul class="space-y-4 text-[0.7rem] uppercase tracking-widest text-black font-black">
+                            <li>✓ Positionnement Elite et Luxe</li>
+                            <li>✓ Domination de la 1ère page Google</li>
+                            <li>✓ Expérience immersive ultra-fluide</li>
                             <li>✓ Acquisition automatique de clients High-Ticket</li>
                         </ul>
                     </div>
@@ -186,61 +156,61 @@
         </section>
 
         <!-- 4. ORDONNANCES EXPRESS -->
-        <section class="py-32 px-8 md:px-16 bg-gray-50/50" id="offres">
-            <div class="max-w-7xl mx-auto mb-16 text-center text-black">
-                <h2 class="section-title">Ordonnances Express.</h2>
-                <p class="section-subtitle font-bold text-black">Les cachets marketing "One-Shot" pour des résultats immédiats.</p>
+        <section id="offres" class="py-40 px-8 md:px-16 bg-gray-50/50 overflow-hidden border-y border-black/5">
+            <div class="max-w-7xl mx-auto mb-24 text-center">
+                <h2 class="text-5xl md:text-7xl font-black uppercase mb-8 text-black">Ordonnances<br>Express.</h2>
+                <p class="text-sm uppercase tracking-[0.4em] text-gray-500 font-bold">Les cachets marketing "One-Shot" pour des résultats immédiats.</p>
             </div>
 
-            <div class="swiper-container mb-20">
+            <div class="swiper-container mb-32">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/fluer gra.png" alt="Flyer 1"></div>
-                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/flyer burger1.jpeg" alt="Flyer Burger"></div>
-                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/7a9170aa-e31e-45d3-bfc9-a6c39a4a269c.jpg" alt="Exemple Design"></div>
-                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/image0.jpg" alt="Exemple Design 2"></div>
-                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/Capture d’écran 2026-02-18 à 01.53.41.png" alt="Menu Esthétique"></div>
+                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/fluer gra.png" alt="Design 1"></div>
+                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/flyer burger1.jpeg" alt="Design 2"></div>
+                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/7a9170aa-e31e-45d3-bfc9-a6c39a4a269c.jpg" alt="Design 3"></div>
+                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/image0.jpg" alt="Design 4"></div>
+                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/Capture d’écran 2026-02-18 à 01.53.41.png" alt="Design 5"></div>
                 </div>
             </div>
 
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="pricing-card text-black">
-                    <div class="text-xs font-bold tracking-widest text-pink-400 uppercase mb-2">Social Media</div>
-                    <h3 class="text-2xl font-black uppercase mb-4 text-black">Pack Feed Parfait</h3>
-                    <p class="text-gray-500 text-sm mb-6 font-bold text-black">9 Templates Instagram + Story Signature pour un feed harmonieux.</p>
-                    <div class="price text-black">147€</div>
-                    <button class="btn-luxury w-full border-black text-black">Commander</button>
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-white p-12 rounded-[40px] border border-black/5 hover:border-pink-200 transition duration-500 text-left">
+                    <div class="text-[0.6rem] font-black tracking-[0.3em] text-pink-400 uppercase mb-4">Social Media</div>
+                    <h3 class="text-2xl font-black uppercase mb-6 leading-none text-black">Pack Feed Parfait</h3>
+                    <p class="text-gray-500 text-[0.7rem] uppercase tracking-widest leading-relaxed mb-10 font-bold">9 Templates Instagram + Story Signature pour un feed harmonieux.</p>
+                    <div class="text-4xl font-black mb-10 text-black">147€</div>
+                    <button class="w-full border border-black py-5 rounded-full text-[0.7rem] uppercase font-black tracking-widest hover:bg-black hover:text-white transition duration-500 text-black">Commander le Soin</button>
                 </div>
-                <div class="pricing-card border-pink-200 border-2 relative text-black scale-105 shadow-2xl">
-                    <div class="absolute -top-4 right-8 bg-black text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest">Best Seller</div>
-                    <div class="text-xs font-bold tracking-widest text-pink-400 uppercase mb-2">Print & Digital</div>
-                    <h3 class="text-2xl font-black uppercase mb-4 text-black">Flyer & Menu Elite</h3>
-                    <p class="text-gray-500 text-sm mb-6 font-bold text-black">Design recto/verso + QR Code dynamique vers vos réservations.</p>
-                    <div class="price text-black">97€</div>
-                    <button class="btn-luxury btn-pink w-full">Commander</button>
+                <div class="bg-white p-12 rounded-[40px] border-2 border-pink-200 relative scale-105 shadow-2xl text-left">
+                    <div class="absolute -top-4 right-10 bg-black text-white text-[0.5rem] font-black px-5 py-2 rounded-full uppercase tracking-widest">Best Seller</div>
+                    <div class="text-[0.6rem] font-black tracking-[0.3em] text-pink-400 uppercase mb-4 text-black">Print & Digital</div>
+                    <h3 class="text-2xl font-black uppercase mb-6 leading-none text-black">Flyer & Menu Elite</h3>
+                    <p class="text-gray-500 text-[0.7rem] uppercase tracking-widest leading-relaxed mb-10 font-bold text-black">Design recto/verso + QR Code dynamique vers vos réservations.</p>
+                    <div class="text-4xl font-black mb-10 text-black">97€</div>
+                    <button class="btn-luxury btn-pink w-full py-5 font-black">Commander le Soin</button>
                 </div>
-                <div class="pricing-card text-black">
-                    <div class="text-xs font-bold tracking-widest text-pink-400 uppercase mb-2 text-black">Automation</div>
-                    <h3 class="text-2xl font-black uppercase mb-4 text-black">Soin à domicile (IA)</h3>
-                    <p class="text-gray-500 text-sm mb-6 font-bold text-black">Installation d'un Agent IA de tri et qualification de leads 24/7.</p>
-                    <div class="price text-black">497€</div>
-                    <button class="btn-luxury w-full border-black text-black">Commander</button>
+                <div class="bg-white p-12 rounded-[40px] border border-black/5 hover:border-pink-200 transition duration-500 text-left">
+                    <div class="text-[0.6rem] font-black tracking-[0.3em] text-pink-400 uppercase mb-4">Automation</div>
+                    <h3 class="text-2xl font-black uppercase mb-6 leading-none text-black">Soin IA à domicile</h3>
+                    <p class="text-gray-500 text-[0.7rem] uppercase tracking-widest leading-relaxed mb-10 font-bold text-black">Installation d'un Agent IA de tri et qualification de leads 24/7.</p>
+                    <div class="text-4xl font-black mb-10 text-black">497€</div>
+                    <button class="w-full border border-black py-5 rounded-full text-[0.7rem] uppercase font-black tracking-widest hover:bg-black hover:text-white transition duration-500 text-black">Commander le Soin</button>
                 </div>
             </div>
         </section>
 
         <!-- 5. CONTACT / CALENDLY -->
-        <section class="py-40 px-8 md:px-16 text-center relative overflow-hidden bg-white border-t border-black/5" id="contact">
-            <div class="max-w-5xl mx-auto relative z-10 text-black">
-                <h2 class="text-5xl md:text-[6rem] font-black uppercase mb-8 leading-none text-black">Passez à<br/><span class="text-pink-400 italic">l'examen.</span></h2>
-                <p class="text-lg text-gray-600 mb-12 font-light uppercase tracking-widest">Réservez votre Audit stratégique (30 min offertes).</p>
+        <section id="contact" class="py-40 px-8 md:px-16 bg-white">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-6xl md:text-[8rem] font-black uppercase mb-12 tracking-tighter leading-none text-black">Passez à<br><span class="text-pink-400 italic">l'examen.</span></h2>
+                <p class="text-xl text-gray-500 mb-20 font-light uppercase tracking-[0.3em]">Réservez votre Audit de Croissance Clinique (30 min offertes).</p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-                    <div class="bg-gray-50 p-10 rounded-3xl border border-black/5 shadow-xl text-black">
-                        <h3 class="text-2xl font-black uppercase mb-6 text-black">Étape 1 : Qualification</h3>
-                        <form id="qualif-form" class="space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 text-left items-start">
+                    <div class="bg-gray-50 p-12 rounded-[50px] shadow-2xl border border-black/5">
+                        <h3 class="text-3xl font-black uppercase mb-10 text-black">Étape 1 : Qualification</h3>
+                        <form id="qualif-form" class="space-y-8">
                             <div>
-                                <label class="text-[0.6rem] uppercase tracking-widest font-bold text-gray-400 block mb-2">Votre CA Mensuel actuel</label>
-                                <select class="w-full bg-white border border-black/5 p-4 rounded-xl text-sm outline-none focus:border-pink-400 text-black font-bold" required>
+                                <label class="text-[0.6rem] uppercase tracking-widest font-black text-gray-400 block mb-4">Votre CA Mensuel actuel</label>
+                                <select class="w-full bg-white border border-black/5 p-6 rounded-3xl text-[0.7rem] uppercase font-bold outline-none focus:border-pink-400 transition" required>
                                     <option value="">Sélectionner...</option>
                                     <option value="0-5k">0 - 5 000 €</option>
                                     <option value="5-15k">5 000 - 15 000 €</option>
@@ -248,36 +218,35 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="text-[0.6rem] uppercase tracking-widest font-bold text-gray-400 block mb-2 text-black">Votre objectif prioritaire</label>
-                                <select class="w-full bg-white border border-black/5 p-4 rounded-xl text-sm outline-none focus:border-pink-400 text-black font-bold" required>
+                                <label class="text-[0.6rem] uppercase tracking-widest font-black text-gray-400 block mb-4">Votre objectif prioritaire</label>
+                                <select class="w-full bg-white border border-black/5 p-6 rounded-3xl text-[0.7rem] uppercase font-bold outline-none focus:border-pink-400 transition" required>
                                     <option value="">Sélectionner...</option>
                                     <option value="leads">Plus de réservations</option>
                                     <option value="automation">Automatisation IA</option>
                                     <option value="notoriété">Image de Marque Luxe</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn-luxury btn-pink w-full font-bold">Vérifier mon éligibilité</button>
+                            <button type="submit" class="btn-luxury btn-pink w-full py-6 font-black uppercase tracking-widest">Vérifier mon éligibilité</button>
                         </form>
                     </div>
-                    <div id="calendly-area" class="bg-gray-100 rounded-3xl flex items-center justify-center text-gray-400 italic p-4 border border-dashed border-gray-300 overflow-hidden">
-                        <p class="text-center px-10 font-bold uppercase tracking-widest text-[0.6rem]">Remplissez le formulaire de triage pour débloquer l'accès au calendrier.</p>
+                    <div id="calendly-area" class="bg-gray-100 rounded-[50px] min-h-[600px] flex items-center justify-center border-2 border-dashed border-black/5 overflow-hidden">
+                        <p class="text-gray-400 text-[0.7rem] uppercase font-black tracking-widest text-center px-12 italic">Remplissez le formulaire de triage pour débloquer l'accès au calendrier.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-white py-12 text-center border-t border-black/5">
-        <p class="text-[0.45rem] tracking-[0.4em] text-gray-400 uppercase font-black">© 2026 — Maison Sephira — Luxury Digital Science</p>
+    <footer class="bg-white py-20 text-center border-t border-black/5">
+        <p class="text-[0.55rem] tracking-[0.6em] text-gray-400 uppercase font-black">© 2026 — Maison Sephira — Luxury Digital Science</p>
     </footer>
 
     <script>
         window.addEventListener('load', () => {
-            // --- ROI CALCULATOR ---
+            // ROI
             const roiPrice = document.getElementById('roi-price');
             const roiTraffic = document.getElementById('roi-traffic');
             const roiResult = document.getElementById('roi-result');
-
             function calculateROI() {
                 const loss = Math.round((parseFloat(roiTraffic.value)||0) * 0.04 * (parseFloat(roiPrice.value)||0));
                 roiResult.innerText = `- ${loss.toLocaleString()} €`;
@@ -285,17 +254,17 @@
             roiPrice.addEventListener('input', calculateROI);
             roiTraffic.addEventListener('input', calculateROI);
 
-            // --- QUALIF FORM ---
+            // QUALIF
             const qualifForm = document.getElementById('qualif-form');
             const calendlyArea = document.getElementById('calendly-area');
             qualifForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                qualifForm.innerHTML = `<div class='text-center py-10'><h3 class='text-pink-400 font-black text-2xl uppercase mb-4'>Éligibilité Confirmée</h3></div>`;
+                qualifForm.innerHTML = `<div class='text-center py-10'><h3 class='text-pink-400 font-black text-3xl uppercase mb-4'>Éligibilité Confirmée</h3><p class='text-sm text-gray-500 uppercase tracking-widest font-bold'>Protocole validé. Réservez votre créneau.</p></div>`;
                 calendlyArea.innerHTML = `<iframe src="https://calendly.com/meyghvne/30min" width="100%" height="600" frameborder="0"></iframe>`;
                 calendlyArea.style.background = 'white'; calendlyArea.style.border = 'none';
             });
 
-            // --- SWIPER ---
+            // SWIPER
             new Swiper('.swiper-container', {
                 effect: 'coverflow', grabCursor: true, centeredSlides: true,
                 slidesPerView: 'auto', loop: true, autoplay: { delay: 2500 },
