@@ -30,7 +30,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,500;0,700;0,900;1,300&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
@@ -41,13 +40,11 @@
         :root { --sephira-pink: #f9a8d4; --sephira-bg: #ffffff; }
         body { background-color: var(--sephira-bg); font-family: 'Raleway', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; margin: 0; }
 
-        #main-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; }
-
         section { position: relative; z-index: 10; background: transparent !important; }
         
         .hero-content { position: relative; z-index: 20; display: flex; align-items: center; justify-content: space-between; }
         .hero-text { flex: 1; }
-        .hero-logo-container { width: 450px; height: 450px; position: relative; }
+        .hero-logo-container { width: 450px; height: 450px; position: relative; display: flex; align-items: center; justify-content: center; }
 
         .nominee-badge { background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); color: #000; padding: 10px 20px; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; border-radius: 100px; display: inline-block; }
         .btn-luxury { border: 1px solid rgba(0,0,0,0.1); padding: 18px 45px; font-size: 0.7rem; text-transform: uppercase; color: #000; border-radius: 100px; background: rgba(255,255,255,0.5); backdrop-filter: blur(10px); transition: all 0.4s; cursor: pointer; }
@@ -56,7 +53,6 @@
         .btn-pink { background: #000; color: #fff; border: none; }
         .btn-pink:hover { background: var(--sephira-pink); color: #000; }
 
-        /* NOUVEAUX STYLES POUR LE TUNNEL */
         .section-title { font-size: 3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 2rem; line-height: 1; }
         .section-subtitle { font-size: 1rem; color: #666; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 4rem; }
         
@@ -74,10 +70,13 @@
         
         .grad-text { background: linear-gradient(to right, #000, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* CALCULATEUR ROI */
-        .roi-card { background: #000; color: #fff; border-radius: 30px; padding: 4rem; margin-top: -5rem; position: relative; z-index: 30; box-shadow: 0 40px 100px rgba(249, 168, 212, 0.2); }
-        .roi-input { background: transparent; border: none; border-bottom: 2px solid #333; color: var(--sephira-pink); font-size: 2rem; font-weight: 900; width: 150px; text-align: center; outline: none; }
-        .roi-input:focus { border-color: var(--sephira-pink); }
+        /* CALCULATEUR ROI - FIXÉ */
+        .roi-card { background: #000; color: #fff; border-radius: 30px; padding: 2.5rem; margin-top: -5rem; position: relative; z-index: 30; box-shadow: 0 40px 100px rgba(249, 168, 212, 0.2); }
+        @media (min-width: 768px) { .roi-card { padding: 4rem; } }
+        .roi-input { background: transparent; border: none; border-bottom: 2px solid #333; color: var(--sephira-pink); font-size: 1.5rem; font-weight: 900; width: 100%; text-align: center; outline: none; margin-bottom: 1rem; }
+        @media (min-width: 768px) { .roi-input { font-size: 2.5rem; width: 180px; margin-bottom: 0; } }
+        .roi-result-text { font-size: 3.5rem; font-weight: 900; color: #fff; line-height: 1; margin-top: 1rem; }
+        @media (min-width: 768px) { .roi-result-text { font-size: 6rem; margin-top: 0; } }
         
         .ba-box { padding: 2.5rem; border-radius: 20px; transition: all 0.5s; }
         .ba-old { background: #f9f9f9; border: 1px solid #eee; filter: grayscale(1); opacity: 0.6; }
@@ -86,41 +85,41 @@
 </head>
 <body>
 
-    <canvas id="main-canvas"></canvas>
-
     <header class="fixed w-full z-50 px-8 py-6 md:px-16 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-black/5">
         <img src="MAISON_SEPHIRA_LOGO-removebg-preview.png" alt="Maison Sephira" style="height: 30px;">
-        <nav class="hidden md:flex gap-12 text-[0.6rem] uppercase tracking-widest font-bold">
-            <a href="#expertises" class="text-black hover:text-pink-400 transition">Traitements Cliniques</a>
-            <a href="#offres" class="text-black hover:text-pink-400 transition">Ordonnances Express</a>
-            <a href="blog.html" class="text-pink-400">Journal de Bord</a>
-            <a href="#contact" class="text-black">Prendre l'Examen</a>
+        <nav class="hidden md:flex gap-12 text-[0.6rem] uppercase tracking-widest font-bold text-black">
+            <a href="#expertises" class="hover:text-pink-400 transition">Traitements Cliniques</a>
+            <a href="#offres" class="hover:text-pink-400 transition">Ordonnances Express</a>
+            <a href="blog.html" class="text-pink-400">Blog</a>
+            <a href="#contact">Prendre l'Examen</a>
         </nav>
     </header>
 
     <main>
-        <!-- 1. HERO SECTION : LA PROMESSE -->
+        <!-- 1. HERO SECTION -->
         <section class="h-screen flex items-center px-8 md:px-16 pt-20">
             <div class="hero-content w-full">
                 <div class="hero-text max-w-3xl">
-                    <div class="nominee-badge mb-8">AGENCE MARKETING DIGITAL EXPERTE - PARIS / GENÈVE</div>
+                    <div class="nominee-badge mb-8 uppercase">L'Ingénierie du Luxe Digital</div>
                     <h1 class="text-6xl md:text-[7rem] font-black leading-[0.85] tracking-tighter uppercase mb-8 text-black">
-                        VOTRE MARQUE<br><span class="text-pink-400 font-light italic">MÉRITE</span><br>L'EXCELLENCE.
+                        VOTRE MARQUE<br><span class="text-pink-400 font-light italic text-4xl md:text-6xl lg:text-[6rem]">MÉRITE</span><br>L'EXCELLENCE.
                     </h1>
                     <p class="text-lg text-gray-600 mb-10 max-w-xl font-light">
                         Maison Sephira transforme votre expertise en un empire numérique. Design clinique, SEO local agressif et stratégies de conversion haute performance.
                     </p>
                     <div class="flex gap-4">
-                        <a href="#roi" class="btn-luxury btn-pink shadow-lg shadow-pink-100">Simuler mon manque à gagner</a>
+                        <a href="#roi" class="btn-luxury btn-pink shadow-lg shadow-pink-100">Simuler mon ROI</a>
                         <a href="#offres" class="btn-luxury">Nos Packs Express</a>
                     </div>
                 </div>
-                <div class="hero-logo-container hidden lg:block" id="hero-3d-target"></div>
+                <div class="hero-logo-container hidden lg:block">
+                    <img src="MAISON_SEPHIRA_LOGO-removebg-preview.png" class="w-full max-w-sm opacity-20" alt="Logo Sephira">
+                </div>
             </div>
         </section>
 
-        <!-- SECTION PREUVE SOCIALE (LOGO SLIDER SUBTIL) -->
-        <section class="py-10 border-y border-black/5 opacity-40 grayscale hover:grayscale-0 transition duration-1000">
+        <!-- SECTION PREUVE SOCIALE -->
+        <section class="py-10 border-y border-black/5 opacity-40 grayscale">
             <div class="flex justify-around items-center px-8 md:px-16 gap-8 overflow-hidden whitespace-nowrap font-black text-xl uppercase tracking-widest text-black/20">
                 <span>Esthétique Pro</span> <span>Luxury Spa</span> <span>Clinique 733</span> <span>Beauty Group</span> <span>Institut Elite</span>
             </div>
@@ -130,37 +129,39 @@
         <section class="py-20 px-8 md:px-16" id="roi">
             <div class="max-w-5xl mx-auto roi-card">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-black uppercase mb-4 text-pink-300">L'Audit de Vérité.</h2>
-                    <p class="text-gray-400 uppercase tracking-widest text-xs">Calculez ce que votre site actuel vous fait perdre chaque mois.</p>
+                    <h2 class="text-2xl md:text-3xl font-black uppercase mb-4 text-pink-300">L'Audit de Vérité.</h2>
+                    <p class="text-gray-400 uppercase tracking-widest text-[0.6rem] md:text-xs">Calculez ce que votre site actuel vous fait perdre chaque mois.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div class="space-y-8">
                         <div class="flex flex-col">
-                            <label class="text-xs uppercase tracking-widest text-gray-500 mb-2">Prix moyen d'une prestation (€)</label>
+                            <label class="text-[0.6rem] uppercase tracking-widest text-gray-500 mb-2">Prix prestation (€)</label>
                             <input type="number" id="roi-price" class="roi-input" value="120">
                         </div>
                         <div class="flex flex-col">
-                            <label class="text-xs uppercase tracking-widest text-gray-500 mb-2">Visiteurs mensuels (Insta/Web)</label>
+                            <label class="text-[0.6rem] uppercase tracking-widest text-gray-500 mb-2">Visiteurs mensuels</label>
                             <input type="number" id="roi-traffic" class="roi-input" value="1000">
                         </div>
                     </div>
-                    <div class="text-center md:text-right">
-                        <div class="text-xs uppercase tracking-widest text-pink-400 mb-2">Perte estimée par mois :</div>
-                        <div class="text-6xl md:text-8xl font-black text-white" id="roi-result">- 4 800 €</div>
-                        <p class="text-gray-500 text-xs mt-4">Basé sur un taux de conversion moyen de 1% (actuel) vs 5% (Maison Sephira).</p>
+                    <div class="text-center lg:text-right">
+                        <div class="text-[0.6rem] uppercase tracking-widest text-pink-400 mb-2 font-bold text-right">Perte estimée par mois :</div>
+                        <div class="roi-result-text" id="roi-result">- 4 800 €</div>
+                        <p class="text-gray-500 text-[0.6rem] uppercase tracking-widest mt-4 text-right">Basé sur un taux de conversion de 1% vs 5%.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. AVANT / APRÈS (DÉMONSTRATION CLINIQUE) -->
+        <!-- 3. AVANT / APRÈS -->
         <section class="py-32 px-8 md:px-16 bg-white">
             <div class="max-w-7xl mx-auto">
                 <h2 class="section-title text-center">Transformation<br>Radicale.</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20">
                     <div class="ba-box ba-old">
                         <div class="text-xs font-bold uppercase mb-4">Branding Standard / Cheap</div>
-                        <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center mb-6 text-4xl">❌</div>
+                        <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center mb-6 overflow-hidden">
+                            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_4.jpg" class="w-full h-full object-cover opacity-30" alt="Old Branding">
+                        </div>
                         <ul class="text-sm space-y-3 text-gray-500">
                             <li>• Image générique et non rassurante</li>
                             <li>• Invisible sur Google (SEO nul)</li>
@@ -168,10 +169,10 @@
                             <li>• Clientèle instable qui négocie les prix</li>
                         </ul>
                     </div>
-                    <div class="ba-box ba-new">
+                    <div class="ba-box ba-new border-2 border-pink-200">
                         <div class="text-xs font-bold uppercase mb-4 text-pink-400">Maison Sephira Elite</div>
                         <div class="h-64 bg-pink-50 rounded-lg flex items-center justify-center mb-6 overflow-hidden">
-                            <img src="site-web-maisonsephira733/img/imageee.png" class="w-full h-full object-cover" alt="Branding Luxe">
+                            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_5.jpg" class="w-full h-full object-cover" alt="Branding Luxe">
                         </div>
                         <ul class="text-sm space-y-3 text-black font-medium">
                             <li>✓ Positionnement Elite et Luxe incontestable</li>
@@ -184,63 +185,13 @@
             </div>
         </section>
 
-        <!-- 2. LE GOUFFRE (AGITATION DU PROBLÈME & DATA) -->
-        <section class="py-32 px-8 md:px-16 bg-gray-50/50" id="expertises">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-                    <div>
-                        <h2 class="section-title">Les chiffres ne <br>mentent pas.</h2>
-                        <p class="text-gray-600 mb-8">Dans l'industrie de la beauté et du luxe, une identité visuelle approximative est un signal de défiance immédiat. Si votre site web met plus de 3 secondes à charger ou que votre menu Instagram est illisible, vos prospects vont chez la concurrence.</p>
-                        
-                        <div class="stat-box">
-                            <div class="stat-number">75%</div>
-                            <p class="text-sm font-bold uppercase tracking-widest text-gray-500 mt-2">des utilisateurs jugent la crédibilité d'une entreprise sur son design web.</p>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-number">46%</div>
-                            <p class="text-sm font-bold uppercase tracking-widest text-gray-500 mt-2">des requêtes Google ont une intention locale. Sans SEO, vous êtes invisible.</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="bg-white p-10 rounded-2xl shadow-xl border border-black/5">
-                            <h3 class="text-2xl font-bold mb-6">Notre Solution Clinique</h3>
-                            <ul class="space-y-6">
-                                <li class="flex items-start gap-4">
-                                    <span class="text-pink-400 font-bold text-xl">01</span>
-                                    <div>
-                                        <h4 class="font-bold uppercase text-sm tracking-wider">Architecture de Marque</h4>
-                                        <p class="text-sm text-gray-500 mt-1">Un positionnement élitiste qui justifie vos prix.</p>
-                                    </div>
-                                </li>
-                                <li class="flex items-start gap-4">
-                                    <span class="text-pink-400 font-bold text-xl">02</span>
-                                    <div>
-                                        <h4 class="font-bold uppercase text-sm tracking-wider">SEO Chirurgical</h4>
-                                        <p class="text-sm text-gray-500 mt-1">Domination des mots-clés de votre ville (ex: "Drainage lymphatique Paris").</p>
-                                    </div>
-                                </li>
-                                <li class="flex items-start gap-4">
-                                    <span class="text-pink-400 font-bold text-xl">03</span>
-                                    <div>
-                                        <h4 class="font-bold uppercase text-sm tracking-wider">Conversion UX/UI</h4>
-                                        <p class="text-sm text-gray-500 mt-1">Des sites web conçus non pas pour être "jolis", mais pour générer des réservations.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. ORDONNANCES EXPRESS (OFFRES RAPIDES) -->
-        <section class="py-32 px-8 md:px-16 overflow-hidden" id="offres">
-            <div class="max-w-7xl mx-auto mb-16 text-center">
+        <!-- 4. ORDONNANCES EXPRESS -->
+        <section class="py-32 px-8 md:px-16 bg-gray-50/50" id="offres">
+            <div class="max-w-7xl mx-auto mb-16 text-center text-black">
                 <h2 class="section-title">Ordonnances Express.</h2>
-                <p class="section-subtitle">Les cachets marketing "One-Shot" pour des résultats immédiats.</p>
+                <p class="section-subtitle font-bold text-black">Les cachets marketing "One-Shot" pour des résultats immédiats.</p>
             </div>
 
-            <!-- Diaporama Swiper pour les Flyers -->
             <div class="swiper-container mb-20">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img src="site-web-maisonsephira733/img/fluer gra.png" alt="Flyer 1"></div>
@@ -252,199 +203,44 @@
             </div>
 
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Pack 1 -->
-                <div class="pricing-card">
+                <div class="pricing-card text-black">
                     <div class="text-xs font-bold tracking-widest text-pink-400 uppercase mb-2">Social Media</div>
-                    <h3 class="text-2xl font-black uppercase mb-4">Pack Feed Parfait</h3>
-                    <p class="text-gray-500 text-sm mb-6">Arrêtez de poster dans le vide. Un feed harmonieux qui attire l'œil instantanément.</p>
-                    <div class="price">147€ <span>/pack</span></div>
-                    <ul class="text-sm space-y-3 mb-8 text-gray-600">
-                        <li>✓ 9 Templates Instagram (Post & Story)</li>
-                        <li>✓ Charte couleur & typographie basique</li>
-                        <li>✓ 1 Couverture de Reel optimisée</li>
-                        <li>✓ Livraison en 48h</li>
-                    </ul>
-                    <button class="btn-luxury w-full">Commander</button>
+                    <h3 class="text-2xl font-black uppercase mb-4 text-black">Pack Feed Parfait</h3>
+                    <p class="text-gray-500 text-sm mb-6 font-bold text-black">9 Templates Instagram + Story Signature pour un feed harmonieux.</p>
+                    <div class="price text-black">147€</div>
+                    <button class="btn-luxury w-full border-black text-black">Commander</button>
                 </div>
-
-                <!-- Pack 2 -->
-                <div class="pricing-card border-pink-200 border-2 relative">
+                <div class="pricing-card border-pink-200 border-2 relative text-black scale-105 shadow-2xl">
                     <div class="absolute -top-4 right-8 bg-black text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest">Best Seller</div>
                     <div class="text-xs font-bold tracking-widest text-pink-400 uppercase mb-2">Print & Digital</div>
-                    <h3 class="text-2xl font-black uppercase mb-4">Flyer & Menu Elite</h3>
-                    <p class="text-gray-500 text-sm mb-6">Le support physique et digital (QR Code) indispensable pour vos prestations.</p>
-                    <div class="price">97€ <span>/design</span></div>
-                    <ul class="text-sm space-y-3 mb-8 text-gray-600">
-                        <li>✓ Design recto/verso sur-mesure</li>
-                        <li>✓ Intégration de votre charte graphique</li>
-                        <li>✓ QR Code dynamique vers vos réservations</li>
-                        <li>✓ Fichier prêt pour l'imprimeur (PDF HD)</li>
-                    </ul>
+                    <h3 class="text-2xl font-black uppercase mb-4 text-black">Flyer & Menu Elite</h3>
+                    <p class="text-gray-500 text-sm mb-6 font-bold text-black">Design recto/verso + QR Code dynamique vers vos réservations.</p>
+                    <div class="price text-black">97€</div>
                     <button class="btn-luxury btn-pink w-full">Commander</button>
                 </div>
-
-                <!-- Pack 3 -->
-                <div class="pricing-card">
-                    <div class="text-xs font-bold tracking-widest text-pink-400 uppercase mb-2">Automation</div>
-                    <h3 class="text-2xl font-black uppercase mb-4">Soin à domicile (IA)</h3>
-                    <p class="text-gray-500 text-sm mb-6">Un agent IA qui travaille pour vous 24/7. Qualification et tri de leads automatique.</p>
-                    <div class="price">497€ <span>/setup</span></div>
-                    <ul class="text-sm space-y-3 mb-8 text-gray-600">
-                        <li>✓ Installation Chatbot intelligent</li>
-                        <li>✓ Scénario de tri personnalisé</li>
-                        <li>✓ Maillage avec votre CRM / Agenda</li>
-                        <li>✓ Formation de 1h offerte</li>
-                    </ul>
-                    <button class="btn-luxury w-full">Commander le Soin</button>
+                <div class="pricing-card text-black">
+                    <div class="text-xs font-bold tracking-widest text-pink-400 uppercase mb-2 text-black">Automation</div>
+                    <h3 class="text-2xl font-black uppercase mb-4 text-black">Soin à domicile (IA)</h3>
+                    <p class="text-gray-500 text-sm mb-6 font-bold text-black">Installation d'un Agent IA de tri et qualification de leads 24/7.</p>
+                    <div class="price text-black">497€</div>
+                    <button class="btn-luxury w-full border-black text-black">Commander</button>
                 </div>
             </div>
         </section>
 
-        </section>
-
-        <!-- 4. RÉSULTATS CLINIQUES (SOCIAL PROOF ALTERNATIVE) -->
-        <section class="py-20 px-8 md:px-16 bg-white border-y border-black/5">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="p-10 border-l-2 border-pink-100">
-                        <div class="text-pink-400 font-black text-4xl mb-2">+120%</div>
-                        <p class="text-[0.65rem] uppercase tracking-[0.2em] font-bold text-black">Réservations Planity</p>
-                        <p class="text-gray-400 text-[0.65rem] mt-4 leading-relaxed uppercase">Cas client : Institut de Médecine Esthétique (Lyon)</p>
-                    </div>
-                    <div class="p-10 border-l-2 border-pink-100">
-                        <div class="text-pink-400 font-black text-4xl mb-2">TOP 3</div>
-                        <p class="text-[0.65rem] uppercase tracking-[0.2em] font-bold text-black">Position Google (SEO)</p>
-                        <p class="text-gray-400 text-[0.65rem] mt-4 leading-relaxed uppercase">Mots-clés stratégiques : "Drainage Lymphatique Paris 8"</p>
-                    </div>
-                    <div class="p-10 border-l-2 border-pink-100">
-                        <div class="text-pink-400 font-black text-4xl mb-2">0.8s</div>
-                        <p class="text-[0.65rem] uppercase tracking-[0.2em] font-bold text-black">Temps de Chargement</p>
-                        <p class="text-gray-400 text-[0.65rem] mt-4 leading-relaxed uppercase">Score Google PageSpeed Mobile (Performance Clinique)</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. LES SOLUTIONS HAUTE PERFORMANCE (PROTOCOLES DE CHIRURGIE) -->
-        <section class="py-32 px-8 md:px-16 bg-black text-white" id="premium">
-            <div class="max-w-7xl mx-auto">
-                <div class="mb-20 text-center">
-                    <h2 class="section-title text-white">Chirurgie de Croissance.</h2>
-                    <p class="section-subtitle text-gray-400">Des protocoles lourds pour les marques qui visent l'empire.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-                    <!-- LE PACK EMPIRE -->
-                    <div class="bg-gradient-to-br from-gray-900 to-black border-2 border-pink-400/30 p-12 rounded-3xl relative overflow-hidden group hover:border-pink-400 transition duration-700">
-                        <div class="absolute top-8 right-8 bg-pink-400 text-black text-[0.5rem] font-black px-4 py-1 rounded-full uppercase tracking-tighter">Setup & Scale</div>
-                        <h3 class="text-4xl font-black uppercase mb-6">Pack Empire 733</h3>
-                        <p class="text-gray-400 mb-8 font-light italic text-sm">L'écosystème complet pour passer de "pro" à "incontournable".</p>
-                        <ul class="space-y-4 mb-10 text-[0.7rem] uppercase tracking-widest text-gray-300">
-                            <li>✦ Site Web Vitrine Elite (Optimisé Conversion)</li>
-                            <li>✦ Setup Réservation Planity/Calendly</li>
-                            <li>✦ SEO Local Chirurgical (3 mois offerts)</li>
-                            <li>✦ Création Google Business Profile Premium</li>
-                            <li>✦ 10 Templates Instagram & Story Signature</li>
-                        </ul>
-                        <div class="text-3xl font-bold font-mono text-pink-400 mb-8 tracking-tighter">À partir de 3 500 €</div>
-                        <a href="#contact" class="btn-luxury btn-pink w-full inline-block text-center">Lancer l'Ingénierie</a>
-                    </div>
-
-                    <!-- L'ABONNEMENT CROISSANCE -->
-                    <div class="bg-gray-900/50 border border-white/10 p-12 rounded-3xl hover:border-white/30 transition duration-700">
-                        <h3 class="text-4xl font-black uppercase mb-6">Maintenance & Growth</h3>
-                        <p class="text-gray-400 mb-8 font-light text-sm">Le moteur de croissance récurrent pour déléguer 100% de votre digital.</p>
-                        <ul class="space-y-4 mb-10 text-[0.7rem] uppercase tracking-widest text-gray-400">
-                            <li>✦ Mise à jour technique et sécurité 24/7</li>
-                            <li>✦ 2 Articles SEO hebdomadaires (Data-driven)</li>
-                            <li>✦ Gestion & Optimisation Campagnes Ads</li>
-                            <li>✦ Audit de conversion mensuel (Vidéo de 15min)</li>
-                        </ul>
-                        <div class="text-3xl font-bold font-mono text-pink-400 mb-8 tracking-tighter">950 € <span class="text-xs text-gray-500 font-sans">/mois</span></div>
-                        <a href="#contact" class="btn-luxury w-full inline-block text-center border-white/20 text-white">Souscrire au Protocole</a>
-                    </div>
-                </div>
-
-                <!-- LA GARANTIE TECHNIQUE -->
-                <div class="max-w-3xl mx-auto text-center p-10 border border-pink-400/20 rounded-2xl bg-pink-400/5">
-                    <h4 class="text-pink-400 font-bold uppercase tracking-widest text-[0.6rem] mb-4">Garantie Performance Clinique</h4>
-                    <p class="text-xs text-gray-300 italic font-light tracking-wide leading-relaxed">"Si votre site web n'atteint pas un score minimum de 90/100 sur Google PageSpeed Mobile lors de la livraison, nous vous offrons 3 mois de maintenance technique gratuite."</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. LE PROTOCOLE 733 (MÉTHODOLOGIE) -->
-        <section class="py-32 px-8 md:px-16 bg-white" id="methode">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="section-title">Le Protocole 733.</h2>
-                <p class="section-subtitle">Notre approche chirurgicale en 4 étapes.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div class="p-8 border border-black/5 rounded-2xl bg-gray-50/30">
-                        <div class="text-4xl font-black text-pink-200 mb-4">01.</div>
-                        <h3 class="font-bold uppercase text-xs mb-2">Audit Clinique</h3>
-                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase">Analyse de vos failles digitales et de votre manque à gagner SEO.</p>
-                    </div>
-                    <div class="p-8 border border-black/5 rounded-2xl bg-gray-50/30">
-                        <div class="text-4xl font-black text-pink-200 mb-4">02.</div>
-                        <h3 class="font-bold uppercase text-xs mb-2">Ingénierie</h3>
-                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase">Création d'une identité de prestige qui écrase la concurrence locale.</p>
-                    </div>
-                    <div class="p-8 border border-black/5 rounded-2xl bg-gray-50/30">
-                        <div class="text-4xl font-black text-pink-200 mb-4">03.</div>
-                        <h3 class="font-bold uppercase text-xs mb-2">Déploiement</h3>
-                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase">Lancement de votre écosystème : Site Elite, SEO ciblé et Ads agressives.</p>
-                    </div>
-                    <div class="p-8 border border-black/5 rounded-2xl bg-gray-50/30">
-                        <div class="text-4xl font-black text-pink-200 mb-4">04.</div>
-                        <h3 class="font-bold uppercase text-xs mb-2">Optimisation</h3>
-                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase">Suivi des KPIs et ajustements mensuels pour maximiser votre ROI.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. FAQ STRATÉGIQUE (TRAITEMENT DES OBJECTIONS) -->
-        <section class="py-32 px-8 md:px-16 bg-gray-50/50">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="section-title text-center">Questions Cliniques.</h2>
-                <div class="mt-12 space-y-4">
-                    <details class="bg-white p-6 rounded-xl border border-black/5 cursor-pointer hover:border-pink-200 transition">
-                        <summary class="font-bold uppercase text-[0.65rem] tracking-wider flex justify-between items-center">
-                            Pourquoi Maison Sephira et pas une agence classique ?
-                        </summary>
-                        <p class="text-[0.65rem] text-gray-500 mt-4 leading-relaxed uppercase">Parce que nous ne vendons pas du design, nous vendons de la rentabilité. Chaque pixel et chaque ligne de code sont optimisés pour transformer un visiteur en client High-Ticket.</p>
-                    </details>
-                    <details class="bg-white p-6 rounded-xl border border-black/5 cursor-pointer hover:border-pink-200 transition">
-                        <summary class="font-bold uppercase text-[0.65rem] tracking-wider flex justify-between items-center">
-                            En combien de temps verrai-je des résultats SEO ?
-                        </summary>
-                        <p class="text-[0.65rem] text-gray-500 mt-4 leading-relaxed uppercase">Nos techniques "Quick-Wins" permettent de remonter sur des requêtes locales en 30 à 60 jours. Pour une domination totale, comptez 4 à 6 mois.</p>
-                    </details>
-                    <details class="bg-white p-6 rounded-xl border border-black/5 cursor-pointer hover:border-pink-200 transition">
-                        <summary class="font-bold uppercase text-[0.65rem] tracking-wider flex justify-between items-center">
-                            Est-ce que vos offres s'adaptent aux petits instituts ?
-                        </summary>
-                        <p class="text-[0.65rem] text-gray-500 mt-4 leading-relaxed uppercase">Oui. Notre "Arsenal Express" (Pack Flyers, Logos) est conçu pour les entrepreneurs qui veulent un look pro immédiatement sans le budget d'une multinationale.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <!-- 8. CTA FINAL : LE CALENDRIER & QUALIFICATION -->
-        <section class="py-40 px-8 md:px-16 text-center relative overflow-hidden bg-white" id="contact">
-            <div class="max-w-5xl mx-auto relative z-10">
-                <h2 class="text-5xl md:text-[6rem] font-black uppercase mb-8 leading-none">Passez à l'examen.</h2>
-                <p class="text-lg text-gray-600 mb-12 font-light uppercase tracking-widest">Réservez votre Audit de Croissance Clinique (30 min offertes).</p>
+        <!-- 5. CONTACT / CALENDLY -->
+        <section class="py-40 px-8 md:px-16 text-center relative overflow-hidden bg-white border-t border-black/5" id="contact">
+            <div class="max-w-5xl mx-auto relative z-10 text-black">
+                <h2 class="text-5xl md:text-[6rem] font-black uppercase mb-8 leading-none text-black">Passez à<br/><span class="text-pink-400 italic">l'examen.</span></h2>
+                <p class="text-lg text-gray-600 mb-12 font-light uppercase tracking-widest">Réservez votre Audit stratégique (30 min offertes).</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-                    <!-- Formulaire de Qualification (Filtre) -->
-                    <div class="bg-gray-50 p-10 rounded-3xl border border-black/5 shadow-xl">
-                        <h3 class="text-2xl font-black uppercase mb-6">Étape 1 : Qualification</h3>
+                    <div class="bg-gray-50 p-10 rounded-3xl border border-black/5 shadow-xl text-black">
+                        <h3 class="text-2xl font-black uppercase mb-6 text-black">Étape 1 : Qualification</h3>
                         <form id="qualif-form" class="space-y-6">
                             <div>
                                 <label class="text-[0.6rem] uppercase tracking-widest font-bold text-gray-400 block mb-2">Votre CA Mensuel actuel</label>
-                                <select class="w-full bg-white border border-black/5 p-4 rounded-xl text-sm outline-none focus:border-pink-400" required>
+                                <select class="w-full bg-white border border-black/5 p-4 rounded-xl text-sm outline-none focus:border-pink-400 text-black font-bold" required>
                                     <option value="">Sélectionner...</option>
                                     <option value="0-5k">0 - 5 000 €</option>
                                     <option value="5-15k">5 000 - 15 000 €</option>
@@ -452,21 +248,19 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="text-[0.6rem] uppercase tracking-widest font-bold text-gray-400 block mb-2">Votre objectif prioritaire</label>
-                                <select class="w-full bg-white border border-black/5 p-4 rounded-xl text-sm outline-none focus:border-pink-400" required>
+                                <label class="text-[0.6rem] uppercase tracking-widest font-bold text-gray-400 block mb-2 text-black">Votre objectif prioritaire</label>
+                                <select class="w-full bg-white border border-black/5 p-4 rounded-xl text-sm outline-none focus:border-pink-400 text-black font-bold" required>
                                     <option value="">Sélectionner...</option>
-                                    <option value="notoriété">Notoriété & Image de Marque</option>
                                     <option value="leads">Plus de réservations</option>
-                                    <option value="automation">Automatisation & Gain de temps</option>
+                                    <option value="automation">Automatisation IA</option>
+                                    <option value="notoriété">Image de Marque Luxe</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn-luxury btn-pink w-full">Vérifier mon éligibilité</button>
+                            <button type="submit" class="btn-luxury btn-pink w-full font-bold">Vérifier mon éligibilité</button>
                         </form>
                     </div>
-
-                    <!-- Calendly (Caché au départ) -->
-                    <div id="calendly-area" class="bg-gray-100 rounded-3xl flex items-center justify-center text-gray-400 italic p-4 border border-dashed border-gray-300">
-                        <p class="text-center px-10">Remplissez le formulaire de qualification pour débloquer l'accès au calendrier de l'agence.</p>
+                    <div id="calendly-area" class="bg-gray-100 rounded-3xl flex items-center justify-center text-gray-400 italic p-4 border border-dashed border-gray-300 overflow-hidden">
+                        <p class="text-center px-10 font-bold uppercase tracking-widest text-[0.6rem]">Remplissez le formulaire de triage pour débloquer l'accès au calendrier.</p>
                     </div>
                 </div>
             </div>
@@ -474,173 +268,38 @@
     </main>
 
     <footer class="bg-white py-12 text-center border-t border-black/5">
-        <p class="text-[0.45rem] tracking-[0.4em] text-gray-400 uppercase">© 2026 — Maison Sephira — Luxury Digital Science</p>
+        <p class="text-[0.45rem] tracking-[0.4em] text-gray-400 uppercase font-black">© 2026 — Maison Sephira — Luxury Digital Science</p>
     </footer>
 
     <script>
         window.addEventListener('load', () => {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 40;
-
-            const renderer = new THREE.WebGLRenderer({ 
-                canvas: document.getElementById('main-canvas'), 
-                alpha: true, 
-                antialias: true 
-            });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-
-            // --- 1. NEON 3D TUBE (SHARP PINK GLOW) ---
-            const points = [];
-            for(let i=0; i<25; i++) points.push(new THREE.Vector3(0,0,0));
-            
-            // Core Line
-            const coreLine = new THREE.Mesh(
-                new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 64, 0.04, 8, false),
-                new THREE.MeshBasicMaterial({ color: 0xffffff })
-            );
-            scene.add(coreLine);
-            
-            // Glow Outer
-            const glowOuter = new THREE.Mesh(
-                new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 64, 0.25, 8, false),
-                new THREE.MeshBasicMaterial({ color: 0xf9a8d4, transparent: true, opacity: 0.6 })
-            );
-            scene.add(glowOuter);
-
-            // --- 2. 3D GLASS PHOTO LENS (HERO) ---
-            const lensGroup = new THREE.Group();
-            const lens = new THREE.Mesh(
-                new THREE.SphereGeometry(8, 64, 64),
-                new THREE.MeshPhysicalMaterial({ 
-                    transmission: 1, thickness: 5, ior: 2.4, roughness: 0,
-                    clearcoat: 1, reflectivity: 1, color: 0xffffff
-                })
-            );
-            const logoTex = new THREE.TextureLoader().load('MAISON_SEPHIRA_LOGO-removebg-preview.png');
-            const logo = new THREE.Mesh(
-                new THREE.PlaneGeometry(16, 16),
-                new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, opacity: 0.9 })
-            );
-            logo.position.z = -5;
-            lensGroup.add(lens);
-            lensGroup.add(logo);
-            lensGroup.position.set(15, 0, 15);
-            scene.add(lensGroup);
-
-            // --- 3. ARCHIVE 733 (GALERIE 3D) ---
-            const archiveGroup = new THREE.Group();
-            for(let i=0; i<4; i++) {
-                const img = new THREE.Mesh(
-                    new THREE.PlaneGeometry(15, 20),
-                    new THREE.MeshPhysicalMaterial({ 
-                        color: 0xffffff, transparent: true, opacity: 0.05,
-                        roughness: 0, transmission: 0.9, thickness: 1
-                    })
-                );
-                img.position.set((i % 2 - 0.5) * 40, i * -35 - 70, 0);
-                archiveGroup.add(img);
-            }
-            scene.add(archiveGroup);
-
-            // LUMIÈRES STUDIO
-            scene.add(new THREE.AmbientLight(0xffffff, 1.2));
-            const studioLight = new THREE.PointLight(0xffffff, 5, 100);
-            studioLight.position.set(20, 20, 20);
-            scene.add(studioLight);
-
-            // --- INTERACTIONS ---
-            let mouse = new THREE.Vector2();
-            let targetMouse = new THREE.Vector2();
-            window.addEventListener('mousemove', (e) => {
-                targetMouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-                targetMouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-            });
-
-            function update() {
-                mouse.x += (targetMouse.x - mouse.x) * 0.1;
-                mouse.y += (targetMouse.y - mouse.y) * 0.1;
-
-                // Position 3D
-                const v = new THREE.Vector3(mouse.x, mouse.y, 0.5).unproject(camera);
-                const dir = v.sub(camera.position).normalize();
-                const pos = camera.position.clone().add(dir.multiplyScalar(40));
-                
-                points.shift(); points.push(pos);
-                const curve = new THREE.CatmullRomCurve3(points);
-                coreLine.geometry.dispose(); coreLine.geometry = new THREE.TubeGeometry(curve, 64, 0.04, 8, false);
-                glowOuter.geometry.dispose(); glowOuter.geometry = new THREE.TubeGeometry(curve, 64, 0.25, 8, false);
-
-                // Scroll & Positions
-                const s = window.scrollY;
-                lensGroup.position.y = -s * 0.05 + 5;
-                lensGroup.rotation.y = mouse.x * 0.5;
-                archiveGroup.position.y = s * 0.08;
-
-                renderer.render(scene, camera);
-                requestAnimationFrame(update);
-            }
-            update();
-
-            window.addEventListener('resize', () => {
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-            });
-
-            gsap.registerPlugin(ScrollTrigger);
-            document.querySelectorAll('.service-item').forEach(el => {
-                gsap.from(el, { scrollTrigger: el, opacity: 0, y: 50, duration: 1.5, delay: 0.2 });
-            });
-            // --- CALCULATEUR ROI INTERACTIF ---
+            // --- ROI CALCULATOR ---
             const roiPrice = document.getElementById('roi-price');
             const roiTraffic = document.getElementById('roi-traffic');
             const roiResult = document.getElementById('roi-result');
 
             function calculateROI() {
-                const price = parseFloat(roiPrice.value) || 0;
-                const traffic = parseFloat(roiTraffic.value) || 0;
-                // Formule : Trafic * (5% Sephira - 1% Actuel) * Prix
-                const loss = Math.round(traffic * (0.05 - 0.01) * price);
+                const loss = Math.round((parseFloat(roiTraffic.value)||0) * 0.04 * (parseFloat(roiPrice.value)||0));
                 roiResult.innerText = `- ${loss.toLocaleString()} €`;
             }
-
             roiPrice.addEventListener('input', calculateROI);
             roiTraffic.addEventListener('input', calculateROI);
 
-            // --- LOGIQUE FORMULAIRE QUALIFICATION ---
+            // --- QUALIF FORM ---
             const qualifForm = document.getElementById('qualif-form');
             const calendlyArea = document.getElementById('calendly-area');
-
             qualifForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                qualifForm.innerHTML = `<div class='text-center py-10'><h3 class='text-pink-400 font-black text-2xl uppercase mb-4'>Éligibilité Confirmée</h3><p class='text-sm text-gray-500 uppercase tracking-widest'>Votre profil correspond à nos protocoles. Réservez votre créneau à droite.</p></div>`;
-                
-                // Ici, on injecte le vrai Calendly
-                calendlyArea.innerHTML = `<iframe src="https://calendly.com/VOTRE_LIEN" width="100%" height="600" frameborder="0"></iframe>`;
-                calendlyArea.classList.remove('bg-gray-100', 'text-gray-400');
-                calendlyArea.style.border = 'none';
+                qualifForm.innerHTML = `<div class='text-center py-10'><h3 class='text-pink-400 font-black text-2xl uppercase mb-4'>Éligibilité Confirmée</h3></div>`;
+                calendlyArea.innerHTML = `<iframe src="https://calendly.com/meyghvne/30min" width="100%" height="600" frameborder="0"></iframe>`;
+                calendlyArea.style.background = 'white'; calendlyArea.style.border = 'none';
             });
 
-            // --- INITIALISATION SWIPER (DIAPORAMA FLYERS) ---
-            const swiper = new Swiper('.swiper-container', {
-                effect: 'coverflow',
-                grabCursor: true,
-                centeredSlides: true,
-                slidesPerView: 'auto',
-                loop: true,
-                autoplay: {
-                    delay: 2500,
-                    disableOnInteraction: false,
-                },
-                coverflowEffect: {
-                    rotate: 20,
-                    stretch: 0,
-                    depth: 200,
-                    modifier: 1,
-                    slideShadows: true,
-                }
+            // --- SWIPER ---
+            new Swiper('.swiper-container', {
+                effect: 'coverflow', grabCursor: true, centeredSlides: true,
+                slidesPerView: 'auto', loop: true, autoplay: { delay: 2500 },
+                coverflowEffect: { rotate: 20, stretch: 0, depth: 200, modifier: 1, slideShadows: true }
             });
         });
     </script>
