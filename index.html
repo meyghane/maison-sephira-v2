@@ -29,6 +29,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -244,27 +245,64 @@
 
     <script>
         window.addEventListener('load', () => {
+            // --- LENIS SMOOTH SCROLL (AWWWARDS STANDARD) ---
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                mouseMultiplier: 1,
+                smoothTouch: false,
+                touchMultiplier: 2,
+                infinite: false,
+            });
+
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+
             // --- GSAP CINEMATIC REVEAL ---
+            gsap.registerPlugin(ScrollTrigger);
+            
             const tl = gsap.timeline();
-            tl.from(".hero-text h1", { 
-                y: 50, 
-                opacity: 0, 
-                duration: 1.2, 
-                ease: "power4.out",
-                stagger: 0.1
-            })
-            .from(".hero-text p", { 
-                opacity: 0, 
-                y: 20, 
-                duration: 0.8, 
-                ease: "power3.out" 
-            }, "-=0.8")
-            .from(".hero-text .flex", { 
-                opacity: 0, 
-                y: 20, 
-                duration: 0.8, 
-                ease: "power3.out" 
-            }, "-=0.6");
+            tl.from(".hero-text h1", { y: 100, opacity: 0, duration: 1.8, ease: "power4.out", stagger: 0.15 })
+              .from(".hero-text p", { opacity: 0, y: 30, duration: 1.5, ease: "power3.out" }, "-=1.2")
+              .from(".hero-text .flex", { opacity: 0, y: 30, duration: 1.5, ease: "power3.out" }, "-=1.0")
+              .from(".hero-logo-container", { scale: 0.8, opacity: 0, duration: 2, ease: "power4.out" }, "-=1.5");
+
+            // --- PARALLAX EFFECTS ---
+            gsap.to(".roi-card", {
+                y: -100,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#roi",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
+            gsap.utils.toArray('.ba-box').forEach(box => {
+                gsap.from(box, {
+                    y: 100, opacity: 0, duration: 1.5, ease: "power4.out",
+                    scrollTrigger: { trigger: box, start: "top 85%" }
+                });
+            });
+
+            // --- MAGNETIC BUTTONS ---
+            const magneticButtons = document.querySelectorAll('.btn-luxury');
+            magneticButtons.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.5, ease: "power2.out" });
+                });
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" });
+                });
+            });
 
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -278,6 +316,7 @@
             });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setClearColor(0x000000, 0); // Force pure transparency
 
             // --- 1. NEON CURSOR TRAIL ---
             const points = [];
@@ -291,15 +330,23 @@
             // --- 2. GLASS LENS (HERO) ---
             const lensGroup = new THREE.Group();
             const lensGeo = new THREE.SphereGeometry(6, 64, 64);
+            // ELITE GLASS MATERIAL
             const lensMat = new THREE.MeshPhysicalMaterial({
-                transmission: 1, thickness: 2, ior: 1.5, roughness: 0, 
-                clearcoat: 1, color: 0xffffff, attenuationColor: 0xffffff, attenuationDistance: 1
+                transmission: 1.0, 
+                thickness: 2.0, 
+                ior: 1.5, 
+                roughness: 0.0, 
+                clearcoat: 1.0, 
+                color: 0xffffff,
+                transparent: true,
+                opacity: 1.0,
+                side: THREE.DoubleSide
             });
             const lens = new THREE.Mesh(lensGeo, lensMat);
             
             const logoTex = new THREE.TextureLoader().load('MAISON_SEPHIRA_LOGO-removebg-preview.png');
             const logoGeo = new THREE.PlaneGeometry(12, 12);
-            const logoMat = new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, opacity: 0.8 });
+            const logoMat = new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, opacity: 0.9, depthWrite: false });
             const logo = new THREE.Mesh(logoGeo, logoMat);
             logo.position.z = -5;
 
