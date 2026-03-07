@@ -6,27 +6,12 @@
     <title>Maison Sephira 733 | Agence Marketing Luxe & SEO Performance</title>
     <meta name="description" content="Maison Sephira 733 transforme les marques de beauté en empires numériques. Stratégie luxe, SEO local et design haute performance. Audit gratuit.">
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Maison Sephira 733",
-      "image": "MAISON_SEPHIRA_LOGO-removebg-preview.png",
-      "priceRange": "€€€",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Champs-Élysées",
-        "addressLocality": "Paris",
-        "addressCountry": "FR"
-      }
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,500;0,700;0,900;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,500;0,700;0,900;1,300&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
@@ -36,65 +21,76 @@
     
     <style>
         :root { --sephira-pink: #f9a8d4; --sephira-bg: #ffffff; }
-        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: var(--sephira-bg); font-family: 'Raleway', sans-serif; -webkit-font-smoothing: antialiased; }
+        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: var(--sephira-bg); font-family: 'Raleway', sans-serif; -webkit-font-smoothing: antialiased; scroll-behavior: auto; }
         
+        #main-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
         section { position: relative; z-index: 10; background: transparent; }
         
+        /* AWWWARDS TEXT REVEAL */
+        .reveal-container { overflow: hidden; display: inline-block; vertical-align: top; }
+        .reveal-text { display: block; transform: translateY(105%); }
+
         .btn-luxury { border: 1px solid rgba(0,0,0,0.1); padding: 18px 45px; font-size: 0.7rem; text-transform: uppercase; color: #000; border-radius: 100px; background: rgba(255,255,255,0.5); backdrop-filter: blur(10px); transition: all 0.4s; cursor: pointer; display: inline-block; }
-        .btn-luxury:hover { background: #000; color: #fff; transform: scale(1.05); }
         .btn-pink { background: #000 !important; color: #fff !important; }
         .btn-pink:hover { background: var(--sephira-pink) !important; color: #000 !important; }
 
-        /* ROI CALCULATOR - DESIGN ÉLITE */
+        /* ROI CALCULATOR */
         .roi-card { background: #000; color: #fff; border-radius: 40px; padding: 3rem; margin-top: -5rem; position: relative; z-index: 30; box-shadow: 0 50px 100px rgba(0,0,0,0.2); }
         @media (min-width: 1024px) { .roi-card { padding: 5rem; } }
         .roi-input { background: transparent; border: none; border-bottom: 2px solid #222; color: var(--sephira-pink); font-size: 2.5rem; font-weight: 900; width: 100%; outline: none; transition: border-color 0.3s; padding: 10px 0; }
         .roi-input:focus { border-color: var(--sephira-pink); }
         .roi-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3em; font-weight: 800; color: #555; margin-bottom: 1rem; display: block; }
-        .roi-result-text { font-size: 3rem; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.05em; margin-top: 1rem; }
-        @media (min-width: 768px) { .roi-result-text { font-size: 6rem; margin-top: 0; } }
+        .roi-result-text { font-size: 3.5rem; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.05em; margin-top: 1rem; }
+        @media (min-width: 768px) { .roi-result-text { font-size: 6rem; } }
         @media (min-width: 1024px) { .roi-result-text { font-size: 8rem; } }
 
-        .ba-box { padding: 2.5rem; border-radius: 30px; transition: all 0.5s; }
-        .ba-old { background: #f9f9f9; border: 1px solid #eee; filter: grayscale(1); opacity: 0.6; }
-        .ba-new { background: #fff; border: 1px solid var(--sephira-pink); box-shadow: 0 20px 50px rgba(249, 168, 212, 0.15); }
-        
+        /* SWIPER LIQUIDE */
         .swiper-container { width: 100%; padding: 50px 0; }
-        .swiper-slide { width: 300px; height: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .swiper-slide { width: 300px; height: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); filter: grayscale(1); opacity: 0.5; }
+        .swiper-slide-active { filter: grayscale(0); opacity: 1; transform: scale(1.1); z-index: 2; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .swiper-slide-active img { transform: scale(1); }
+
+        /* FAQ Majestic */
+        .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); transition: all 0.4s ease; }
+        .faq-item:hover { background: rgba(249, 168, 212, 0.03); padding-left: 2rem; }
+        .faq-question { padding: 3rem 0; cursor: pointer; list-style: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 1.2rem; display: flex; justify-content: space-between; align-items: center; color: #000; }
+        .faq-icon { font-size: 1.8rem; font-weight: 300; transition: transform 0.5s ease; }
+        details[open] .faq-icon { transform: rotate(45deg); color: var(--sephira-pink); }
     </style>
 </head>
 <body>
 
+    <canvas id="main-canvas"></canvas>
+
     <header class="fixed w-full z-50 px-8 py-6 md:px-16 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-black/5">
         <img src="MAISON_SEPHIRA_LOGO-removebg-preview.png" alt="Maison Sephira" style="height: 35px;">
-        <nav class="hidden md:flex gap-12 text-[0.6rem] uppercase tracking-[0.2em] font-black">
-            <a href="#expertises" class="text-black hover:text-pink-400 transition">Traitements Cliniques</a>
-            <a href="#offres" class="text-black hover:text-pink-400 transition">Ordonnances Express</a>
-            <a href="blog.html" class="text-black hover:text-pink-400 transition">Blog</a>
-            <a href="#contact" class="text-pink-400 hover:text-black transition">Prendre l'Examen</a>
+        <nav class="hidden md:flex gap-12 text-[0.6rem] uppercase tracking-[0.2em] font-black text-black">
+            <a href="#expertises" class="hover:text-pink-400 transition">Traitements Cliniques</a>
+            <a href="#offres" class="hover:text-pink-400 transition">Ordonnances Express</a>
+            <a href="blog.html" class="text-pink-400">Blog</a>
+            <a href="#contact" class="hover:text-pink-400 transition">Prendre l'Examen</a>
         </nav>
     </header>
 
     <main>
         <!-- 1. HERO SECTION -->
-        <section class="min-h-screen flex items-center px-8 md:px-16 pt-32 pb-20">
-            <div class="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-20">
-                <div class="max-w-3xl">
-                    <div class="bg-black/5 border border-black/5 text-[0.6rem] tracking-[0.4em] font-bold px-5 py-2 rounded-full inline-block mb-10 uppercase text-black/60">L'INGÉNIERIE DU LUXE DIGITAL</div>
+        <section class="h-screen flex items-center px-8 md:px-16 pt-32 pb-20">
+            <div class="w-full max-w-7xl mx-auto">
+                <div class="max-w-4xl">
+                    <div class="nominee-badge mb-10 reveal-container"><span class="reveal-text uppercase">L'Ingénierie du Luxe Digital</span></div>
                     <h1 class="text-6xl md:text-[8rem] font-black leading-[0.82] tracking-tighter uppercase mb-10 text-black">
-                        VOTRE MARQUE<br><span class="text-pink-400 font-light italic text-4xl md:text-6xl lg:text-[6.5rem]">MÉRITE</span><br>L'EXCELLENCE.
+                        <span class="reveal-container"><span class="reveal-text">VOTRE MARQUE</span></span><br>
+                        <span class="reveal-container"><span class="text-pink-400 font-light italic text-4xl md:text-6xl lg:text-[6.5rem] reveal-text">MÉRITE</span></span><br>
+                        <span class="reveal-container"><span class="reveal-text">L'EXCELLENCE.</span></span>
                     </h1>
-                    <p class="text-xl text-gray-500 mb-12 max-w-2xl font-light leading-relaxed">
-                        Maison Sephira transforme votre expertise en un empire numérique. Design clinique, SEO local agressif et stratégies de conversion haute performance.
+                    <p class="text-xl text-gray-500 mb-12 max-w-2xl font-light leading-relaxed reveal-container">
+                        <span class="reveal-text">Maison Sephira transforme votre expertise en un empire numérique. Design clinique, SEO local agressif et stratégies de conversion haute performance.</span>
                     </p>
                     <div class="flex flex-wrap gap-6">
-                        <a href="#roi" class="btn-luxury btn-pink shadow-2xl shadow-pink-200">Simuler mon ROI</a>
-                        <a href="#offres" class="btn-luxury">Nos Packs Express</a>
+                        <a href="#roi" class="btn-luxury btn-pink shadow-2xl shadow-pink-200 magnetic">Simuler mon ROI</a>
+                        <a href="#offres" class="btn-luxury magnetic">Nos Ordonnances</a>
                     </div>
-                </div>
-                <div class="hidden lg:block w-full max-w-md opacity-20">
-                    <img src="MAISON_SEPHIRA_LOGO-removebg-preview.png" class="w-full h-auto" alt="Sephira Clinic">
                 </div>
             </div>
         </section>
@@ -118,50 +114,19 @@
                         </div>
                     </div>
                     <div class="text-center lg:text-right">
-                        <div class="text-[0.7rem] uppercase tracking-[0.5em] text-pink-400 mb-6 font-black">Manque à gagner estimé :</div>
+                        <div class="text-[0.7rem] uppercase tracking-[0.5em] text-pink-400 mb-6 font-black text-right">Manque à gagner estimé :</div>
                         <div class="roi-result-text" id="roi-result">- 4 800 €</div>
-                        <p class="text-gray-500 text-[0.6rem] uppercase tracking-[0.3em] mt-12 leading-loose">Basé sur un taux de conversion de 1% vs 5% (Maison Sephira).</p>
+                        <p class="text-gray-500 text-[0.6rem] uppercase tracking-[0.3em] mt-12 leading-loose text-right italic">Basé sur un taux de conversion de 1% vs 5%.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. AVANT / APRÈS -->
-        <section class="py-40 px-8 md:px-16 bg-white border-t border-black/5">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-5xl md:text-7xl font-black uppercase text-center mb-32 tracking-tighter text-black">Transformation<br><span class="text-pink-400 font-light italic">Radicale.</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-                    <div class="ba-box ba-old text-left">
-                        <div class="text-[0.6rem] font-black uppercase tracking-[0.4em] mb-8 text-gray-400">Branding Standard / Cheap</div>
-                        <div class="h-80 bg-gray-200 rounded-3xl mb-8 overflow-hidden flex items-center justify-center text-4xl">❌</div>
-                        <ul class="space-y-4 text-[0.7rem] uppercase tracking-widest text-gray-500 font-bold">
-                            <li>• Image générique et non rassurante</li>
-                            <li>• Invisible sur Google (SEO nul)</li>
-                            <li>• Site lent et non optimisé mobile</li>
-                            <li>• Clientèle qui négocie les prix</li>
-                        </ul>
-                    </div>
-                    <div class="ba-box ba-new text-left border-2 border-pink-100 shadow-2xl">
-                        <div class="text-[0.6rem] font-black uppercase tracking-[0.4em] mb-8 text-pink-400">Maison Sephira Elite</div>
-                        <div class="h-80 bg-pink-50 rounded-3xl mb-8 overflow-hidden">
-                            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_5.jpg" class="w-full h-full object-cover" alt="Elite Result">
-                        </div>
-                        <ul class="space-y-4 text-[0.7rem] uppercase tracking-widest text-black font-black">
-                            <li>✓ Positionnement Elite et Luxe</li>
-                            <li>✓ Domination de la 1ère page Google</li>
-                            <li>✓ Expérience immersive ultra-fluide</li>
-                            <li>✓ Acquisition automatique de clients High-Ticket</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. ORDONNANCES EXPRESS -->
+        <!-- 3. ORDONNANCES EXPRESS -->
         <section id="offres" class="py-40 px-8 md:px-16 bg-gray-50/50 overflow-hidden border-y border-black/5">
             <div class="max-w-7xl mx-auto mb-24 text-center">
                 <h2 class="text-5xl md:text-7xl font-black uppercase mb-8 text-black">Ordonnances<br>Express.</h2>
-                <p class="text-sm uppercase tracking-[0.4em] text-gray-500 font-bold">Les cachets marketing "One-Shot" pour des résultats immédiats.</p>
+                <p class="text-sm uppercase tracking-[0.4em] text-gray-500 font-black">Les cachets marketing "One-Shot" pour des résultats immédiats.</p>
             </div>
 
             <div class="swiper-container mb-32">
@@ -175,44 +140,100 @@
             </div>
 
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="bg-white p-12 rounded-[40px] border border-black/5 hover:border-pink-200 transition duration-500 text-left">
+                <div class="bg-white p-12 rounded-[40px] border border-black/5 hover:border-pink-200 transition duration-500 shadow-xl shadow-black/[0.02] text-left">
                     <div class="text-[0.6rem] font-black tracking-[0.3em] text-pink-400 uppercase mb-4">Social Media</div>
                     <h3 class="text-2xl font-black uppercase mb-6 leading-none text-black">Pack Feed Parfait</h3>
-                    <p class="text-gray-500 text-[0.7rem] uppercase tracking-widest leading-relaxed mb-10 font-bold">9 Templates Instagram + Story Signature pour un feed harmonieux.</p>
+                    <p class="text-gray-500 text-xs uppercase tracking-widest leading-relaxed mb-10 font-black">9 Templates Instagram + Story Signature pour un feed harmonieux.</p>
                     <div class="text-4xl font-black mb-10 text-black">147€</div>
-                    <button class="w-full border border-black py-5 rounded-full text-[0.7rem] uppercase font-black tracking-widest hover:bg-black hover:text-white transition duration-500 text-black">Commander le Soin</button>
+                    <button class="w-full border border-black py-5 rounded-full text-[0.7rem] uppercase font-black tracking-widest hover:bg-black hover:text-white transition duration-500 text-black">Commander</button>
                 </div>
                 <div class="bg-white p-12 rounded-[40px] border-2 border-pink-200 relative scale-105 shadow-2xl text-left">
                     <div class="absolute -top-4 right-10 bg-black text-white text-[0.5rem] font-black px-5 py-2 rounded-full uppercase tracking-widest">Best Seller</div>
                     <div class="text-[0.6rem] font-black tracking-[0.3em] text-pink-400 uppercase mb-4 text-black">Print & Digital</div>
                     <h3 class="text-2xl font-black uppercase mb-6 leading-none text-black">Flyer & Menu Elite</h3>
-                    <p class="text-gray-500 text-[0.7rem] uppercase tracking-widest leading-relaxed mb-10 font-bold text-black">Design recto/verso + QR Code dynamique vers vos réservations.</p>
+                    <p class="text-gray-500 text-xs uppercase tracking-widest leading-relaxed mb-10 font-black text-black">Design recto/verso + QR Code dynamique vers vos réservations.</p>
                     <div class="text-4xl font-black mb-10 text-black">97€</div>
-                    <button class="btn-luxury btn-pink w-full py-5 font-black">Commander le Soin</button>
+                    <button class="btn-luxury btn-pink w-full py-5 font-black">Commander</button>
                 </div>
-                <div class="bg-white p-12 rounded-[40px] border border-black/5 hover:border-pink-200 transition duration-500 text-left">
+                <div class="bg-white p-12 rounded-[40px] border border-black/5 hover:border-pink-200 transition duration-500 text-left shadow-xl shadow-black/[0.02]">
                     <div class="text-[0.6rem] font-black tracking-[0.3em] text-pink-400 uppercase mb-4">Automation</div>
-                    <h3 class="text-2xl font-black uppercase mb-6 leading-none text-black">Soin IA à domicile</h3>
-                    <p class="text-gray-500 text-[0.7rem] uppercase tracking-widest leading-relaxed mb-10 font-bold text-black">Installation d'un Agent IA de tri et qualification de leads 24/7.</p>
+                    <h3 class="text-2xl font-black uppercase mb-6 leading-none text-black">Soin à domicile (IA)</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-widest leading-relaxed mb-10 font-black text-black">Installation d'un Agent IA de tri et qualification de leads 24/7.</p>
                     <div class="text-4xl font-black mb-10 text-black">497€</div>
-                    <button class="w-full border border-black py-5 rounded-full text-[0.7rem] uppercase font-black tracking-widest hover:bg-black hover:text-white transition duration-500 text-black">Commander le Soin</button>
+                    <button class="w-full border border-black py-5 rounded-full text-[0.7rem] uppercase font-black tracking-widest hover:bg-black hover:text-white transition duration-500 text-black">Commander</button>
                 </div>
             </div>
         </section>
 
-        <!-- 5. CONTACT / CALENDLY -->
-        <section id="contact" class="py-40 px-8 md:px-16 bg-white">
+        <!-- 4. LE PROTOCOLE 733 -->
+        <section class="py-40 px-8 md:px-16 bg-white" id="expertises">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-5xl md:text-7xl font-black uppercase mb-32 tracking-tighter text-black">Le Protocole<br/><span class="text-pink-400 italic">733.</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="p-10 border border-black/5 rounded-[30px] bg-gray-50/30">
+                        <div class="text-4xl font-black text-pink-200 mb-6 text-left">01.</div>
+                        <h3 class="font-black uppercase text-xs mb-4 text-black text-left">Examen Clinique</h3>
+                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase tracking-widest font-black text-left">Analyse de vos failles digitales et de votre manque à gagner SEO.</p>
+                    </div>
+                    <div class="p-10 border border-black/5 rounded-[30px] bg-gray-50/30">
+                        <div class="text-4xl font-black text-pink-200 mb-6 text-left">02.</div>
+                        <h3 class="font-black uppercase text-xs mb-4 text-black text-left">Ingénierie</h3>
+                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase tracking-widest font-black text-left">Création d'une identité de prestige qui écrase la concurrence locale.</p>
+                    </div>
+                    <div class="p-10 border border-black/5 rounded-[30px] bg-gray-50/30">
+                        <div class="text-4xl font-black text-pink-200 mb-6 text-left">03.</div>
+                        <h3 class="font-black uppercase text-xs mb-4 text-black text-left">Déploiement</h3>
+                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase tracking-widest font-black text-left">Lancement de votre écosystème : Site Elite et SEO ciblé.</p>
+                    </div>
+                    <div class="p-10 border border-black/5 rounded-[30px] bg-gray-50/30">
+                        <div class="text-4xl font-black text-pink-200 mb-6 text-left">04.</div>
+                        <h3 class="font-black uppercase text-xs mb-4 text-black text-left">Optimisation</h3>
+                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase tracking-widest font-black text-left">Suivi des KPIs et ajustements mensuels pour maximiser votre ROI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. FAQ MAJESTIC -->
+        <section class="py-40 px-8 md:px-16 bg-white border-t border-black/5">
+            <div class="w-full">
+                <h2 class="section-title text-center text-5xl mb-32 text-black">Questions<br/><span class="text-pink-400 italic">Cliniques.</span></h2>
+                <div class="divide-y divide-black/10">
+                    <details class="faq-item group">
+                        <summary class="faq-question cursor-pointer list-none">
+                            <span>Pourquoi Maison Sephira et pas une agence classique ?</span>
+                            <span class="faq-icon">+</span>
+                        </summary>
+                        <div class="pb-12 text-lg text-gray-500 font-light max-w-4xl leading-relaxed uppercase tracking-widest text-[0.7rem] text-left">
+                            Parce que nous ne vendons pas du design, nous vendons de la rentabilité. Chaque pixel et chaque ligne de code sont optimisés pour transformer un visiteur en client High-Ticket.
+                        </div>
+                    </details>
+                    <details class="faq-item group">
+                        <summary class="faq-question cursor-pointer list-none">
+                            <span>En combien de temps verrai-je des résultats SEO ?</span>
+                            <span class="faq-icon">+</span>
+                        </summary>
+                        <div class="pb-12 text-lg text-gray-500 font-light max-w-4xl leading-relaxed uppercase tracking-widest text-[0.7rem] text-left">
+                            Nos techniques "Quick-Wins" permettent de remonter sur des requêtes locales en 30 à 60 jours. Pour une domination totale, comptez 4 à 6 mois.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACT / CALENDLY -->
+        <section id="contact" class="py-40 px-8 md:px-16 bg-white border-t border-black/5">
             <div class="max-w-6xl mx-auto text-center">
-                <h2 class="text-6xl md:text-[8rem] font-black uppercase mb-12 tracking-tighter leading-none text-black">Passez à<br><span class="text-pink-400 italic">l'examen.</span></h2>
-                <p class="text-xl text-gray-500 mb-20 font-light uppercase tracking-[0.3em]">Réservez votre Audit de Croissance Clinique (30 min offertes).</p>
+                <h2 class="text-6xl md:text-[8rem] font-black uppercase mb-12 tracking-tighter leading-none text-black">Passez à<br/><span class="text-pink-400 italic">l'examen.</span></h2>
+                <p class="text-xl text-gray-500 mb-20 font-light uppercase tracking-[0.3em]">Réservez votre Audit stratégique (30 min offertes).</p>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 text-left items-start">
-                    <div class="bg-gray-50 p-12 rounded-[50px] shadow-2xl border border-black/5">
-                        <h3 class="text-3xl font-black uppercase mb-10 text-black">Étape 1 : Qualification</h3>
+                    <div class="bg-gray-50 p-12 rounded-[50px] shadow-2xl border border-black/5 text-black">
+                        <h3 class="text-3xl font-black uppercase mb-10 text-black text-left">Étape 1 : Qualification</h3>
                         <form id="qualif-form" class="space-y-8">
                             <div>
-                                <label class="text-[0.6rem] uppercase tracking-widest font-black text-gray-400 block mb-4">Votre CA Mensuel actuel</label>
-                                <select class="w-full bg-white border border-black/5 p-6 rounded-3xl text-[0.7rem] uppercase font-bold outline-none focus:border-pink-400 transition" required>
+                                <label class="text-[0.6rem] uppercase tracking-widest font-black text-gray-400 block mb-4 text-left">Votre CA Mensuel actuel</label>
+                                <select class="w-full bg-white border border-black/5 p-6 rounded-3xl text-[0.7rem] uppercase font-bold outline-none focus:border-pink-400 transition text-black" required>
                                     <option value="">Sélectionner...</option>
                                     <option value="0-5k">0 - 5 000 €</option>
                                     <option value="5-15k">5 000 - 15 000 €</option>
@@ -220,18 +241,18 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="text-[0.6rem] uppercase tracking-widest font-black text-gray-400 block mb-4">Votre objectif prioritaire</label>
-                                <select class="w-full bg-white border border-black/5 p-6 rounded-3xl text-[0.7rem] uppercase font-bold outline-none focus:border-pink-400 transition" required>
+                                <label class="text-[0.6rem] uppercase tracking-widest font-black text-gray-400 block mb-4 text-left">Votre objectif prioritaire</label>
+                                <select class="w-full bg-white border border-black/5 p-6 rounded-3xl text-[0.7rem] uppercase font-bold outline-none focus:border-pink-400 transition text-black" required>
                                     <option value="">Sélectionner...</option>
                                     <option value="leads">Plus de réservations</option>
                                     <option value="automation">Automatisation IA</option>
                                     <option value="notoriété">Image de Marque Luxe</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn-luxury btn-pink w-full py-6 font-black uppercase tracking-widest">Vérifier mon éligibilité</button>
+                            <button type="submit" class="w-full bg-black text-white py-6 rounded-full text-[0.8rem] uppercase font-black tracking-widest hover:bg-pink-400 hover:text-black transition duration-500">Vérifier mon éligibilité</button>
                         </form>
                     </div>
-                    <div id="calendly-area" class="bg-gray-100 rounded-[50px] min-h-[600px] flex items-center justify-center border-2 border-dashed border-black/5 overflow-hidden">
+                    <div id="calendly-area" class="bg-gray-100 rounded-[50px] min-h-[600px] flex items-center justify-center border-2 border-dashed border-black/5 overflow-hidden text-black">
                         <p class="text-gray-400 text-[0.7rem] uppercase font-black tracking-widest text-center px-12 italic">Remplissez le formulaire de triage pour débloquer l'accès au calendrier.</p>
                     </div>
                 </div>
@@ -239,184 +260,91 @@
         </section>
     </main>
 
-    <footer class="bg-white py-20 text-center border-t border-black/5">
-        <p class="text-[0.55rem] tracking-[0.6em] text-gray-400 uppercase font-black">© 2026 — Maison Sephira — Luxury Digital Science</p>
+    <footer class="bg-white py-20 text-center border-t border-black/5 text-black">
+        <p class="text-[0.55rem] tracking-[0.6em] text-gray-400 uppercase font-black px-6">© 2026 — Maison Sephira — Luxury Digital Science</p>
     </footer>
 
     <script>
         window.addEventListener('load', () => {
-            // --- LENIS SMOOTH SCROLL (AWWWARDS STANDARD) ---
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                direction: 'vertical',
-                gestureDirection: 'vertical',
-                smooth: true,
-                mouseMultiplier: 1,
-                smoothTouch: false,
-                touchMultiplier: 2,
-                infinite: false,
-            });
-
+            // --- LENIS SMOOTH SCROLL ---
+            const lenis = new Lenis({ duration: 1.2, smooth: true });
             lenis.on('scroll', ScrollTrigger.update);
             gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-            gsap.ticker.lagSmoothing(0);
 
-            // --- GSAP CINEMATIC REVEAL ---
+            // --- GSAP REVEAL ANIMATIONS ---
             gsap.registerPlugin(ScrollTrigger);
-            
-            const tl = gsap.timeline();
-            tl.from(".hero-text h1", { y: 100, opacity: 0, duration: 1.8, ease: "power4.out", stagger: 0.15 })
-              .from(".hero-text p", { opacity: 0, y: 30, duration: 1.5, ease: "power3.out" }, "-=1.2")
-              .from(".hero-text .flex", { opacity: 0, y: 30, duration: 1.5, ease: "power3.out" }, "-=1.0")
-              .from(".hero-logo-container", { scale: 0.8, opacity: 0, duration: 2, ease: "power4.out" }, "-=1.5");
-
-            // --- PARALLAX EFFECTS ---
-            gsap.to(".roi-card", {
-                y: -100,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "#roi",
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-
-            gsap.utils.toArray('.ba-box').forEach(box => {
-                gsap.from(box, {
-                    y: 100, opacity: 0, duration: 1.5, ease: "power4.out",
-                    scrollTrigger: { trigger: box, start: "top 85%" }
-                });
+            gsap.to(".reveal-text", {
+                y: "0%", duration: 1.2, ease: "power4.out", stagger: 0.1,
+                scrollTrigger: { trigger: ".reveal-container", start: "top 90%" }
             });
 
             // --- MAGNETIC BUTTONS ---
-            const magneticButtons = document.querySelectorAll('.btn-luxury');
+            const magneticButtons = document.querySelectorAll('.magnetic');
             magneticButtons.forEach(btn => {
                 btn.addEventListener('mousemove', (e) => {
                     const rect = btn.getBoundingClientRect();
                     const x = e.clientX - rect.left - rect.width / 2;
                     const y = e.clientY - rect.top - rect.height / 2;
-                    gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.5, ease: "power2.out" });
+                    gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.5 });
                 });
-                btn.addEventListener('mouseleave', () => {
-                    gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" });
-                });
+                btn.addEventListener('mouseleave', () => { gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" }); });
             });
 
+            // --- THREE.JS ENGINE ---
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
             camera.position.z = 30;
-
-            const renderer = new THREE.WebGLRenderer({ 
-                canvas: document.getElementById('main-canvas'), 
-                alpha: true, 
-                antialias: true,
-                premultipliedAlpha: false
-            });
+            const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('main-canvas'), alpha: true, antialias: true, premultipliedAlpha: false });
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.setClearColor(0x000000, 0); // Force pure transparency
+            renderer.setClearColor(0x000000, 0);
 
-            // --- 1. NEON CURSOR TRAIL ---
-            const points = [];
-            for(let i=0; i<25; i++) points.push(new THREE.Vector3(0,0,0));
-            const curve = new THREE.CatmullRomCurve3(points);
-            const tubeGeo = new THREE.TubeGeometry(curve, 64, 0.05, 8, false);
-            const tubeMat = new THREE.MeshBasicMaterial({ color: 0xf9a8d4, transparent: true, opacity: 0.8 });
-            const tube = new THREE.Mesh(tubeGeo, tubeMat);
+            // --- GLASS LENS & NEON ---
+            const lensGroup = new THREE.Group();
+            const lens = new THREE.Mesh(new THREE.SphereGeometry(6, 64, 64), new THREE.MeshPhysicalMaterial({ transmission: 1, thickness: 2, ior: 1.5, roughness: 0, clearcoat: 1, color: 0xffffff }));
+            const logoTex = new THREE.TextureLoader().load('MAISON_SEPHIRA_LOGO-removebg-preview.png');
+            const logo = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, opacity: 0.8, depthWrite: false }));
+            logo.position.z = -5;
+            lensGroup.add(lens); lensGroup.add(logo);
+            lensGroup.position.set(15, 0, 10); scene.add(lensGroup);
+
+            const points = []; for(let i=0; i<25; i++) points.push(new THREE.Vector3(0,0,0));
+            const tube = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 64, 0.05, 8, false), new THREE.MeshBasicMaterial({ color: 0xf9a8d4, transparent: true, opacity: 0.8 }));
             scene.add(tube);
 
-            // --- 2. GLASS LENS (HERO) ---
-            const lensGroup = new THREE.Group();
-            const lensGeo = new THREE.SphereGeometry(6, 64, 64);
-            // ELITE GLASS MATERIAL
-            const lensMat = new THREE.MeshPhysicalMaterial({
-                transmission: 1.0, 
-                thickness: 2.0, 
-                ior: 1.5, 
-                roughness: 0.0, 
-                clearcoat: 1.0, 
-                color: 0xffffff,
-                transparent: true,
-                opacity: 1.0,
-                side: THREE.DoubleSide
-            });
-            const lens = new THREE.Mesh(lensGeo, lensMat);
-            
-            const logoTex = new THREE.TextureLoader().load('MAISON_SEPHIRA_LOGO-removebg-preview.png');
-            const logoGeo = new THREE.PlaneGeometry(12, 12);
-            const logoMat = new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, opacity: 0.9, depthWrite: false });
-            const logo = new THREE.Mesh(logoGeo, logoMat);
-            logo.position.z = -5;
-
-            lensGroup.add(lens);
-            lensGroup.add(logo);
-            lensGroup.position.set(15, 0, 10);
-            scene.add(lensGroup);
-
             scene.add(new THREE.AmbientLight(0xffffff, 1));
-            const pointLight = new THREE.PointLight(0xffffff, 2);
-            pointLight.position.set(10, 10, 20);
-            scene.add(pointLight);
+            const pLight = new THREE.PointLight(0xffffff, 2); pLight.position.set(10, 10, 20); scene.add(pLight);
 
-            // --- INTERACTIONS ---
             let mouse = new THREE.Vector2();
-            window.addEventListener('mousemove', (e) => {
-                mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-                mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-            });
+            window.addEventListener('mousemove', (e) => { mouse.x = (e.clientX/window.innerWidth)*2-1; mouse.y = -(e.clientY/window.innerHeight)*2+1; });
 
             function animate() {
-                // Update Neon
                 const v = new THREE.Vector3(mouse.x, mouse.y, 0.5).unproject(camera);
-                const dir = v.sub(camera.position).normalize();
-                const pos = camera.position.clone().add(dir.multiplyScalar(35));
+                const pos = camera.position.clone().add(v.sub(camera.position).normalize().multiplyScalar(35));
                 points.shift(); points.push(pos);
-                tube.geometry.dispose();
-                tube.geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 64, 0.05, 8, false);
-
-                // Update Lens
-                const s = window.scrollY;
-                lensGroup.position.y = -s * 0.05 + 5;
+                tube.geometry.dispose(); tube.geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 64, 0.05, 8, false);
+                lensGroup.position.y = -window.scrollY * 0.05 + 5;
                 lensGroup.rotation.y = mouse.x * 0.3;
-
                 renderer.render(scene, camera);
                 requestAnimationFrame(animate);
             }
             animate();
 
-            window.addEventListener('resize', () => {
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-            });
-
-            // ROI
+            // ROI & QUALIF
             const roiPrice = document.getElementById('roi-price');
             const roiTraffic = document.getElementById('roi-traffic');
             const roiResult = document.getElementById('roi-result');
-            function calculateROI() {
-                const loss = Math.round((parseFloat(roiTraffic.value)||0) * 0.04 * (parseFloat(roiPrice.value)||0));
-                roiResult.innerText = `- ${loss.toLocaleString()} €`;
-            }
-            roiPrice.addEventListener('input', calculateROI);
-            roiTraffic.addEventListener('input', calculateROI);
+            function calculateROI() { roiResult.innerText = `- ${Math.round((parseFloat(roiTraffic.value)||0) * 0.04 * (parseFloat(roiPrice.value)||0)).toLocaleString()} €`; }
+            roiPrice.addEventListener('input', calculateROI); roiTraffic.addEventListener('input', calculateROI);
 
-            // QUALIF
             const qualifForm = document.getElementById('qualif-form');
-            const calendlyArea = document.getElementById('calendly-area');
             qualifForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                qualifForm.innerHTML = `<div class='text-center py-10'><h3 class='text-pink-400 font-black text-2xl uppercase mb-4'>Éligibilité Confirmée</h3></div>`;
-                calendlyArea.innerHTML = `<iframe src="https://calendly.com/meyghvne/30min" width="100%" height="600" frameborder="0"></iframe>`;
-                calendlyArea.style.background = 'white'; calendlyArea.style.border = 'none';
+                qualifForm.innerHTML = `<div class='text-center py-10'><h3 class='text-pink-400 font-black text-3xl uppercase mb-4'>Éligibilité Confirmée</h3></div>`;
+                document.getElementById('calendly-area').innerHTML = `<iframe src="https://calendly.com/meyghvne/30min" width="100%" height="600" frameborder="0"></iframe>`;
             });
 
-            // SWIPER
             new Swiper('.swiper-container', {
-                effect: 'coverflow', grabCursor: true, centeredSlides: true,
-                slidesPerView: 'auto', loop: true, autoplay: { delay: 2500 },
+                effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView: 'auto', loop: true, autoplay: { delay: 2500 },
                 coverflowEffect: { rotate: 20, stretch: 0, depth: 200, modifier: 1, slideShadows: true }
             });
         });
