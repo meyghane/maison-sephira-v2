@@ -244,6 +244,28 @@
 
     <script>
         window.addEventListener('load', () => {
+            // --- GSAP CINEMATIC REVEAL ---
+            const tl = gsap.timeline();
+            tl.from(".hero-text h1", { 
+                y: 50, 
+                opacity: 0, 
+                duration: 1.2, 
+                ease: "power4.out",
+                stagger: 0.1
+            })
+            .from(".hero-text p", { 
+                opacity: 0, 
+                y: 20, 
+                duration: 0.8, 
+                ease: "power3.out" 
+            }, "-=0.8")
+            .from(".hero-text .flex", { 
+                opacity: 0, 
+                y: 20, 
+                duration: 0.8, 
+                ease: "power3.out" 
+            }, "-=0.6");
+
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.z = 30;
