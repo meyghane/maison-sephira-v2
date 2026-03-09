@@ -40,6 +40,15 @@
         .roi-input { background: transparent; border: none; border-bottom: 1px solid rgba(249, 168, 212, 0.2); color: var(--sephira-pink); font-size: 3rem; font-weight: 300; width: 100%; outline: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 5px 0; font-family: 'Space Mono', monospace; }
         .roi-input:focus { border-color: var(--sephira-pink); padding-left: 15px; }
         .roi-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.4em; font-weight: 900; color: #666; margin-bottom: 0.5rem; display: block; }
+        .roi-input-container { position: relative; display: flex; align-items: center; }
+        .roi-input { background: transparent; border: none; border-bottom: 1px solid rgba(249, 168, 212, 0.2); color: var(--sephira-pink); font-size: 3rem; font-weight: 300; width: 100%; outline: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 5px 0; font-family: 'Space Mono', monospace; }
+        .roi-input:focus { border-color: var(--sephira-pink); }
+        
+        .roi-stepper { display: flex; flex-direction: column; position: absolute; right: 0; opacity: 0; transition: opacity 0.3s; }
+        .roi-input-container:hover .roi-stepper { opacity: 1; }
+        .roi-step-btn { color: var(--sephira-pink); background: none; border: none; cursor: pointer; font-size: 0.7rem; padding: 2px; transition: transform 0.2s; }
+        .roi-step-btn:hover { transform: scale(1.3); color: #fff; }
+
         .roi-result-text { font-size: 3rem; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.05em; white-space: nowrap; }
         @media (min-width: 768px) { .roi-result-text { font-size: 4.5rem; } }
         @media (min-width: 1280px) { .roi-result-text { font-size: 5.5rem; } }
@@ -123,19 +132,43 @@
                         <div class="grid grid-cols-2 gap-x-8 gap-y-10">
                             <div class="flex flex-col border-l border-white/5 pl-6">
                                 <span class="roi-label">Panier Moyen (€)</span>
-                                <input type="number" id="roi-price" class="roi-input" value="120">
+                                <div class="roi-input-container">
+                                    <input type="number" id="roi-price" class="roi-input" value="120">
+                                    <div class="roi-stepper">
+                                        <button class="roi-step-btn" data-target="roi-price" data-dir="up">▲</button>
+                                        <button class="roi-step-btn" data-target="roi-price" data-dir="down">▼</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="flex flex-col border-l border-white/5 pl-6">
                                 <span class="roi-label">Trafic Mensuel</span>
-                                <input type="number" id="roi-traffic" class="roi-input" value="1000">
+                                <div class="roi-input-container">
+                                    <input type="number" id="roi-traffic" class="roi-input" value="1000">
+                                    <div class="roi-stepper">
+                                        <button class="roi-step-btn" data-target="roi-traffic" data-dir="up">▲</button>
+                                        <button class="roi-step-btn" data-target="roi-traffic" data-dir="down">▼</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="flex flex-col border-l border-white/5 pl-6">
                                 <span class="roi-label">Conv. Actuelle (%)</span>
-                                <input type="number" id="roi-conv" class="roi-input" value="1" step="0.1">
+                                <div class="roi-input-container">
+                                    <input type="number" id="roi-conv" class="roi-input" value="1" step="0.1">
+                                    <div class="roi-stepper">
+                                        <button class="roi-step-btn" data-target="roi-conv" data-dir="up">▲</button>
+                                        <button class="roi-step-btn" data-target="roi-conv" data-dir="down">▼</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="flex flex-col border-l border-white/5 pl-6">
                                 <span class="roi-label">Achats / An</span>
-                                <input type="number" id="roi-retention" class="roi-input" value="2">
+                                <div class="roi-input-container">
+                                    <input type="number" id="roi-retention" class="roi-input" value="2">
+                                    <div class="roi-stepper">
+                                        <button class="roi-step-btn" data-target="roi-retention" data-dir="up">▲</button>
+                                        <button class="roi-step-btn" data-target="roi-retention" data-dir="down">▼</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -510,6 +543,25 @@
 
             [roiPrice, roiTraffic, roiConv, roiRetention].forEach(el => {
                 if(el) el.addEventListener('input', calculateROI);
+            });
+
+            // STEPPERS LOGIC
+            document.querySelectorAll('.roi-step-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const targetId = btn.getAttribute('data-target');
+                    const direction = btn.getAttribute('data-dir');
+                    const input = document.getElementById(targetId);
+                    if (!input) return;
+
+                    const step = parseFloat(input.getAttribute('step')) || 1;
+                    let val = parseFloat(input.value) || 0;
+                    
+                    if (direction === 'up') val += step;
+                    else val = Math.max(0, val - step);
+                    
+                    input.value = val;
+                    calculateROI();
+                });
             });
             
             // Initial call
