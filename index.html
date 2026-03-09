@@ -465,12 +465,24 @@
 
             // --- GLASS LENS & NEON ---
             const lensGroup = new THREE.Group();
-            const lens = new THREE.Mesh(new THREE.SphereGeometry(6, 64, 64), new THREE.MeshPhysicalMaterial({ transmission: 1, thickness: 2, ior: 1.5, roughness: 0, clearcoat: 1, color: 0xffffff }));
-            const logoTex = new THREE.TextureLoader().load('MAISON_SEPHIRA_LOGO-removebg-preview.png');
-            const logo = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, opacity: 0.8, depthWrite: false }));
-            logo.position.z = -5;
-            lensGroup.add(lens); lensGroup.add(logo);
-            lensGroup.position.set(15, 0, 10); scene.add(lensGroup);
+            const lens = new THREE.Mesh(new THREE.SphereGeometry(6, 64, 64), new THREE.MeshPhysicalMaterial({ 
+                transmission: 1, 
+                thickness: 2, 
+                ior: 1.5, 
+                roughness: 0, 
+                clearcoat: 1, 
+                color: 0xffffff 
+            }));
+            
+            // Logo temporairement retiré pour nettoyer l'interface
+            // const logoTex = new THREE.TextureLoader().load('MAISON_SEPHIRA_LOGO-removebg-preview.png');
+            // const logo = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, opacity: 0.8, depthWrite: false }));
+            // logo.position.z = -5;
+            
+            lensGroup.add(lens); 
+            // lensGroup.add(logo); 
+            lensGroup.position.set(15, 0, 10); 
+            scene.add(lensGroup);
 
             const points = []; for(let i=0; i<25; i++) points.push(new THREE.Vector3(0,0,0));
             const tube = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), 64, 0.05, 8, false), new THREE.MeshBasicMaterial({ color: 0xf9a8d4, transparent: true, opacity: 0.8 }));
