@@ -1,616 +1,341 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="bg-black">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Sephira 733 | Agence Marketing Luxe & SEO Performance</title>
-    <meta name="description" content="Maison Sephira 733 transforme les marques de beauté en empires numériques. Stratégie luxe, SEO local et design haute performance. Audit gratuit.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,500;0,700;0,900;1,300&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
-    
+    <title>Maison Sephira 733 | Agence Marketing Luxe</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script src="https://unpkg.com/threejs-components@0.0.17/dist/threejs-components.min.js"></script>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --sephira-pink: #f9a8d4; --sephira-bg: #ffffff; }
-        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: var(--sephira-bg); font-family: 'Raleway', sans-serif; -webkit-font-smoothing: antialiased; scroll-behavior: auto; }
+        :root { --pink: #f9a8d4; --bg: #050505; --text: #ffffff; }
+        body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; margin: 0; padding: 0; }
         
-        /* RISE AT SEVEN - GRAIN EFFECT */
-        body::before {
-            content: "";
-            position: fixed;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 9999;
-            animation: noise 0.2s infinite;
-        }
-        @keyframes noise {
-            0% { transform: translate(0, 0); }
-            10% { transform: translate(-5%, -5%); }
-            20% { transform: translate(-10%, 5%); }
-            30% { transform: translate(5%, -10%); }
-            40% { transform: translate(-5%, 15%); }
-            50% { transform: translate(-10%, 5%); }
-            60% { transform: translate(15%, 0); }
-            70% { transform: translate(0, 10%); }
-            80% { transform: translate(-15%, 0); }
-            90% { transform: translate(10%, 5%); }
-            100% { transform: translate(5%, 0); }
-        }
-
-        #main-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
-        section { position: relative; z-index: 10; background: var(--sephira-bg); }
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--pink); }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(249, 168, 212, 0.5); transition: width 0.2s, height 0.2s; }
         
-        /* RISE AT SEVEN - STACKED EFFECT */
-        .stacked-section { position: sticky; top: 0; min-height: 100vh; display: flex; align-items: center; box-shadow: 0 -50px 100px rgba(0,0,0,0.05); }
-        .stacked-section:nth-child(even) { background: #fdf2f8; }
-
-        /* AWWWARDS TEXT REVEAL */
-        .reveal-container { overflow: hidden; display: inline-block; vertical-align: top; }
-        .reveal-text { display: block; transform: translateY(105%); }
-
-        .btn-luxury { border: 1px solid rgba(0,0,0,0.1); padding: 18px 45px; font-size: 0.7rem; text-transform: uppercase; color: #000; border-radius: 100px; background: rgba(255,255,255,0.5); backdrop-filter: blur(10px); transition: all 0.4s; cursor: pointer; display: inline-block; }
-        .btn-pink { background: #000 !important; color: #fff !important; }
-        .btn-pink:hover { background: var(--sephira-pink) !important; color: #000 !important; }
-
-        /* ROI CALCULATOR REBORN */
-        .roi-card { background: linear-gradient(145deg, #0a0a0a, #1a1a1a); color: #fff; border-radius: 60px; padding: 4rem; margin-top: -8rem; position: relative; z-index: 30; box-shadow: 0 40px 100px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); }
-        .roi-input { background: transparent; border: none; border-bottom: 1px solid rgba(249, 168, 212, 0.2); color: var(--sephira-pink); font-size: 3rem; font-weight: 300; width: 100%; outline: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 5px 0; font-family: 'Space Mono', monospace; }
-        .roi-input:focus { border-color: var(--sephira-pink); padding-left: 15px; }
-        .roi-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.4em; font-weight: 900; color: #666; margin-bottom: 0.5rem; display: block; }
-        .roi-input-container { position: relative; display: flex; align-items: center; }
-        .roi-input { background: transparent; border: none; border-bottom: 1px solid rgba(249, 168, 212, 0.2); color: var(--sephira-pink); font-size: 3rem; font-weight: 300; width: 100%; outline: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 5px 0; font-family: 'Space Mono', monospace; }
-        .roi-input:focus { border-color: var(--sephira-pink); }
+        /* Typography */
+        .huge-text { font-size: clamp(3rem, 10vw, 12rem); line-height: 0.85; letter-spacing: -0.05em; font-weight: 700; text-transform: uppercase; }
+        .line-mask { overflow: hidden; display: block; padding-bottom: 5px; }
         
-        .roi-stepper { display: flex; flex-direction: column; position: absolute; right: 0; opacity: 0; transition: opacity 0.3s; }
-        .roi-input-container:hover .roi-stepper { opacity: 1; }
-        .roi-step-btn { color: var(--sephira-pink); background: none; border: none; cursor: pointer; font-size: 0.7rem; padding: 2px; transition: transform 0.2s; }
-        .roi-step-btn:hover { transform: scale(1.3); color: #fff; }
-
-        .roi-result-text { font-size: 3rem; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.05em; white-space: nowrap; }
-        @media (min-width: 768px) { .roi-result-text { font-size: 4.5rem; } }
-        @media (min-width: 1280px) { .roi-result-text { font-size: 5.5rem; } }
+        /* Buttons */
+        .btn-rise { display: inline-flex; align-items: center; justify-content: center; padding: 1.5rem 3rem; background: #fff; color: #000; font-weight: 700; text-transform: uppercase; border-radius: 100px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s; }
+        .btn-rise:hover { background: var(--pink); transform: scale(1.05); }
         
-        /* Hide Arrows */
-        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        input[type=number] { -moz-appearance: textfield; }
+        /* Marquee */
+        .marquee-wrapper { border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); overflow: hidden; white-space: nowrap; padding: 2rem 0; background: var(--bg); }
+        .marquee-content { display: inline-block; font-size: 3rem; font-weight: 700; text-transform: uppercase; color: var(--pink); animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        /* Stacked Sections */
+        .stacked-container { position: relative; }
+        .stacked-panel { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem; overflow: hidden; }
+        .panel-1 { background: #000; color: #fff; z-index: 1; }
+        .panel-2 { background: #111; color: var(--pink); z-index: 2; border-top: 1px solid rgba(255,255,255,0.1); }
+        .panel-3 { background: #222; color: #fff; z-index: 3; border-top: 1px solid rgba(255,255,255,0.1); }
+        .panel-4 { background: var(--pink); color: #000; z-index: 4; }
 
-        /* SWIPER LIQUIDE */
-        .swiper-container { width: 100%; padding: 50px 0; }
-        .swiper-slide { width: 300px; height: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); filter: grayscale(1); opacity: 0.5; }
-        .swiper-slide-active { filter: grayscale(0); opacity: 1; transform: scale(1.1); z-index: 2; }
-        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .swiper-slide-active img { transform: scale(1); }
+        /* Horizontal Scroll */
+        .horizontal-section { height: 100vh; overflow: hidden; background: #fff; color: #000; display: flex; flex-direction: column; justify-content: center;}
+        .horizontal-wrapper { display: flex; width: max-content; height: 60vh; padding-left: 10vw; align-items: center; }
+        .h-card { width: 450px; height: 100%; margin-right: 4rem; flex-shrink: 0; border-radius: 20px; overflow: hidden; position: relative; background: #f0f0f0; }
+        .h-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter 0.5s, transform 0.5s; }
+        .h-card:hover img { filter: grayscale(0); transform: scale(1.05); }
 
-        /* FAQ Majestic */
-        .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); transition: all 0.4s ease; }
-        .faq-item:hover { background: rgba(249, 168, 212, 0.03); padding-left: 2rem; }
-        .faq-question { padding: 3rem 0; cursor: pointer; list-style: none; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; font-size: 1.2rem; display: flex; justify-content: space-between; align-items: center; color: #000; }
-        .faq-icon { font-size: 1.8rem; font-weight: 300; transition: transform 0.5s ease; }
-        details[open] .faq-icon { transform: rotate(45deg); color: var(--sephira-pink); }
+        /* ROI Expert */
+        .roi-input { background: transparent; border: none; border-bottom: 2px solid rgba(255,255,255,0.2); color: var(--pink); font-size: 3rem; font-weight: 700; width: 100%; outline: none; transition: border-color 0.3s; padding: 5px 0; border-radius: 0; }
+        .roi-input:focus { border-color: var(--pink); }
+        .roi-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #888; font-weight: 600; margin-bottom: 0.5rem; display: block; }
+        input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     </style>
 </head>
 <body>
 
-    <canvas id="main-canvas"></canvas>
+    <!-- Cursor -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
 
-    <header class="fixed w-full z-50 px-8 py-6 md:px-16 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-black/5">
-        <img src="MAISON_SEPHIRA_LOGO-removebg-preview.png" alt="Maison Sephira" style="height: 35px;">
-        <nav class="hidden md:flex gap-12 text-[0.6rem] uppercase tracking-[0.2em] font-black text-black">
-            <a href="#expertises" class="hover:text-pink-400 transition">Traitements Cliniques</a>
-            <a href="#offres" class="hover:text-pink-400 transition">Ordonnances Express</a>
-            <a href="blog.html" class="text-pink-400">Blog</a>
-            <a href="#contact" class="hover:text-pink-400 transition">Prendre l'Examen</a>
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 px-8 py-6 mix-blend-difference flex justify-between items-center text-white">
+        <div class="font-bold text-xl tracking-tighter">MAISON SEPHIRA</div>
+        <nav class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
+            <a href="#services" class="hover:text-pink-400">Expertise</a>
+            <a href="#roi" class="hover:text-pink-400">Diagnostic</a>
+            <a href="#contact" class="hover:text-pink-400">Contact</a>
         </nav>
     </header>
 
     <main>
-        <!-- 1. HERO SECTION -->
-        <section class="h-screen flex items-center px-8 md:px-16 pt-32 pb-20">
-            <div class="w-full max-w-7xl mx-auto">
-                <div class="max-w-4xl">
-                    <div class="nominee-badge mb-10 reveal-container"><span class="reveal-text uppercase">L'Ingénierie du Luxe Digital</span></div>
-                    <h1 class="text-6xl md:text-[8rem] font-black leading-[0.82] tracking-tighter uppercase mb-10 text-black">
-                        <span class="reveal-container"><span class="reveal-text">VOTRE MARQUE</span></span><br>
-                        <span class="reveal-container"><span class="text-pink-400 font-light italic text-4xl md:text-6xl lg:text-[6.5rem] reveal-text">MÉRITE</span></span><br>
-                        <span class="reveal-container"><span class="reveal-text">L'EXCELLENCE.</span></span>
-                    </h1>
-                    <p class="text-xl text-gray-500 mb-12 max-w-2xl font-light leading-relaxed reveal-container">
-                        <span class="reveal-text">Maison Sephira transforme votre expertise en un empire numérique. Design clinique, SEO local agressif et stratégies de conversion haute performance.</span>
-                    </p>
-                    <div class="flex flex-wrap gap-6">
-                        <a href="#roi" class="btn-luxury btn-pink shadow-2xl shadow-pink-200 magnetic">Simuler mon ROI</a>
-                        <a href="#offres" class="btn-luxury magnetic">Nos Ordonnances</a>
+        <!-- HERO SECTION -->
+        <section class="min-h-screen flex flex-col justify-center px-4 md:px-16 pt-32 pb-20 relative">
+            <div class="line-mask"><span class="block text-sm md:text-xl font-bold uppercase tracking-widest text-gray-400 mb-8 gsap-hero">L'Ingénierie du Luxe Digital</span></div>
+            <h1 class="huge-text">
+                <span class="line-mask"><span class="block gsap-hero">VOTRE MARQUE</span></span>
+                <span class="line-mask"><span class="block text-pink-400 italic pr-8 gsap-hero">MÉRITE</span></span>
+                <span class="line-mask"><span class="block gsap-hero">L'EXCELLENCE.</span></span>
+            </h1>
+            <div class="mt-16 flex gap-6">
+                <a href="#roi" class="btn-rise gsap-hero-btn">Lancer l'Audit</a>
+            </div>
+        </section>
+
+        <!-- MARQUEE -->
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                SEO LOCAL AGRESSIF • STRATÉGIE LUXE • DESIGN CLINIQUE • CONVERSION HAUTE PERFORMANCE • SEO LOCAL AGRESSIF • STRATÉGIE LUXE • DESIGN CLINIQUE • CONVERSION HAUTE PERFORMANCE •
+            </div>
+        </div>
+
+        <!-- HORIZONTAL SCROLL: PORTFOLIO / OFFRES -->
+        <section id="services" class="horizontal-section">
+            <div class="px-8 md:px-16 py-10">
+                <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter line-mask"><span class="block text-black gsap-h-title">ORDONNANCES<br><span class="text-pink-400">EXPRESS.</span></span></h2>
+            </div>
+            <div class="horizontal-wrapper">
+                <div class="h-card">
+                    <img src="site-web-maisonsephira733/img/fluer gra.png" alt="Portfolio 1">
+                    <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black to-transparent text-white z-10 pointer-events-none">
+                        <h3 class="text-2xl font-bold uppercase">Pack Feed Parfait</h3>
+                        <p class="text-pink-400 font-bold mt-2">147€</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- NEW: SEPHIRA WAVY INFINITE CAROUSEL (Codrops Experiment 6) -->
-        <section class="w-full h-[150vh] relative bg-white overflow-hidden" id="experiment-carousel">
-            <canvas id="carousel-canvas" class="w-full h-full absolute top-0 left-0 z-10"></canvas>
-            
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-center pointer-events-none w-full mix-blend-difference">
-                <h2 class="text-6xl md:text-[10rem] font-black uppercase text-white leading-none italic tracking-tighter">
-                    <span class="block">VISION</span>
-                    <span class="block text-pink-300">INFINIE.</span>
-                </h2>
-            </div>
-        </section>
-
-        <!-- 2. LE CALCULATEUR ROI (EXPERT DIAGNOSTIC) -->
-        <section class="stacked-section py-20 px-8 md:px-16" id="roi">
-            <div class="max-w-6xl mx-auto roi-card">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div class="space-y-8">
-                        <div class="mb-8">
-                            <h2 class="text-2xl font-black uppercase mb-2 text-pink-300 tracking-tighter">Analyse de Performance.</h2>
-                            <p class="text-gray-600 uppercase tracking-[0.3em] text-[0.5rem] font-black italic">Détectez vos fuites de capital numérique.</p>
-                        </div>
-                        <div class="grid grid-cols-2 gap-x-8 gap-y-10">
-                            <div class="flex flex-col border-l border-white/5 pl-6">
-                                <span class="roi-label">Panier Moyen (€)</span>
-                                <div class="roi-input-container">
-                                    <input type="number" id="roi-price" class="roi-input" value="120">
-                                    <div class="roi-stepper">
-                                        <button class="roi-step-btn" data-target="roi-price" data-dir="up">▲</button>
-                                        <button class="roi-step-btn" data-target="roi-price" data-dir="down">▼</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col border-l border-white/5 pl-6">
-                                <span class="roi-label">Trafic Mensuel</span>
-                                <div class="roi-input-container">
-                                    <input type="number" id="roi-traffic" class="roi-input" value="1000">
-                                    <div class="roi-stepper">
-                                        <button class="roi-step-btn" data-target="roi-traffic" data-dir="up">▲</button>
-                                        <button class="roi-step-btn" data-target="roi-traffic" data-dir="down">▼</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col border-l border-white/5 pl-6">
-                                <span class="roi-label">Conv. Actuelle (%)</span>
-                                <div class="roi-input-container">
-                                    <input type="number" id="roi-conv" class="roi-input" value="1" step="0.1">
-                                    <div class="roi-stepper">
-                                        <button class="roi-step-btn" data-target="roi-conv" data-dir="up">▲</button>
-                                        <button class="roi-step-btn" data-target="roi-conv" data-dir="down">▼</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col border-l border-white/5 pl-6">
-                                <span class="roi-label">Achats / An</span>
-                                <div class="roi-input-container">
-                                    <input type="number" id="roi-retention" class="roi-input" value="2">
-                                    <div class="roi-stepper">
-                                        <button class="roi-step-btn" data-target="roi-retention" data-dir="up">▲</button>
-                                        <button class="roi-step-btn" data-target="roi-retention" data-dir="down">▼</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-left lg:text-right border-t lg:border-t-0 lg:border-l border-white/5 pt-10 lg:pt-0 lg:pl-16">
-                        <div class="text-[0.55rem] uppercase tracking-[0.4em] text-pink-400/50 mb-4 font-black">Capital Inexploité (Annuel) :</div>
-                        <div class="roi-result-text" id="roi-result">- 96 000 €</div>
-                        <p class="text-gray-600 text-[0.45rem] uppercase tracking-[0.2em] mt-8 leading-loose font-black italic opacity-50">Basé sur l'optimisation standard Maison Sephira (Conv. 5%).</p>
+                <div class="h-card">
+                    <img src="site-web-maisonsephira733/img/flyer burger1.jpeg" alt="Portfolio 2">
+                    <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black to-transparent text-white z-10 pointer-events-none">
+                        <h3 class="text-2xl font-bold uppercase">Flyer & Menu Elite</h3>
+                        <p class="text-pink-400 font-bold mt-2">97€</p>
                     </div>
                 </div>
+                <div class="h-card">
+                    <img src="site-web-maisonsephira733/img/7a9170aa-e31e-45d3-bfc9-a6c39a4a269c.jpg" alt="Portfolio 3">
+                    <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black to-transparent text-white z-10 pointer-events-none">
+                        <h3 class="text-2xl font-bold uppercase">Soin à Domicile (IA)</h3>
+                        <p class="text-pink-400 font-bold mt-2">497€</p>
+                    </div>
+                </div>
+                <div class="w-[20vw] flex-shrink-0"></div>
             </div>
         </section>
 
-        <!-- 3. ORDONNANCES EXPRESS -->
-        <section id="offres" class="py-40 px-8 md:px-16 bg-gray-50/50 overflow-hidden border-y border-black/5">
-            <div class="max-w-7xl mx-auto mb-24 text-center">
-                <h2 class="text-5xl md:text-7xl font-black uppercase mb-8 text-black">Ordonnances<br>Express.</h2>
-                <p class="text-sm uppercase tracking-[0.4em] text-gray-500 font-black">Les cachets marketing "One-Shot" pour des résultats immédiats.</p>
-            </div>
-
-            <div class="swiper-container mb-32">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/fluer gra.png" alt="Design 1"></div>
-                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/flyer burger1.jpeg" alt="Design 2"></div>
-                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/7a9170aa-e31e-45d3-bfc9-a6c39a4a269c.jpg" alt="Design 3"></div>
-                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/image0.jpg" alt="Design 4"></div>
-                    <div class="swiper-slide"><img src="site-web-maisonsephira733/img/Capture d’écran 2026-02-18 à 01.53.41.png" alt="Design 5"></div>
-                </div>
-            </div>
-
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="bg-white p-12 rounded-[40px] border border-black/5 hover:border-pink-200 transition duration-500 shadow-xl shadow-black/[0.02] text-left">
-                    <div class="text-[0.6rem] font-black tracking-[0.3em] text-pink-400 uppercase mb-4">Social Media</div>
-                    <h3 class="text-2xl font-black uppercase mb-6 leading-none text-black">Pack Feed Parfait</h3>
-                    <p class="text-gray-500 text-xs uppercase tracking-widest leading-relaxed mb-10 font-black">9 Templates Instagram + Story Signature pour un feed harmonieux.</p>
-                    <div class="text-4xl font-black mb-10 text-black">147€</div>
-                    <button class="w-full border border-black py-5 rounded-full text-[0.7rem] uppercase font-black tracking-widest hover:bg-black hover:text-white transition duration-500 text-black">Commander</button>
-                </div>
-                <div class="bg-white p-12 rounded-[40px] border-2 border-pink-200 relative scale-105 shadow-2xl text-left">
-                    <div class="absolute -top-4 right-10 bg-black text-white text-[0.5rem] font-black px-5 py-2 rounded-full uppercase tracking-widest">Best Seller</div>
-                    <div class="text-[0.6rem] font-black tracking-[0.3em] text-pink-400 uppercase mb-4 text-black">Print & Digital</div>
-                    <h3 class="text-2xl font-black uppercase mb-6 leading-none text-black">Flyer & Menu Elite</h3>
-                    <p class="text-gray-500 text-xs uppercase tracking-widest leading-relaxed mb-10 font-black text-black">Design recto/verso + QR Code dynamique vers vos réservations.</p>
-                    <div class="text-4xl font-black mb-10 text-black">97€</div>
-                    <button class="btn-luxury btn-pink w-full py-5 font-black">Commander</button>
-                </div>
-                <div class="bg-white p-12 rounded-[40px] border border-black/5 hover:border-pink-200 transition duration-500 text-left shadow-xl shadow-black/[0.02]">
-                    <div class="text-[0.6rem] font-black tracking-[0.3em] text-pink-400 uppercase mb-4">Automation</div>
-                    <h3 class="text-2xl font-black uppercase mb-6 leading-none text-black">Soin à domicile (IA)</h3>
-                    <p class="text-gray-500 text-xs uppercase tracking-widest leading-relaxed mb-10 font-black text-black">Installation d'un Agent IA de tri et qualification de leads 24/7.</p>
-                    <div class="text-4xl font-black mb-10 text-black">497€</div>
-                    <button class="w-full border border-black py-5 rounded-full text-[0.7rem] uppercase font-black tracking-widest hover:bg-black hover:text-white transition duration-500 text-black">Commander</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. LE PROTOCOLE 733 -->
-        <section class="stacked-section py-40 px-8 md:px-16" id="expertises">
+        <!-- ROI CALCULATOR -->
+        <section id="roi" class="py-32 px-4 md:px-16 bg-[#0a0a0a] border-t border-white/10">
             <div class="max-w-7xl mx-auto">
-                <h2 class="text-5xl md:text-7xl font-black uppercase mb-32 tracking-tighter text-black">Le Protocole<br/><span class="text-pink-400 italic">733.</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div class="p-10 border border-black/5 rounded-[30px] bg-gray-50/30">
-                        <div class="text-4xl font-black text-pink-200 mb-6 text-left">01.</div>
-                        <h3 class="font-black uppercase text-xs mb-4 text-black text-left">Examen Clinique</h3>
-                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase tracking-widest font-black text-left">Analyse de vos failles digitales et de votre manque à gagner SEO.</p>
-                    </div>
-                    <div class="p-10 border border-black/5 rounded-[30px] bg-gray-50/30">
-                        <div class="text-4xl font-black text-pink-200 mb-6 text-left">02.</div>
-                        <h3 class="font-black uppercase text-xs mb-4 text-black text-left">Ingénierie</h3>
-                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase tracking-widest font-black text-left">Création d'une identité de prestige qui écrase la concurrence locale.</p>
-                    </div>
-                    <div class="p-10 border border-black/5 rounded-[30px] bg-gray-50/30">
-                        <div class="text-4xl font-black text-pink-200 mb-6 text-left">03.</div>
-                        <h3 class="font-black uppercase text-xs mb-4 text-black text-left">Déploiement</h3>
-                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase tracking-widest font-black text-left">Lancement de votre écosystème : Site Elite et SEO ciblé.</p>
-                    </div>
-                    <div class="p-10 border border-black/5 rounded-[30px] bg-gray-50/30">
-                        <div class="text-4xl font-black text-pink-200 mb-6 text-left">04.</div>
-                        <h3 class="font-black uppercase text-xs mb-4 text-black text-left">Optimisation</h3>
-                        <p class="text-[0.65rem] text-gray-500 leading-relaxed uppercase tracking-widest font-black text-left">Suivi des KPIs et ajustements mensuels pour maximiser votre ROI.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. FAQ MAJESTIC -->
-        <section class="stacked-section py-40 px-8 md:px-16 border-t border-black/5">
-            <div class="w-full">
-                <h2 class="section-title text-center text-5xl mb-32 text-black">Questions<br/><span class="text-pink-400 italic">Cliniques.</span></h2>
-                <div class="divide-y divide-black/10">
-                    <details class="faq-item group">
-                        <summary class="faq-question cursor-pointer list-none">
-                            <span>Pourquoi Maison Sephira et pas une agence classique ?</span>
-                            <span class="faq-icon">+</span>
-                        </summary>
-                        <div class="pb-12 text-lg text-gray-500 font-light max-w-4xl leading-relaxed uppercase tracking-widest text-[0.7rem] text-left">
-                            Parce que nous ne vendons pas du design, nous vendons de la rentabilité. Chaque pixel et chaque ligne de code sont optimisés pour transformer un visiteur en client High-Ticket.
-                        </div>
-                    </details>
-                    <details class="faq-item group">
-                        <summary class="faq-question cursor-pointer list-none">
-                            <span>En combien de temps verrai-je des résultats SEO ?</span>
-                            <span class="faq-icon">+</span>
-                        </summary>
-                        <div class="pb-12 text-lg text-gray-500 font-light max-w-4xl leading-relaxed uppercase tracking-widest text-[0.7rem] text-left">
-                            Nos techniques "Quick-Wins" permettent de remonter sur des requêtes locales en 30 à 60 jours. Pour une domination totale, comptez 4 à 6 mois.
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. CONTACT / CALENDLY -->
-        <section id="contact" class="py-40 px-8 md:px-16 bg-white border-t border-black/5">
-            <div class="max-w-6xl mx-auto text-center">
-                <h2 class="text-6xl md:text-[8rem] font-black uppercase mb-12 tracking-tighter leading-none text-black">Passez à<br/><span class="text-pink-400 italic">l'examen.</span></h2>
-                <p class="text-xl text-gray-500 mb-20 font-light uppercase tracking-[0.3em]">Réservez votre Audit stratégique (30 min offertes).</p>
+                <div class="line-mask mb-16"><h2 class="text-5xl md:text-7xl font-black uppercase text-white tracking-tighter block gsap-roi-title">DIAGNOSTIC<br><span class="text-pink-400">EXPERT.</span></h2></div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 text-left items-start">
-                    <div class="bg-gray-50 p-12 rounded-[50px] shadow-2xl border border-black/5 text-black">
-                        <h3 class="text-3xl font-black uppercase mb-10 text-black text-left">Étape 1 : Qualification</h3>
-                        <form id="qualif-form" class="space-y-8">
-                            <div>
-                                <label class="text-[0.6rem] uppercase tracking-widest font-black text-gray-400 block mb-4 text-left">Votre CA Mensuel actuel</label>
-                                <select class="w-full bg-white border border-black/5 p-6 rounded-3xl text-[0.7rem] uppercase font-bold outline-none focus:border-pink-400 transition text-black" required>
-                                    <option value="">Sélectionner...</option>
-                                    <option value="0-5k">0 - 5 000 €</option>
-                                    <option value="5-15k">5 000 - 15 000 €</option>
-                                    <option value="15k+">Plus de 15 000 €</option>
-                                </select>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                    <div class="grid grid-cols-2 gap-10">
+                        <div>
+                            <span class="roi-label">Panier Moyen (€)</span>
+                            <div class="relative group">
+                                <input type="number" id="roi-price" class="roi-input" value="120">
+                                <div class="absolute right-0 top-0 h-full flex flex-col justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-price" data-dir="up">▲</button>
+                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-price" data-dir="down">▼</button>
+                                </div>
                             </div>
-                            <div>
-                                <label class="text-[0.6rem] uppercase tracking-widest font-black text-gray-400 block mb-4 text-left">Votre objectif prioritaire</label>
-                                <select class="w-full bg-white border border-black/5 p-6 rounded-3xl text-[0.7rem] uppercase font-bold outline-none focus:border-pink-400 transition text-black" required>
-                                    <option value="">Sélectionner...</option>
-                                    <option value="leads">Plus de réservations</option>
-                                    <option value="automation">Automatisation IA</option>
-                                    <option value="notoriété">Image de Marque Luxe</option>
-                                </select>
+                        </div>
+                        <div>
+                            <span class="roi-label">Trafic Mensuel</span>
+                            <div class="relative group">
+                                <input type="number" id="roi-traffic" class="roi-input" value="1000">
+                                <div class="absolute right-0 top-0 h-full flex flex-col justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-traffic" data-dir="up">▲</button>
+                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-traffic" data-dir="down">▼</button>
+                                </div>
                             </div>
-                            <button type="submit" class="w-full bg-black text-white py-6 rounded-full text-[0.8rem] uppercase font-black tracking-widest hover:bg-pink-400 hover:text-black transition duration-500">Vérifier mon éligibilité</button>
-                        </form>
+                        </div>
+                        <div>
+                            <span class="roi-label">Conversion (%)</span>
+                            <div class="relative group">
+                                <input type="number" id="roi-conv" class="roi-input" value="1" step="0.1">
+                                <div class="absolute right-0 top-0 h-full flex flex-col justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-conv" data-dir="up" data-step="0.1">▲</button>
+                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-conv" data-dir="down" data-step="0.1">▼</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="roi-label">Achats / An</span>
+                            <div class="relative group">
+                                <input type="number" id="roi-retention" class="roi-input" value="2">
+                                <div class="absolute right-0 top-0 h-full flex flex-col justify-center opacity-0 group-hover:opacity-100 transition">
+                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-retention" data-dir="up">▲</button>
+                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-retention" data-dir="down">▼</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="calendly-area" class="bg-gray-100 rounded-[50px] min-h-[600px] flex items-center justify-center border-2 border-dashed border-black/5 overflow-hidden text-black">
-                        <p class="text-gray-400 text-[0.7rem] uppercase font-black tracking-widest text-center px-12 italic">Remplissez le formulaire de triage pour débloquer l'accès au calendrier.</p>
+
+                    <div class="flex flex-col justify-center bg-[#111] p-12 rounded-[40px] border border-white/5">
+                        <span class="text-xs uppercase tracking-widest text-gray-500 mb-4 font-bold">Capital inexploité (Annuel)</span>
+                        <div class="text-5xl md:text-7xl font-black text-white whitespace-nowrap tracking-tighter" id="roi-result">- 96 000 €</div>
+                        <p class="text-pink-400 text-xs uppercase tracking-widest mt-6">Basé sur le standard de conversion Sephira (5%).</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STACKED SECTIONS: LE PROTOCOLE -->
+        <div class="stacked-container">
+            <section class="stacked-panel panel-1">
+                <div class="max-w-6xl mx-auto w-full">
+                    <div class="text-pink-400 text-8xl font-black mb-4">01</div>
+                    <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-6">Examen<br>Clinique</h2>
+                    <p class="text-2xl text-gray-400 max-w-2xl">Analyse chirurgicale de vos failles digitales et de votre manque à gagner SEO local.</p>
+                </div>
+            </section>
+            <section class="stacked-panel panel-2">
+                <div class="max-w-6xl mx-auto w-full">
+                    <div class="text-white text-8xl font-black mb-4">02</div>
+                    <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-6 text-white">Ingénierie<br>Digitale</h2>
+                    <p class="text-2xl text-gray-400 max-w-2xl">Création d'une identité visuelle de prestige conçue pour écraser la concurrence.</p>
+                </div>
+            </section>
+            <section class="stacked-panel panel-3">
+                <div class="max-w-6xl mx-auto w-full">
+                    <div class="text-pink-400 text-8xl font-black mb-4">03</div>
+                    <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-6 text-white">Déploiement<br>Agressif</h2>
+                    <p class="text-2xl text-gray-400 max-w-2xl">Lancement de votre écosystème : Site Élite et stratégies d'acquisition ciblées.</p>
+                </div>
+            </section>
+            <section class="stacked-panel panel-4">
+                <div class="max-w-6xl mx-auto w-full">
+                    <div class="text-white text-8xl font-black mb-4">04</div>
+                    <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-6 text-black">Optimisation<br>Continue</h2>
+                    <p class="text-2xl text-gray-800 font-medium max-w-2xl">Suivi constant des KPIs et ajustements mensuels pour maximiser la rentabilité.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT -->
+        <section id="contact" class="min-h-screen flex items-center justify-center bg-black py-32 px-4 relative z-10">
+            <div class="max-w-4xl w-full text-center">
+                <h2 class="text-6xl md:text-9xl font-black uppercase text-white mb-12 tracking-tighter line-mask"><span class="block gsap-contact">PASSEZ À</span><span class="block text-pink-400 gsap-contact">L'EXAMEN.</span></h2>
+                <div class="bg-[#111] p-12 md:p-20 rounded-[40px] border border-white/10 text-left">
+                    <form id="qualif-form" class="space-y-8">
+                        <div>
+                            <label class="text-xs uppercase tracking-widest font-bold text-gray-400 block mb-4">CA Mensuel</label>
+                            <select class="w-full bg-black border border-white/20 text-white p-6 rounded-2xl outline-none focus:border-pink-400 appearance-none" required>
+                                <option value="">Sélectionner...</option>
+                                <option value="0-5k">0 - 5 000 €</option>
+                                <option value="5-15k">5 000 - 15 000 €</option>
+                                <option value="15k+">Plus de 15 000 €</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-white text-black py-6 rounded-2xl text-sm font-bold uppercase tracking-widest hover:bg-pink-400 hover:text-white transition">Réserver l'Audit (30min)</button>
+                    </form>
+                    <div id="calendly-area" class="mt-12 hidden"></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-white py-20 text-center border-t border-black/5 text-black">
-        <p class="text-[0.55rem] tracking-[0.6em] text-gray-400 uppercase font-black px-6">© 2026 — Maison Sephira — Luxury Digital Science</p>
-    </footer>
-
     <script>
-        window.addEventListener('load', () => {
-            // --- LENIS SMOOTH SCROLL ---
-            const lenis = new Lenis({ duration: 1.2, smooth: true });
-            lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-
-            // --- GSAP REVEAL ANIMATIONS ---
-            gsap.registerPlugin(ScrollTrigger);
-            gsap.utils.toArray(".reveal-container").forEach(container => {
-                const text = container.querySelector(".reveal-text");
-                gsap.to(text, {
-                    y: "0%", duration: 1.2, ease: "power4.out",
-                    scrollTrigger: { trigger: container, start: "top 90%" }
-                });
+        // --- CUSTOM CURSOR ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        if (cursorDot && cursorOutline) {
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                cursorDot.style.left = \`\${posX}px\`; cursorDot.style.top = \`\${posY}px\`;
+                cursorOutline.animate({ left: \`\${posX}px\`, top: \`\${posY}px\` }, { duration: 500, fill: "forwards" });
             });
+            document.querySelectorAll('a, button, input, select, .h-card').forEach(el => {
+                el.addEventListener('mouseenter', () => { cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px'; cursorOutline.style.borderColor = '#fff'; });
+                el.addEventListener('mouseleave', () => { cursorOutline.style.width = '40px'; cursorOutline.style.height = '40px'; cursorOutline.style.borderColor = 'rgba(249, 168, 212, 0.5)'; });
+            });
+        }
 
-            // --- WAVY INFINITE CAROUSEL (Codrops Exp 6) ---
-            const carouselCanvas = document.getElementById('carousel-canvas');
-            if (carouselCanvas) {
-                const cScene = new THREE.Scene();
-                const cCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
-                cCamera.position.z = 4;
-                
-                const cRenderer = new THREE.WebGLRenderer({ canvas: carouselCanvas, alpha: true, antialias: true });
-                const sectionHeight = document.getElementById('experiment-carousel').offsetHeight;
-                cRenderer.setSize(window.innerWidth, sectionHeight);
-                cRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        // --- LENIS SMOOTH SCROLL ---
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', gestureDirection: 'vertical', smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
 
-                const vertexShader = `
-                uniform float uScrollSpeed;
-                uniform float uCurveStrength;
-                uniform float uCurveFrequency;
-                varying vec2 vUv;
-                #define PI 3.141592653
-                void main() {
-                  vec3 pos = position;
-                  vec3 worldPosition = (modelMatrix * vec4(position, 1.0)).xyz;
-                  float xDisplacement = uCurveStrength * cos(worldPosition.y * uCurveFrequency);
-                  pos.x += xDisplacement;
-                  pos.x -= uCurveStrength;
-                  float yDisplacement = -sin(uv.x * PI) * uScrollSpeed;
-                  pos.y += yDisplacement;
-                  gl_Position = projectionMatrix * modelViewMatrix * vec4( pos, 1.0 );
-                  vUv = uv;
-                }`;
+        // --- GSAP ANIMATIONS ---
+        gsap.registerPlugin(ScrollTrigger);
 
-                const fragmentShader = `
-                precision highp float;
-                uniform sampler2D uTexture;
-                uniform vec2 uPlaneSizes;
-                uniform vec2 uImageSizes;
-                varying vec2 vUv;
-                void main() {
-                  vec2 ratio = vec2(
-                    min((uPlaneSizes.x / uPlaneSizes.y) / (uImageSizes.x / uImageSizes.y), 1.0),
-                    min((uPlaneSizes.y / uPlaneSizes.x) / (uImageSizes.y / uImageSizes.x), 1.0)
-                  );
-                  vec2 uv = vec2(
-                    vUv.x * ratio.x + (1.0 - ratio.x) * 0.5,
-                    vUv.y * ratio.y + (1.0 - ratio.y) * 0.5
-                  );
-                  vec4 color = texture2D(uTexture, uv);
-                  gl_FragColor = color;
-                }`;
+        // Hero Animation
+        gsap.from(".gsap-hero", { y: "150%", duration: 1.5, stagger: 0.1, ease: "power4.out", delay: 0.2 });
+        gsap.from(".gsap-hero-btn", { opacity: 0, y: 30, duration: 1, delay: 1 });
 
-                const imageUrls = [
-                    'ASSETS SEPHIRA/SEPHIRA_IMG_1.jpg', 'ASSETS SEPHIRA/SEPHIRA_IMG_18.jpg',
-                    'ASSETS SEPHIRA/SEPHIRA_IMG_30.jpg', 'ASSETS SEPHIRA/SEPHIRA_IMG_52.jpg',
-                    'ASSETS SEPHIRA/SEPHIRA_IMG_22.jpg', 'ASSETS SEPHIRA/SEPHIRA_IMG_41.jpg',
-                    'ASSETS SEPHIRA/SEPHIRA_IMG_14.jpg', 'ASSETS SEPHIRA/SEPHIRA_IMG_24.jpg'
-                ];
-                
-                const textureLoader = new THREE.TextureLoader();
-                const planeGeometry = new THREE.PlaneGeometry(1, 1, 32, 32);
-                
-                const meshes = [];
-                let scrollVelocity = 0;
-
-                lenis.on('scroll', (e) => {
-                    scrollVelocity = e.velocity * 0.5; // Amplified for vanilla JS mapping
-                });
-
-                function createCarouselGroup(groupConfig) {
-                    const group = new THREE.Group();
-                    group.rotation.z = Math.PI / 4;
-                    group.position.set(...groupConfig.position);
-                    
-                    groupConfig.carousels.forEach((cData) => {
-                        const cGroup = new THREE.Group();
-                        cGroup.position.set(cData.xOffset, 0, 0);
-                        group.add(cGroup);
-                        
-                        const totalHeight = imageUrls.length * cData.gap + imageUrls.length * cData.size[1];
-                        
-                        imageUrls.forEach((url, i) => {
-                            textureLoader.load(url, (texture) => {
-                                const material = new THREE.ShaderMaterial({
-                                    vertexShader, fragmentShader,
-                                    uniforms: {
-                                        uTexture: { value: texture },
-                                        uScrollSpeed: { value: 0 },
-                                        uPlaneSizes: { value: new THREE.Vector2(cData.size[0], cData.size[1]) },
-                                        uImageSizes: { value: new THREE.Vector2(texture.image.width, texture.image.height) },
-                                        uCurveStrength: { value: cData.curveStrength },
-                                        uCurveFrequency: { value: cData.curveFrequency }
-                                    }
-                                });
-                                const mesh = new THREE.Mesh(planeGeometry, material);
-                                mesh.scale.set(cData.size[0], cData.size[1], 1);
-                                mesh.position.y = i * (cData.size[1] + cData.gap);
-                                
-                                cGroup.add(mesh);
-                                meshes.push({ mesh, material, totalHeight, wheelFactor: cData.wheelFactor, wheelDirection: cData.wheelDirection });
-                            });
-                        });
-                    });
-                    return group;
+        // Horizontal Scroll
+        const horizontalSection = document.querySelector('.horizontal-wrapper');
+        if(horizontalSection) {
+            let scrollWidth = horizontalSection.scrollWidth - window.innerWidth + 100;
+            gsap.to(horizontalSection, {
+                x: -scrollWidth,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".horizontal-section",
+                    pin: true,
+                    scrub: 1,
+                    end: "+=2000"
                 }
-
-                // Exact Codrops config adapted for pure JS
-                const g1 = createCarouselGroup({
-                    position: [-1.3, 0, 0],
-                    carousels: [
-                        { size: [2, 1.1], gap: 0.05, xOffset: -1.3, curveFrequency: 0.4, curveStrength: 1.2, wheelFactor: 0.1, wheelDirection: 1 },
-                        { size: [0.3, 0.4], gap: 0, xOffset: -2.3, curveFrequency: 0.4, curveStrength: 7.5, wheelFactor: 0.2, wheelDirection: -1 },
-                        { size: [0.3, 0.4], gap: 0, xOffset: -0.4, curveFrequency: 0.4, curveStrength: 7.5, wheelFactor: 0.2, wheelDirection: -1 }
-                    ]
-                });
-                cScene.add(g1);
-
-                const g2 = createCarouselGroup({
-                    position: [1.3, 0, 0],
-                    carousels: [
-                        { size: [2, 1.1], gap: 0.05, xOffset: 1.3, curveFrequency: 0.4, curveStrength: -1.2, wheelFactor: 0.1, wheelDirection: -1 },
-                        { size: [0.3, 0.4], gap: 0, xOffset: 2.3, curveFrequency: 0.4, curveStrength: -7.5, wheelFactor: 0.2, wheelDirection: 1 },
-                        { size: [0.3, 0.4], gap: 0, xOffset: 0.4, curveFrequency: 0.4, curveStrength: -7.5, wheelFactor: 0.2, wheelDirection: 1 }
-                    ]
-                });
-                cScene.add(g2);
-
-                function animateCarousel() {
-                    scrollVelocity *= 0.9; // smooth friction
-                    
-                    meshes.forEach(m => {
-                        const speed = scrollVelocity * 0.005 * m.wheelFactor * m.wheelDirection;
-                        m.mesh.position.y -= speed;
-                        m.material.uniforms.uScrollSpeed.value = speed;
-                        
-                        const th = m.totalHeight;
-                        let y = m.mesh.position.y;
-                        y = ((y + th / 2) % th + th) % th - th / 2;
-                        m.mesh.position.y = y;
-                    });
-                    
-                    cRenderer.render(cScene, cCamera);
-                    requestAnimationFrame(animateCarousel);
-                }
-                animateCarousel();
-                
-                window.addEventListener('resize', () => {
-                    cCamera.aspect = window.innerWidth / sectionHeight;
-                    cCamera.updateProjectionMatrix();
-                    cRenderer.setSize(window.innerWidth, sectionHeight);
-                });
-            }
-
-            // --- MAGNETIC BUTTONS ---
-            const magneticButtons = document.querySelectorAll('.magnetic');
-            magneticButtons.forEach(btn => {
-                btn.addEventListener('mousemove', (e) => {
-                    const rect = btn.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.5 });
-                });
-                btn.addEventListener('mouseleave', () => { gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" }); });
             });
+        }
 
-            // --- NEON 3D CURSOR TRAIL (Kevin Levron Style) ---
-            const n3dCanvas = document.getElementById('main-canvas');
-            if (n3dCanvas) {
-                window.TubesCursor(n3dCanvas, {
-                    tubes: {
-                        count: 1,
-                        radius: 0.05,
-                        segments: 64,
-                        colors: ["#f9a8d4", "#ffffff", "#fbcfe8"], // Sephira Palette
-                        lights: {
-                            intensity: 150,
-                            colors: ["#f9a8d4", "#ffffff"]
-                        }
-                    }
-                });
-            }
-
-            // ROI EXPERT DIAGNOSTIC
-            const roiPrice = document.getElementById('roi-price');
-            const roiTraffic = document.getElementById('roi-traffic');
-            const roiConv = document.getElementById('roi-conv');
-            const roiRetention = document.getElementById('roi-retention');
-            const roiResult = document.getElementById('roi-result');
-
-            function calculateROI() {
-                const price = parseFloat(roiPrice.value) || 0;
-                const traffic = parseFloat(roiTraffic.value) || 0;
-                const currentConv = parseFloat(roiConv.value) || 0;
-                const retention = parseFloat(roiRetention.value) || 1;
-                
-                const targetConv = 5.0; // Standard Sephira
-                
-                const currentAnnualRev = traffic * (currentConv / 100) * price * retention * 12;
-                const targetAnnualRev = traffic * (targetConv / 100) * price * retention * 12;
-                
-                const gap = Math.max(0, targetAnnualRev - currentAnnualRev);
-                roiResult.innerText = `- ${Math.round(gap).toLocaleString()} €`;
-            }
-
-            [roiPrice, roiTraffic, roiConv, roiRetention].forEach(el => {
-                if(el) el.addEventListener('input', calculateROI);
-            });
-
-            // STEPPERS LOGIC
-            document.querySelectorAll('.roi-step-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const targetId = btn.getAttribute('data-target');
-                    const direction = btn.getAttribute('data-dir');
-                    const input = document.getElementById(targetId);
-                    if (!input) return;
-
-                    const step = parseFloat(input.getAttribute('step')) || 1;
-                    let val = parseFloat(input.value) || 0;
-                    
-                    if (direction === 'up') val += step;
-                    else val = Math.max(0, val - step);
-                    
-                    input.value = val;
-                    calculateROI();
-                });
-            });
-            
-            // Initial call
-            calculateROI();
-
-            const qualifForm = document.getElementById('qualif-form');
-            qualifForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                qualifForm.innerHTML = `<div class='text-center py-10'><h3 class='text-pink-400 font-black text-3xl uppercase mb-4'>Éligibilité Confirmée</h3></div>`;
-                document.getElementById('calendly-area').innerHTML = `<iframe src="https://calendly.com/meyghvne/30min" width="100%" height="600" frameborder="0"></iframe>`;
-            });
-
-            new Swiper('.swiper-container', {
-                effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView: 'auto', loop: true, autoplay: { delay: 2500 },
-                coverflowEffect: { rotate: 20, stretch: 0, depth: 200, modifier: 1, slideShadows: true }
+        // Title Reveals
+        gsap.utils.toArray('.gsap-h-title, .gsap-roi-title, .gsap-contact').forEach(title => {
+            gsap.from(title, {
+                y: "150%", duration: 1.2, ease: "power4.out",
+                scrollTrigger: { trigger: title.closest('section, div'), start: "top 80%" }
             });
         });
+
+        // --- ROI CALCULATOR LOGIC ---
+        const roiPrice = document.getElementById('roi-price');
+        const roiTraffic = document.getElementById('roi-traffic');
+        const roiConv = document.getElementById('roi-conv');
+        const roiRetention = document.getElementById('roi-retention');
+        const roiResult = document.getElementById('roi-result');
+
+        function calculateROI() {
+            const price = parseFloat(roiPrice.value) || 0;
+            const traffic = parseFloat(roiTraffic.value) || 0;
+            const currentConv = parseFloat(roiConv.value) || 0;
+            const retention = parseFloat(roiRetention.value) || 1;
+            const targetConv = 5.0; 
+            
+            const currentAnnualRev = traffic * (currentConv / 100) * price * retention * 12;
+            const targetAnnualRev = traffic * (targetConv / 100) * price * retention * 12;
+            const gap = Math.max(0, targetAnnualRev - currentAnnualRev);
+            
+            if(roiResult) roiResult.innerText = \`- \${Math.round(gap).toLocaleString('fr-FR')} €\`;
+        }
+
+        [roiPrice, roiTraffic, roiConv, roiRetention].forEach(el => { if(el) el.addEventListener('input', calculateROI); });
+        
+        // Steppers
+        document.querySelectorAll('.roi-step').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const input = document.getElementById(btn.getAttribute('data-target'));
+                if(!input) return;
+                const step = parseFloat(btn.getAttribute('data-step')) || 1;
+                let val = parseFloat(input.value) || 0;
+                if(btn.getAttribute('data-dir') === 'up') val += step;
+                else val = Math.max(0, val - step);
+                input.value = parseFloat(val.toFixed(1));
+                calculateROI();
+            });
+        });
+        calculateROI();
+
+        // Form Submit
+        const form = document.getElementById('qualif-form');
+        if(form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                e.target.style.display = 'none';
+                const calArea = document.getElementById('calendly-area');
+                calArea.style.display = 'block';
+                calArea.innerHTML = \`<iframe src="https://calendly.com/meyghvne/30min" width="100%" height="600" frameborder="0"></iframe>\`;
+            });
+        }
     </script>
 </body>
 </html>
