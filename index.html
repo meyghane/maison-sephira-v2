@@ -24,9 +24,41 @@
         :root { --sephira-pink: #f9a8d4; --sephira-bg: #ffffff; }
         html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: var(--sephira-bg); font-family: 'Raleway', sans-serif; -webkit-font-smoothing: antialiased; scroll-behavior: auto; }
         
+        /* RISE AT SEVEN - GRAIN EFFECT */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 9999;
+            animation: noise 0.2s infinite;
+        }
+        @keyframes noise {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-5%, -5%); }
+            20% { transform: translate(-10%, 5%); }
+            30% { transform: translate(5%, -10%); }
+            40% { transform: translate(-5%, 15%); }
+            50% { transform: translate(-10%, 5%); }
+            60% { transform: translate(15%, 0); }
+            70% { transform: translate(0, 10%); }
+            80% { transform: translate(-15%, 0); }
+            90% { transform: translate(10%, 5%); }
+            100% { transform: translate(5%, 0); }
+        }
+
         #main-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
-        section { position: relative; z-index: 10; background: transparent; }
+        section { position: relative; z-index: 10; background: var(--sephira-bg); }
         
+        /* RISE AT SEVEN - STACKED EFFECT */
+        .stacked-section { position: sticky; top: 0; min-height: 100vh; display: flex; align-items: center; box-shadow: 0 -50px 100px rgba(0,0,0,0.05); }
+        .stacked-section:nth-child(even) { background: #fdf2f8; }
+
         /* AWWWARDS TEXT REVEAL */
         .reveal-container { overflow: hidden; display: inline-block; vertical-align: top; }
         .reveal-text { display: block; transform: translateY(105%); }
@@ -121,7 +153,7 @@
         </section>
 
         <!-- 2. LE CALCULATEUR ROI (EXPERT DIAGNOSTIC) -->
-        <section class="py-20 px-8 md:px-16 bg-white" id="roi">
+        <section class="stacked-section py-20 px-8 md:px-16" id="roi">
             <div class="max-w-6xl mx-auto roi-card">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div class="space-y-8">
@@ -225,7 +257,7 @@
         </section>
 
         <!-- 4. LE PROTOCOLE 733 -->
-        <section class="py-40 px-8 md:px-16 bg-white" id="expertises">
+        <section class="stacked-section py-40 px-8 md:px-16" id="expertises">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-5xl md:text-7xl font-black uppercase mb-32 tracking-tighter text-black">Le Protocole<br/><span class="text-pink-400 italic">733.</span></h2>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -254,7 +286,7 @@
         </section>
 
         <!-- 5. FAQ MAJESTIC -->
-        <section class="py-40 px-8 md:px-16 bg-white border-t border-black/5">
+        <section class="stacked-section py-40 px-8 md:px-16 border-t border-black/5">
             <div class="w-full">
                 <h2 class="section-title text-center text-5xl mb-32 text-black">Questions<br/><span class="text-pink-400 italic">Cliniques.</span></h2>
                 <div class="divide-y divide-black/10">
