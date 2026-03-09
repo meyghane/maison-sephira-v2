@@ -31,15 +31,24 @@
         .marquee-content { display: inline-block; font-size: 3rem; font-weight: 700; text-transform: uppercase; color: var(--pink); animation: marquee 20s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
-        /* Stacked Sections */
-        .stacked-container { position: relative; }
-        .stacked-panel { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem; overflow: hidden; }
+        /* RISE AT SEVEN - STACKED EFFECT ENHANCED */
+        .stacked-container { position: relative; background: var(--bg); }
+        .stacked-panel { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem; overflow: hidden; will-change: transform, filter; }
         .panel-1 { background: #000; color: #fff; z-index: 1; }
-        .panel-2 { background: #111; color: var(--pink); z-index: 2; border-top: 1px solid rgba(255,255,255,0.1); }
-        .panel-3 { background: #222; color: #fff; z-index: 3; border-top: 1px solid rgba(255,255,255,0.1); }
+        .panel-2 { background: #0a0a0a; color: var(--pink); z-index: 2; border-top: 1px solid rgba(255,255,255,0.05); }
+        .panel-3 { background: #111; color: #fff; z-index: 3; border-top: 1px solid rgba(255,255,255,0.05); }
         .panel-4 { background: var(--pink); color: #000; z-index: 4; }
 
-        /* Horizontal Scroll */
+        /* Final Text Section */
+        .final-text-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #fff; color: #000; padding: 4rem; text-align: center; }
+        
+        /* Footer */
+        footer { background: #000; color: #fff; padding: 8rem 4rem 4rem; }
+        .footer-logo { font-size: clamp(2rem, 15vw, 15rem); line-height: 0.8; font-weight: 900; letter-spacing: -0.05em; text-transform: uppercase; margin-bottom: 4rem; }
+        .footer-link { font-size: 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: -0.02em; transition: color 0.3s; }
+        .footer-link:hover { color: var(--pink); }
+
+        /* ROI Expert */
         .horizontal-section { height: 100vh; overflow: hidden; background: #fff; color: #000; display: flex; flex-direction: column; justify-content: center;}
         .horizontal-wrapper { display: flex; width: max-content; height: 60vh; padding-left: 10vw; align-items: center; }
         .h-card { width: 450px; height: 100%; margin-right: 4rem; flex-shrink: 0; border-radius: 20px; overflow: hidden; position: relative; background: #f0f0f0; }
@@ -140,25 +149,25 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-4">
                     <!-- Left Column -->
                     <div class="space-y-4">
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden">
+                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
                             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">SEO LOCAL AGRESSIF</h3>
                         </div>
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden">
+                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
                             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">STRATÉGIE DE CROISSANCE</h3>
                         </div>
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden">
+                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
                             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">AUDIT & ROI DATA</h3>
                         </div>
                     </div>
                     <!-- Right Column -->
                     <div class="space-y-4">
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden">
+                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
                             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">SOCIAL MEDIA LUXE</h3>
                         </div>
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden">
+                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
                             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">DESIGN CLINIQUE</h3>
                         </div>
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden">
+                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
                             <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">OPTIMISATION TECHNIQUE</h3>
                         </div>
                     </div>
@@ -277,7 +286,50 @@
                 </div>
             </div>
         </section>
+        <!-- FINAL TEXT SECTION -->
+        <section class="final-text-section">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="huge-text gsap-final-reveal">
+                    L'EXCELLENCE<br>
+                    <span class="text-pink-400 italic">OU RIEN.</span>
+                </h2>
+            </div>
+        </section>
     </main>
+
+    <!-- BEAUTIFUL FOOTER -->
+    <footer>
+        <div class="footer-logo">MAISON SEPHIRA</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-20">
+            <div class="space-y-8">
+                <h4 class="text-pink-400 font-bold uppercase tracking-widest text-xs">Navigation</h4>
+                <div class="flex flex-col gap-4">
+                    <a href="#services" class="footer-link">Services</a>
+                    <a href="#roi" class="footer-link">ROI Calculator</a>
+                    <a href="#contact" class="footer-link">Audit</a>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h4 class="text-pink-400 font-bold uppercase tracking-widest text-xs">Social</h4>
+                <div class="flex flex-col gap-4">
+                    <a href="#" class="footer-link">Instagram</a>
+                    <a href="#" class="footer-link">LinkedIn</a>
+                    <a href="#" class="footer-link">TikTok</a>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h4 class="text-pink-400 font-bold uppercase tracking-widest text-xs">Contact</h4>
+                <div class="flex flex-col gap-4">
+                    <p class="text-xl font-medium">contact@maisonsephira.com</p>
+                    <p class="text-gray-500 uppercase text-xs tracking-widest">Paris — France</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">© 2026 Maison Sephira 733</p>
+            <p class="text-xs text-gray-500 uppercase tracking-widest font-bold italic">L'Ingénierie du Luxe Digital</p>
+        </div>
+    </footer>
 
     <script>
         // --- CUSTOM CURSOR ---
@@ -325,11 +377,37 @@
         }
 
         // Title Reveals
-        gsap.utils.toArray('.gsap-h-title, .gsap-roi-title, .gsap-contact').forEach(title => {
+        gsap.utils.toArray('.gsap-h-title, .gsap-roi-title, .gsap-contact, .gsap-final-reveal').forEach(title => {
             gsap.from(title, {
                 y: "150%", duration: 1.2, ease: "power4.out",
-                scrollTrigger: { trigger: title.closest('section, div'), start: "top 80%" }
+                scrollTrigger: { trigger: title.closest('section, div'), start: "top 85%" }
             });
+        });
+
+        // Services Reveal
+        gsap.utils.toArray('.gsap-service-item').forEach((item, i) => {
+            gsap.from(item, {
+                opacity: 0, x: -50, duration: 1, ease: "power4.out",
+                scrollTrigger: { trigger: item, start: "top 90%" },
+                delay: i * 0.1
+            });
+        });
+
+        // Stacked Cards Effect
+        const panels = gsap.utils.toArray(".stacked-panel");
+        panels.forEach((panel, i) => {
+            if (i < panels.length - 1) {
+                gsap.to(panel, {
+                    scale: 0.9,
+                    filter: "brightness(0.5)",
+                    scrollTrigger: {
+                        trigger: panel,
+                        start: "top top",
+                        scrub: true,
+                        end: "bottom top"
+                    }
+                });
+            }
         });
 
         // --- ROI CALCULATOR LOGIC ---
