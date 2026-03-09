@@ -40,8 +40,9 @@
         .roi-input { background: transparent; border: none; border-bottom: 1px solid rgba(249, 168, 212, 0.2); color: var(--sephira-pink); font-size: 3rem; font-weight: 300; width: 100%; outline: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 5px 0; font-family: 'Space Mono', monospace; }
         .roi-input:focus { border-color: var(--sephira-pink); padding-left: 15px; }
         .roi-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.4em; font-weight: 900; color: #666; margin-bottom: 0.5rem; display: block; }
-        .roi-result-text { font-size: 4rem; font-weight: 900; color: #fff; line-height: 0.9; letter-spacing: -0.05em; }
-        @media (min-width: 768px) { .roi-result-text { font-size: 6rem; } }
+        .roi-result-text { font-size: 3rem; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.05em; white-space: nowrap; }
+        @media (min-width: 768px) { .roi-result-text { font-size: 4.5rem; } }
+        @media (min-width: 1280px) { .roi-result-text { font-size: 5.5rem; } }
         
         /* Hide Arrows */
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
@@ -503,11 +504,16 @@
                 const currentAnnualRev = traffic * (currentConv / 100) * price * retention * 12;
                 const targetAnnualRev = traffic * (targetConv / 100) * price * retention * 12;
                 
-                const gap = targetAnnualRev - currentAnnualRev;
+                const gap = Math.max(0, targetAnnualRev - currentAnnualRev);
                 roiResult.innerText = `- ${Math.round(gap).toLocaleString()} €`;
             }
 
-            [roiPrice, roiTraffic, roiConv, roiRetention].forEach(el => el.addEventListener('input', calculateROI));
+            [roiPrice, roiTraffic, roiConv, roiRetention].forEach(el => {
+                if(el) el.addEventListener('input', calculateROI);
+            });
+            
+            // Initial call
+            calculateROI();
 
             const qualifForm = document.getElementById('qualif-form');
             qualifForm.addEventListener('submit', (e) => {
