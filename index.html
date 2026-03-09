@@ -3,462 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Sephira 733 | Agence Marketing Luxe</title>
+    <title>Maison Sephira 733 | Rise Mirror Edition</title>
+    
+    <!-- LIBRARIES -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
-        :root { --pink: #f9a8d4; --bg: #050505; --text: #ffffff; }
-        body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; margin: 0; padding: 0; }
-        
-        /* Custom Cursor */
-        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
-        .cursor-dot { width: 8px; height: 8px; background-color: var(--pink); }
-        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(249, 168, 212, 0.5); transition: width 0.2s, height 0.2s; }
-        
-        /* Typography */
-        .huge-text { font-size: clamp(3rem, 10vw, 12rem); line-height: 0.85; letter-spacing: -0.05em; font-weight: 700; text-transform: uppercase; }
-        .line-mask { overflow: hidden; display: block; padding-bottom: 5px; }
-        
-        /* Buttons */
-        .btn-rise { display: inline-flex; align-items: center; justify-content: center; padding: 1.5rem 3rem; background: #fff; color: #000; font-weight: 700; text-transform: uppercase; border-radius: 100px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s; }
-        .btn-rise:hover { background: var(--pink); transform: scale(1.05); }
-        
-        /* Marquee */
-        .marquee-wrapper { border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); overflow: hidden; white-space: nowrap; padding: 2rem 0; background: var(--bg); }
-        .marquee-content { display: inline-block; font-size: 3rem; font-weight: 700; text-transform: uppercase; color: var(--pink); animation: marquee 20s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        
-        /* RISE AT SEVEN - STACKED EFFECT ENHANCED */
-        .stacked-container { position: relative; background: var(--bg); }
-        .stacked-panel { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 4rem; overflow: hidden; will-change: transform, filter; }
-        .panel-1 { background: #000; color: #fff; z-index: 1; }
-        .panel-2 { background: #0a0a0a; color: var(--pink); z-index: 2; border-top: 1px solid rgba(255,255,255,0.05); }
-        .panel-3 { background: #111; color: #fff; z-index: 3; border-top: 1px solid rgba(255,255,255,0.05); }
-        .panel-4 { background: var(--pink); color: #000; z-index: 4; }
+        :root { --pink: #f9a8d4; --bg: #000000; --text: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* Final Text Section */
-        .final-text-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #fff; color: #000; padding: 4rem; text-align: center; }
+        /* RISE MIRROR: SMOOTH SCROLL FOUNDATION */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        /* RISE MIRROR: STACKED LAYERS LOGIC */
+        .stack-container { position: relative; width: 100%; }
+        .layer { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; overflow: hidden; will-change: transform, filter; }
         
-        /* Footer */
-        footer { background: #000; color: #fff; padding: 8rem 4rem 4rem; }
-        .footer-logo { font-size: clamp(2rem, 15vw, 15rem); line-height: 0.8; font-weight: 900; letter-spacing: -0.05em; text-transform: uppercase; margin-bottom: 4rem; }
-        .footer-link { font-size: 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: -0.02em; transition: color 0.3s; }
-        .footer-link:hover { color: var(--pink); }
+        /* RISE MIRROR: TYPOGRAPHY */
+        .huge-title { font-size: clamp(3rem, 12vw, 15rem); line-height: 0.8; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; }
+        .mask { display: block; overflow: hidden; }
+        .mask span { display: block; transform: translateY(100%); will-change: transform; }
 
-        /* ROI Expert */
-        .horizontal-section { height: 100vh; overflow: hidden; background: #fff; color: #000; display: flex; flex-direction: column; justify-content: center;}
-        .horizontal-wrapper { display: flex; width: max-content; height: 60vh; padding-left: 10vw; align-items: center; }
-        .h-card { width: 450px; height: 100%; margin-right: 4rem; flex-shrink: 0; border-radius: 20px; overflow: hidden; position: relative; background: #f0f0f0; }
-        .h-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter 0.5s, transform 0.5s; }
-        .h-card:hover img { filter: grayscale(0); transform: scale(1.05); }
+        /* CURSOR */
+        .cursor { position: fixed; width: 10px; height: 10px; background: var(--pink); border-radius: 50%; pointer-events: none; z-index: 10000; mix-blend-difference: exclusion; transition: transform 0.2s; }
+        .cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--pink); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 
-        /* ROI Expert */
-        .roi-input { background: transparent; border: none; border-bottom: 2px solid rgba(255,255,255,0.2); color: var(--pink); font-size: 3rem; font-weight: 700; width: 100%; outline: none; transition: border-color 0.3s; padding: 5px 0; border-radius: 0; }
+        /* HORIZONTAL SCROLL */
+        .horizontal-wrap { display: flex; width: max-content; padding-left: 5vw; align-items: center; height: 100%; }
+        .work-card { width: 30vw; height: 60vh; margin-right: 5vw; position: relative; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: #111; }
+        .work-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter 0.6s; }
+        .work-card:hover img { filter: grayscale(0); }
+
+        /* ROI INPUTS */
+        .roi-input { background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--pink); font-size: 4rem; font-weight: 200; width: 100%; outline: none; padding: 10px 0; transition: border-color 0.3s; }
         .roi-input:focus { border-color: var(--pink); }
-        .roi-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #888; font-weight: 600; margin-bottom: 0.5rem; display: block; }
-        input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        .roi-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3em; color: #555; font-weight: 800; }
+        input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+        /* FOOTER */
+        .footer-big { font-size: clamp(2rem, 18vw, 20rem); line-height: 0.75; font-weight: 950; text-transform: uppercase; letter-spacing: -0.06em; margin-bottom: 2rem; color: #fff; }
     </style>
 </head>
 <body>
 
-    <!-- Cursor -->
-    <div class="cursor-dot hidden md:block"></div>
-    <div class="cursor-outline hidden md:block"></div>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-    <!-- Header -->
-    <header class="fixed top-0 w-full z-50 px-8 py-6 mix-blend-difference flex justify-between items-center text-white">
-        <div class="font-bold text-xl tracking-tighter">MAISON SEPHIRA</div>
-        <nav class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
-            <a href="#services" class="hover:text-pink-400">Expertise</a>
-            <a href="#roi" class="hover:text-pink-400">Diagnostic</a>
-            <a href="#contact" class="hover:text-pink-400">Contact</a>
-        </nav>
+    <header class="fixed top-0 w-full z-[100] px-10 py-8 flex justify-between items-center mix-blend-difference">
+        <div class="font-black text-xl tracking-tighter">MAISON SEPHIRA</div>
+        <div class="flex gap-10 text-[0.65rem] font-bold uppercase tracking-[0.3em]">
+            <a href="#work" class="hover:text-pink-400 transition">Work</a>
+            <a href="#roi" class="hover:text-pink-400 transition">ROI</a>
+            <a href="#contact" class="hover:text-pink-400 transition">Contact</a>
+        </div>
     </header>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section class="min-h-screen flex flex-col justify-center px-4 md:px-16 pt-32 pb-20 relative">
-            <div class="line-mask"><span class="block text-sm md:text-xl font-bold uppercase tracking-widest text-gray-400 mb-8 gsap-hero">L'Ingénierie du Luxe Digital</span></div>
-            <h1 class="huge-text">
-                <span class="line-mask"><span class="block gsap-hero">VOTRE MARQUE</span></span>
-                <span class="line-mask"><span class="block text-pink-400 italic pr-8 gsap-hero">MÉRITE</span></span>
-                <span class="line-mask"><span class="block gsap-hero">L'EXCELLENCE.</span></span>
+    <main class="stack-container">
+        
+        <!-- LAYER 1: HERO -->
+        <section class="layer bg-black px-10 md:px-20">
+            <div class="mask mb-6"><span class="text-pink-400 font-bold uppercase tracking-widest text-xs reveal">L'Ingénierie du Luxe Digital</span></div>
+            <h1 class="huge-title">
+                <div class="mask"><span class="reveal">VOTRE MARQUE</span></div>
+                <div class="mask"><span class="reveal text-pink-400 italic">MÉRITE</span></div>
+                <div class="mask"><span class="reveal">L'EXCELLENCE.</span></div>
             </h1>
-            <div class="mt-16 flex gap-6">
-                <a href="#roi" class="btn-rise gsap-hero-btn">Lancer l'Audit</a>
+            <div class="mt-20 opacity-0 reveal-btn">
+                <a href="#roi" class="px-12 py-6 bg-white text-black font-black uppercase text-xs rounded-full hover:bg-pink-400 transition-all">Lancer le diagnostic ↗</a>
             </div>
         </section>
 
-        <!-- MARQUEE -->
-        <div class="marquee-wrapper">
-            <div class="marquee-content">
-                SEO LOCAL AGRESSIF • STRATÉGIE LUXE • DESIGN CLINIQUE • CONVERSION HAUTE PERFORMANCE • SEO LOCAL AGRESSIF • STRATÉGIE LUXE • DESIGN CLINIQUE • CONVERSION HAUTE PERFORMANCE •
+        <!-- LAYER 2: HORIZONTAL WORK -->
+        <section id="work" class="layer bg-white text-black" style="z-index: 2;">
+            <div class="absolute top-20 left-20">
+                <h2 class="text-8xl font-black uppercase tracking-tighter line-mask"><span class="reveal-h">NOS PROJETS.</span></h2>
             </div>
-        </div>
-
-        <!-- HORIZONTAL SCROLL: PORTFOLIO / OFFRES -->
-        <section id="services" class="horizontal-section">
-            <div class="px-8 md:px-16 py-10">
-                <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter line-mask"><span class="block text-black gsap-h-title">ORDONNANCES<br><span class="text-pink-400">EXPRESS.</span></span></h2>
-            </div>
-            <div class="horizontal-wrapper">
-                <div class="h-card">
-                    <img src="ASSETS SEPHIRA/SEPHIRA_IMG_14.jpg" alt="Portfolio 1">
-                    <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black to-transparent text-white z-10 pointer-events-none">
-                        <h3 class="text-2xl font-bold uppercase">Pack Feed Parfait</h3>
-                        <p class="text-pink-400 font-bold mt-2">147€</p>
-                    </div>
+            <div class="horizontal-wrap">
+                <div class="work-card">
+                    <img src="ASSETS SEPHIRA/SEPHIRA_IMG_14.jpg" alt="Project 1">
+                    <div class="absolute bottom-10 left-10 text-white"><h3 class="text-2xl font-bold">PACK FEED PARFAIT</h3><p class="text-pink-400 font-bold">147€</p></div>
                 </div>
-                <div class="h-card">
-                    <img src="ASSETS SEPHIRA/SEPHIRA_IMG_28.jpg" alt="Portfolio 2">
-                    <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black to-transparent text-white z-10 pointer-events-none">
-                        <h3 class="text-2xl font-bold uppercase">Flyer & Menu Elite</h3>
-                        <p class="text-pink-400 font-bold mt-2">97€</p>
-                    </div>
+                <div class="work-card">
+                    <img src="ASSETS SEPHIRA/SEPHIRA_IMG_28.jpg" alt="Project 2">
+                    <div class="absolute bottom-10 left-10 text-white"><h3 class="text-2xl font-bold">FLYER & MENU ELITE</h3><p class="text-pink-400 font-bold">97€</p></div>
                 </div>
-                <div class="h-card">
-                    <img src="ASSETS SEPHIRA/SEPHIRA_IMG_15.jpg" alt="Portfolio 3">
-                    <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black to-transparent text-white z-10 pointer-events-none">
-                        <h3 class="text-2xl font-bold uppercase">Soin à Domicile (IA)</h3>
-                        <p class="text-pink-400 font-bold mt-2">497€</p>
-                    </div>
+                <div class="work-card">
+                    <img src="ASSETS SEPHIRA/SEPHIRA_IMG_15.jpg" alt="Project 3">
+                    <div class="absolute bottom-10 left-10 text-white"><h3 class="text-2xl font-bold">SOIN À DOMICILE (IA)</h3><p class="text-pink-400 font-bold">497€</p></div>
                 </div>
-                <div class="w-[20vw] flex-shrink-0"></div>
+                <div class="work-card">
+                    <img src="ASSETS SEPHIRA/SEPHIRA_IMG_22.jpg" alt="Project 4">
+                    <div class="absolute bottom-10 left-10 text-white"><h3 class="text-2xl font-bold">AUDIT STRATÉGIQUE</h3><p class="text-pink-400 font-bold">OFFERT</p></div>
+                </div>
             </div>
         </section>
 
-        <!-- RISE AT SEVEN STYLE: SERVICES SECTION -->
-        <section class="py-32 px-8 md:px-16 bg-[#f5f5f5] text-black">
-            <div class="max-w-7xl mx-auto">
-                <!-- Section Header -->
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
-                    <h2 class="text-6xl md:text-[7rem] font-bold tracking-tighter leading-[0.9] flex flex-wrap items-center">
-                        NOS <img src="ASSETS SEPHIRA/SEPHIRA_IMG_30.jpg" class="w-20 h-16 md:w-32 md:h-24 object-cover rounded-2xl mx-4 md:mx-6 inline-block shadow-lg" alt="Sephira Service"> SERVICES
+        <!-- LAYER 3: OUR SERVICES (Exact Rise Reproduction) -->
+        <section class="layer bg-[#f5f5f5] text-black px-10 md:px-20" style="z-index: 3;">
+            <div class="max-w-7xl w-full">
+                <div class="flex justify-between items-end mb-16 border-b border-black/10 pb-10">
+                    <h2 class="text-6xl md:text-[7rem] font-black tracking-tighter leading-[0.9] flex items-center flex-wrap">
+                        NOS <img src="ASSETS SEPHIRA/SEPHIRA_IMG_30.jpg" class="w-24 h-16 md:w-40 md:h-28 object-cover rounded-2xl mx-6 shadow-2xl" alt="Service"> SERVICES
                     </h2>
-                    <a href="#contact" class="px-8 py-4 bg-white border border-black/5 rounded-full font-bold uppercase text-xs flex items-center gap-2 hover:bg-black hover:text-white transition-all shadow-sm">
-                        Prendre l'examen <span class="text-lg leading-none">↗</span>
-                    </a>
+                    <a href="#contact" class="text-xs font-black uppercase tracking-widest hover:text-pink-400 transition">Voir tout ↗</a>
                 </div>
-
-                <div class="w-full h-[1px] bg-black/10 mb-16"></div>
-
-                <!-- Services Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-4">
-                    <!-- Left Column -->
-                    <div class="space-y-4">
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
-                            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">SEO LOCAL AGRESSIF</h3>
-                        </div>
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
-                            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">STRATÉGIE DE CROISSANCE</h3>
-                        </div>
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
-                            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">AUDIT & ROI DATA</h3>
-                        </div>
-                    </div>
-                    <!-- Right Column -->
-                    <div class="space-y-4">
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
-                            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">SOCIAL MEDIA LUXE</h3>
-                        </div>
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
-                            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">DESIGN CLINIQUE</h3>
-                        </div>
-                        <div class="group border-b border-black/10 pb-6 pt-2 overflow-hidden gsap-service-item">
-                            <h3 class="text-3xl md:text-5xl font-bold tracking-tighter transition-transform duration-500 group-hover:translate-x-4">OPTIMISATION TECHNIQUE</h3>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-2">
+                    <div class="border-b border-black/10 py-6 group hover:pl-4 transition-all"><h3 class="text-4xl md:text-5xl font-bold tracking-tighter">SEO LOCAL AGRESSIF</h3></div>
+                    <div class="border-b border-black/10 py-6 group hover:pl-4 transition-all"><h3 class="text-4xl md:text-5xl font-bold tracking-tighter">DESIGN CLINIQUE</h3></div>
+                    <div class="border-b border-black/10 py-6 group hover:pl-4 transition-all"><h3 class="text-4xl md:text-5xl font-bold tracking-tighter">IA AUTOMATION</h3></div>
+                    <div class="border-b border-black/10 py-6 group hover:pl-4 transition-all"><h3 class="text-4xl md:text-5xl font-bold tracking-tighter">ROI OPTIMISATION</h3></div>
                 </div>
             </div>
         </section>
 
-        <!-- ROI CALCULATOR -->
-        <section id="roi" class="py-32 px-4 md:px-16 bg-[#0a0a0a] border-t border-white/10">
-            <div class="max-w-7xl mx-auto">
-                <div class="line-mask mb-16"><h2 class="text-5xl md:text-7xl font-black uppercase text-white tracking-tighter block gsap-roi-title">DIAGNOSTIC<br><span class="text-pink-400">EXPERT.</span></h2></div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <!-- LAYER 4: ROI EXPERT -->
+        <section id="roi" class="layer bg-black text-white px-10 md:px-20" style="z-index: 4;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-12">
+                    <h2 class="text-6xl font-black uppercase tracking-tighter text-pink-400">Diagnostic<br>de capital.</h2>
                     <div class="grid grid-cols-2 gap-10">
-                        <div>
-                            <span class="roi-label">Panier Moyen (€)</span>
-                            <div class="relative group">
-                                <input type="number" id="roi-price" class="roi-input" value="120">
-                                <div class="absolute right-0 top-0 h-full flex flex-col justify-center opacity-0 group-hover:opacity-100 transition">
-                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-price" data-dir="up">▲</button>
-                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-price" data-dir="down">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="roi-label">Trafic Mensuel</span>
-                            <div class="relative group">
-                                <input type="number" id="roi-traffic" class="roi-input" value="1000">
-                                <div class="absolute right-0 top-0 h-full flex flex-col justify-center opacity-0 group-hover:opacity-100 transition">
-                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-traffic" data-dir="up">▲</button>
-                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-traffic" data-dir="down">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="roi-label">Conversion (%)</span>
-                            <div class="relative group">
-                                <input type="number" id="roi-conv" class="roi-input" value="1" step="0.1">
-                                <div class="absolute right-0 top-0 h-full flex flex-col justify-center opacity-0 group-hover:opacity-100 transition">
-                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-conv" data-dir="up" data-step="0.1">▲</button>
-                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-conv" data-dir="down" data-step="0.1">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="roi-label">Achats / An</span>
-                            <div class="relative group">
-                                <input type="number" id="roi-retention" class="roi-input" value="2">
-                                <div class="absolute right-0 top-0 h-full flex flex-col justify-center opacity-0 group-hover:opacity-100 transition">
-                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-retention" data-dir="up">▲</button>
-                                    <button class="text-pink-400 text-xs roi-step" data-target="roi-retention" data-dir="down">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col justify-center bg-[#111] p-12 rounded-[40px] border border-white/5">
-                        <span class="text-xs uppercase tracking-widest text-gray-500 mb-4 font-bold">Capital inexploité (Annuel)</span>
-                        <div class="text-5xl md:text-7xl font-black text-white whitespace-nowrap tracking-tighter" id="roi-result">- 96 000 €</div>
-                        <p class="text-pink-400 text-xs uppercase tracking-widest mt-6">Basé sur le standard de conversion Sephira (5%).</p>
+                        <div><span class="roi-label">Panier Moyen (€)</span><input type="number" id="roi-price" class="roi-input" value="120"></div>
+                        <div><span class="roi-label">Trafic Mensuel</span><input type="number" id="roi-traffic" class="roi-input" value="1000"></div>
+                        <div><span class="roi-label">Conv. Actuelle %</span><input type="number" id="roi-conv" class="roi-input" value="1" step="0.1"></div>
+                        <div><span class="roi-label">Fidélité / An</span><input type="number" id="roi-retention" class="roi-input" value="2"></div>
                     </div>
                 </div>
+                <div class="bg-[#0a0a0a] p-16 rounded-[50px] border border-white/5">
+                    <span class="roi-label">Manque à gagner annuel</span>
+                    <div class="text-5xl md:text-8xl font-black text-white mt-4" id="roi-result">- 96 000 €</div>
+                    <p class="text-pink-400 text-xs font-bold uppercase tracking-widest mt-10 italic">Optimisation Sephira vs Statu Quo.</p>
+                </div>
             </div>
         </section>
 
-        <!-- STACKED SECTIONS: LE PROTOCOLE -->
-        <div class="stacked-container">
-            <section class="stacked-panel panel-1">
-                <div class="max-w-6xl mx-auto w-full">
-                    <div class="text-pink-400 text-8xl font-black mb-4">01</div>
-                    <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-6">Examen<br>Clinique</h2>
-                    <p class="text-2xl text-gray-400 max-w-2xl">Analyse chirurgicale de vos failles digitales et de votre manque à gagner SEO local.</p>
+        <!-- FINAL CTA & FOOTER LAYER -->
+        <section id="contact" class="layer bg-white text-black px-10 md:px-20" style="z-index: 5;">
+            <div class="text-center">
+                <h2 class="huge-title">L'EXCELLENCE<br><span class="text-pink-400 italic">OU RIEN.</span></h2>
+                <div class="mt-20">
+                    <a href="mailto:contact@maisonsephira.com" class="text-4xl md:text-6xl font-black underline hover:text-pink-400 transition">Prendre l'examen ↗</a>
                 </div>
-            </section>
-            <section class="stacked-panel panel-2">
-                <div class="max-w-6xl mx-auto w-full">
-                    <div class="text-white text-8xl font-black mb-4">02</div>
-                    <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-6 text-white">Ingénierie<br>Digitale</h2>
-                    <p class="text-2xl text-gray-400 max-w-2xl">Création d'une identité visuelle de prestige conçue pour écraser la concurrence.</p>
+            </div>
+            
+            <div class="absolute bottom-0 left-0 w-full px-10 py-10 flex flex-col md:flex-row justify-between items-end gap-10">
+                <div class="footer-big">SEPHIRA</div>
+                <div class="flex flex-col items-end text-right gap-4">
+                    <p class="font-bold uppercase tracking-widest text-[0.6rem] text-gray-400">© 2026 Maison Sephira 733 — Paris</p>
+                    <p class="font-bold uppercase tracking-widest text-[0.6rem] text-gray-400">L'Ingénierie du Luxe Digital</p>
                 </div>
-            </section>
-            <section class="stacked-panel panel-3">
-                <div class="max-w-6xl mx-auto w-full">
-                    <div class="text-pink-400 text-8xl font-black mb-4">03</div>
-                    <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-6 text-white">Déploiement<br>Agressif</h2>
-                    <p class="text-2xl text-gray-400 max-w-2xl">Lancement de votre écosystème : Site Élite et stratégies d'acquisition ciblées.</p>
-                </div>
-            </section>
-            <section class="stacked-panel panel-4">
-                <div class="max-w-6xl mx-auto w-full">
-                    <div class="text-white text-8xl font-black mb-4">04</div>
-                    <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-6 text-black">Optimisation<br>Continue</h2>
-                    <p class="text-2xl text-gray-800 font-medium max-w-2xl">Suivi constant des KPIs et ajustements mensuels pour maximiser la rentabilité.</p>
-                </div>
-            </section>
-        </div>
+            </div>
+        </section>
 
-        <!-- CONTACT -->
-        <section id="contact" class="min-h-screen flex items-center justify-center bg-black py-32 px-4 relative z-10">
-            <div class="max-w-4xl w-full text-center">
-                <h2 class="text-6xl md:text-9xl font-black uppercase text-white mb-12 tracking-tighter line-mask"><span class="block gsap-contact">PASSEZ À</span><span class="block text-pink-400 gsap-contact">L'EXAMEN.</span></h2>
-                <div class="bg-[#111] p-12 md:p-20 rounded-[40px] border border-white/10 text-left">
-                    <form id="qualif-form" class="space-y-8">
-                        <div>
-                            <label class="text-xs uppercase tracking-widest font-bold text-gray-400 block mb-4">CA Mensuel</label>
-                            <select class="w-full bg-black border border-white/20 text-white p-6 rounded-2xl outline-none focus:border-pink-400 appearance-none" required>
-                                <option value="">Sélectionner...</option>
-                                <option value="0-5k">0 - 5 000 €</option>
-                                <option value="5-15k">5 000 - 15 000 €</option>
-                                <option value="15k+">Plus de 15 000 €</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="w-full bg-white text-black py-6 rounded-2xl text-sm font-bold uppercase tracking-widest hover:bg-pink-400 hover:text-white transition">Réserver l'Audit (30min)</button>
-                    </form>
-                    <div id="calendly-area" class="mt-12 hidden"></div>
-                </div>
-            </div>
-        </section>
-        <!-- FINAL TEXT SECTION -->
-        <section class="final-text-section">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="huge-text gsap-final-reveal">
-                    L'EXCELLENCE<br>
-                    <span class="text-pink-400 italic">OU RIEN.</span>
-                </h2>
-            </div>
-        </section>
     </main>
 
-    <!-- BEAUTIFUL FOOTER -->
-    <footer>
-        <div class="footer-logo">MAISON SEPHIRA</div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-20">
-            <div class="space-y-8">
-                <h4 class="text-pink-400 font-bold uppercase tracking-widest text-xs">Navigation</h4>
-                <div class="flex flex-col gap-4">
-                    <a href="#services" class="footer-link">Services</a>
-                    <a href="#roi" class="footer-link">ROI Calculator</a>
-                    <a href="#contact" class="footer-link">Audit</a>
-                </div>
-            </div>
-            <div class="space-y-8">
-                <h4 class="text-pink-400 font-bold uppercase tracking-widest text-xs">Social</h4>
-                <div class="flex flex-col gap-4">
-                    <a href="#" class="footer-link">Instagram</a>
-                    <a href="#" class="footer-link">LinkedIn</a>
-                    <a href="#" class="footer-link">TikTok</a>
-                </div>
-            </div>
-            <div class="space-y-8">
-                <h4 class="text-pink-400 font-bold uppercase tracking-widest text-xs">Contact</h4>
-                <div class="flex flex-col gap-4">
-                    <p class="text-xl font-medium">contact@maisonsephira.com</p>
-                    <p class="text-gray-500 uppercase text-xs tracking-widest">Paris — France</p>
-                </div>
-            </div>
-        </div>
-        <div class="mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
-            <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">© 2026 Maison Sephira 733</p>
-            <p class="text-xs text-gray-500 uppercase tracking-widest font-bold italic">L'Ingénierie du Luxe Digital</p>
-        </div>
-    </footer>
-
     <script>
-        // --- CUSTOM CURSOR ---
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-        if (cursorDot && cursorOutline) {
+        window.addEventListener('load', () => {
+            // --- LENIS SMOOTH SCROLL (RISE CONFIG) ---
+            const lenis = new Lenis({ 
+                duration: 1.4, 
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+                lerp: 0.05
+            });
+            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+            requestAnimationFrame(raf);
+
+            // --- GSAP REGISTER ---
+            gsap.registerPlugin(ScrollTrigger);
+            lenis.on('scroll', ScrollTrigger.update);
+
+            // --- CURSOR LOGIC ---
+            const cursor = document.querySelector('.cursor');
+            const follower = document.querySelector('.cursor-follower');
             window.addEventListener('mousemove', (e) => {
-                const posX = e.clientX;
-                const posY = e.clientY;
-                cursorDot.style.left = \`\${posX}px\`; cursorDot.style.top = \`\${posY}px\`;
-                cursorOutline.animate({ left: \`\${posX}px\`, top: \`\${posY}px\` }, { duration: 500, fill: "forwards" });
+                gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0 });
+                gsap.to(follower, { x: e.clientX - 15, y: e.clientY - 15, duration: 0.3, ease: "power2.out" });
             });
-            document.querySelectorAll('a, button, input, select, .h-card').forEach(el => {
-                el.addEventListener('mouseenter', () => { cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px'; cursorOutline.style.borderColor = '#fff'; });
-                el.addEventListener('mouseleave', () => { cursorOutline.style.width = '40px'; cursorOutline.style.height = '40px'; cursorOutline.style.borderColor = 'rgba(249, 168, 212, 0.5)'; });
+
+            // --- TEXT REVEAL ANIMATIONS ---
+            gsap.to(".reveal", {
+                y: 0, duration: 1.2, ease: "power4.out", stagger: 0.1, delay: 0.5
             });
-        }
+            gsap.to(".reveal-btn", {
+                opacity: 1, y: -20, duration: 1, ease: "power3.out", delay: 1.2
+            });
 
-        // --- LENIS SMOOTH SCROLL ---
-        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', gestureDirection: 'vertical', smooth: true });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-
-        // --- GSAP ANIMATIONS ---
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Hero Animation
-        gsap.from(".gsap-hero", { y: "150%", duration: 1.5, stagger: 0.1, ease: "power4.out", delay: 0.2 });
-        gsap.from(".gsap-hero-btn", { opacity: 0, y: 30, duration: 1, delay: 1 });
-
-        // Horizontal Scroll
-        const horizontalSection = document.querySelector('.horizontal-wrapper');
-        if(horizontalSection) {
-            let scrollWidth = horizontalSection.scrollWidth - window.innerWidth + 100;
-            gsap.to(horizontalSection, {
-                x: -scrollWidth,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: ".horizontal-section",
-                    pin: true,
-                    scrub: 1,
-                    end: "+=2000"
+            // --- STACKED LAYERS ENHANCED ---
+            const layers = gsap.utils.toArray(".layer");
+            layers.forEach((layer, i) => {
+                if (i < layers.length - 1) {
+                    gsap.to(layer, {
+                        scale: 0.9,
+                        filter: "brightness(0.3)",
+                        opacity: 0.5,
+                        scrollTrigger: {
+                            trigger: layer,
+                            start: "top top",
+                            end: "bottom top",
+                            scrub: true
+                        }
+                    });
                 }
             });
-        }
 
-        // Title Reveals
-        gsap.utils.toArray('.gsap-h-title, .gsap-roi-title, .gsap-contact, .gsap-final-reveal').forEach(title => {
-            gsap.from(title, {
-                y: "150%", duration: 1.2, ease: "power4.out",
-                scrollTrigger: { trigger: title.closest('section, div'), start: "top 85%" }
-            });
-        });
-
-        // Services Reveal
-        gsap.utils.toArray('.gsap-service-item').forEach((item, i) => {
-            gsap.from(item, {
-                opacity: 0, x: -50, duration: 1, ease: "power4.out",
-                scrollTrigger: { trigger: item, start: "top 90%" },
-                delay: i * 0.1
-            });
-        });
-
-        // Stacked Cards Effect
-        const panels = gsap.utils.toArray(".stacked-panel");
-        panels.forEach((panel, i) => {
-            if (i < panels.length - 1) {
-                gsap.to(panel, {
-                    scale: 0.9,
-                    filter: "brightness(0.5)",
+            // --- HORIZONTAL WORK SCROLL ---
+            const horizontalWrap = document.querySelector('.horizontal-wrap');
+            if (horizontalWrap) {
+                let scrollWidth = horizontalWrap.scrollWidth - window.innerWidth + (window.innerWidth * 0.1);
+                gsap.to(horizontalWrap, {
+                    x: -scrollWidth,
+                    ease: "none",
                     scrollTrigger: {
-                        trigger: panel,
+                        trigger: "#work",
                         start: "top top",
-                        scrub: true,
-                        end: "bottom top"
+                        end: () => "+=" + scrollWidth,
+                        pin: true,
+                        scrub: 1,
+                        invalidateOnRefresh: true
                     }
                 });
             }
+
+            // --- ROI LOGIC ---
+            const roiPrice = document.getElementById('roi-price');
+            const roiTraffic = document.getElementById('roi-traffic');
+            const roiConv = document.getElementById('roi-conv');
+            const roiRetention = document.getElementById('roi-retention');
+            const roiResult = document.getElementById('roi-result');
+
+            function calculateROI() {
+                const price = parseFloat(roiPrice.value) || 0;
+                const traffic = parseFloat(roiTraffic.value) || 0;
+                const currentConv = parseFloat(roiConv.value) || 0;
+                const retention = parseFloat(roiRetention.value) || 1;
+                const targetConv = 5.0; 
+                const currentAnnualRev = traffic * (currentConv / 100) * price * retention * 12;
+                const targetAnnualRev = traffic * (targetConv / 100) * price * retention * 12;
+                const gap = Math.max(0, targetAnnualRev - currentAnnualRev);
+                if(roiResult) roiResult.innerText = \`- \${Math.round(gap).toLocaleString('fr-FR')} €\`;
+            }
+            [roiPrice, roiTraffic, roiConv, roiRetention].forEach(el => el.addEventListener('input', calculateROI));
+            calculateROI();
         });
-
-        // --- ROI CALCULATOR LOGIC ---
-        const roiPrice = document.getElementById('roi-price');
-        const roiTraffic = document.getElementById('roi-traffic');
-        const roiConv = document.getElementById('roi-conv');
-        const roiRetention = document.getElementById('roi-retention');
-        const roiResult = document.getElementById('roi-result');
-
-        function calculateROI() {
-            const price = parseFloat(roiPrice.value) || 0;
-            const traffic = parseFloat(roiTraffic.value) || 0;
-            const currentConv = parseFloat(roiConv.value) || 0;
-            const retention = parseFloat(roiRetention.value) || 1;
-            const targetConv = 5.0; 
-            
-            const currentAnnualRev = traffic * (currentConv / 100) * price * retention * 12;
-            const targetAnnualRev = traffic * (targetConv / 100) * price * retention * 12;
-            const gap = Math.max(0, targetAnnualRev - currentAnnualRev);
-            
-            if(roiResult) roiResult.innerText = \`- \${Math.round(gap).toLocaleString('fr-FR')} €\`;
-        }
-
-        [roiPrice, roiTraffic, roiConv, roiRetention].forEach(el => { if(el) el.addEventListener('input', calculateROI); });
-        
-        // Steppers
-        document.querySelectorAll('.roi-step').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const input = document.getElementById(btn.getAttribute('data-target'));
-                if(!input) return;
-                const step = parseFloat(btn.getAttribute('data-step')) || 1;
-                let val = parseFloat(input.value) || 0;
-                if(btn.getAttribute('data-dir') === 'up') val += step;
-                else val = Math.max(0, val - step);
-                input.value = parseFloat(val.toFixed(1));
-                calculateROI();
-            });
-        });
-        calculateROI();
-
-        // Form Submit
-        const form = document.getElementById('qualif-form');
-        if(form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                e.target.style.display = 'none';
-                const calArea = document.getElementById('calendly-area');
-                calArea.style.display = 'block';
-                calArea.innerHTML = \`<iframe src="https://calendly.com/meyghvne/30min" width="100%" height="600" frameborder="0"></iframe>\`;
-            });
-        }
     </script>
 </body>
 </html>
