@@ -15,6 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="https://unpkg.com/threejs-components@0.0.17/dist/threejs-components.min.js"></script>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -454,6 +455,23 @@
                 });
                 btn.addEventListener('mouseleave', () => { gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" }); });
             });
+
+            // --- NEON 3D CURSOR TRAIL (Kevin Levron Style) ---
+            const n3dCanvas = document.getElementById('main-canvas');
+            if (n3dCanvas) {
+                window.TubesCursor(n3dCanvas, {
+                    tubes: {
+                        count: 1,
+                        radius: 0.05,
+                        segments: 64,
+                        colors: ["#f9a8d4", "#ffffff", "#fbcfe8"], // Sephira Palette
+                        lights: {
+                            intensity: 150,
+                            colors: ["#f9a8d4", "#ffffff"]
+                        }
+                    }
+                });
+            }
 
             // ROI & QUALIF
             const roiPrice = document.getElementById('roi-price');
