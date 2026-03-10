@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Sephira 733 — Agence SMMA IA Premium</title>
+  <meta name="description" content="Maison Sephira 733 transforme les marques ambitieuses en références numériques. Stratégie IA, Social Media, SEO Performance. Audit gratuit.">
+  <meta name="keywords" content="agence SMMA, marketing IA, réseaux sociaux, SEO, publicité digitale, Maison Sephira">
+  <meta property="og:title" content="Maison Sephira 733 — Agence SMMA IA Premium">
+  <meta property="og:description" content="Nous ne faisons pas de la communication. Nous bâtissons des empires.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://maison-sephira.com">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
+  <style>
+    /* ========================
+       RESET & ROOT
+    ======================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink: #f9a8d4;
+      --black: #000000;
+      --white: #ffffff;
+      --gray-100: #f5f5f5;
+      --gray-200: #e8e8e8;
+      --gray-400: #999999;
+      --gray-600: #555555;
+      --font: 'Raleway', sans-serif;
+    }
+
+    html { scroll-behavior: auto; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ========================
+       CUSTOM CURSOR
+    ======================== */
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 10px; height: 10px;
+      background: var(--black);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s, background 0.3s;
+      will-change: transform;
+    }
+
+    .cursor-follower {
+      position: fixed;
+      top: 0; left: 0;
+      width: 36px; height: 36px;
+      border: 1px solid var(--black);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      opacity: 0.5;
+      will-change: transform;
+    }
+
+    .cursor-img {
+      position: fixed;
+      top: 0; left: 0;
+      width: 220px; height: 160px;
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 99997;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      object-fit: cover;
+      will-change: transform, opacity;
+    }
+
+    body:hover .cursor { opacity: 1; }
+
+    /* ========================
+       GRAIN OVERLAY
+    ======================== */
+    .grain {
+      position: fixed;
+      inset: -200%;
+      width: 500%; height: 500%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 99990;
+      animation: grain 0.18s steps(1) infinite;
+    }
+
+    @keyframes grain {
+      0%  { transform: translate(0,0); }
+      10% { transform: translate(-3%,-4%); }
+      20% { transform: translate(-6%, 3%); }
+      30% { transform: translate(4%,-7%); }
+      40% { transform: translate(-3%, 9%); }
+      50% { transform: translate(-8%, 2%); }
+      60% { transform: translate(9%, -1%); }
+      70% { transform: translate(0, 6%); }
+      80% { transform: translate(-9%, 1%); }
+      90% { transform: translate(5%, 3%); }
+      100%{ transform: translate(-2%, 5%); }
+    }
+
+    /* ========================
+       NAVIGATION
+    ======================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 9000;
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      mix-blend-mode: normal;
+    }
+
+    .nav-logo {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-cta {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      padding: 12px 28px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .nav-cta:hover {
+      background: var(--pink);
+      color: var(--black);
+    }
+
+    /* ========================
+       SECTION: HERO AURA
+    ======================== */
+    #hero {
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 80px;
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .hero-eyebrow span { display: block; }
+
+    .hero-title {
+      font-size: clamp(72px, 10vw, 160px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      overflow: hidden;
+    }
+
+    .hero-title-line {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero-title-line span {
+      display: block;
+      transform: translateY(110%);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 200;
+      color: var(--black);
+    }
+
+    .hero-sub-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 60px;
+      gap: 40px;
+    }
+
+    .hero-descriptor {
+      max-width: 340px;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--gray-600);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+    }
+
+    .hero-badge-dot {
+      width: 8px; height: 8px;
+      background: var(--pink);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.6; }
+    }
+
+    .btn-magnetic-wrap {
+      position: relative;
+      opacity: 0;
+    }
+
+    .btn-magnetic {
+      display: inline-block;
+      padding: 20px 52px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      border: none;
+      cursor: none;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      transition: color 0.4s;
+    }
+
+    .btn-magnetic::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--pink);
+      transform: translateY(101%);
+      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    .btn-magnetic:hover::before { transform: translateY(0); }
+    .btn-magnetic:hover { color: var(--black); }
+
+    .btn-magnetic span { position: relative; z-index: 1; }
+
+    /* Hero diagonal accent line */
+    .hero-line {
+      position: absolute;
+      top: 0; right: 10%;
+      width: 1px;
+      height: 0;
+      background: linear-gradient(to bottom, transparent, var(--gray-200), transparent);
+    }
+
+    /* ========================
+       TICKER / MARQUEE
+    ======================== */
+    .ticker-wrap {
+      background: var(--black);
+      padding: 18px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      gap: 0;
+      animation: ticker 22s linear infinite;
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 32px;
+      padding: 0 32px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .ticker-sep {
+      width: 6px; height: 6px;
+      background: var(--pink);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ========================
+       SECTION: CHIFFRES
+    ======================== */
+    #stats {
+      padding: 120px 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--gray-200);
+    }
+
+    .stat-card {
+      background: var(--white);
+      padding: 60px 40px;
+    }
+
+    .stat-number {
+      font-size: clamp(48px, 5vw, 72px);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .stat-number sup {
+      font-size: 0.4em;
+      vertical-align: super;
+      color: var(--pink);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+    }
+
+    /* ========================
+       SECTION: PROJETS (HORIZONTAL SCROLL)
+    ======================== */
+    #projects {
+      position: relative;
+    }
+
+    .projects-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .projects-header {
+      padding: 48px;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      z-index: 10;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+    }
+
+    .projects-scroll-track {
+      display: flex;
+      gap: 24px;
+      padding: 0 48px;
+      will-change: transform;
+    }
+
+    .project-card {
+      flex-shrink: 0;
+      width: 480px;
+      height: 600px;
+      background: var(--gray-100);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      filter: grayscale(20%);
+    }
+
+    .project-card:hover img {
+      transform: scale(1.06);
+      filter: grayscale(0%);
+    }
+
+    .project-card-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 36px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.5s, opacity 0.5s;
+    }
+
+    .project-card:hover .project-card-info {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .project-card-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 8px;
+    }
+
+    .project-card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .project-card-stat {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .project-card-num {
+      position: absolute;
+      top: 28px; left: 32px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+      mix-blend-mode: difference;
+    }
+
+    /* First card: wider intro */
+    .project-card--intro {
+      width: 320px;
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 48px 40px;
+      gap: 0;
+    }
+
+    .project-card--intro .pi-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 20px;
+    }
+
+    .project-card--intro h2 {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .project-card--intro p {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ========================
+       SECTION: SERVICES
+    ======================== */
+    #services {
+      padding: 140px 48px;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .services-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-size: clamp(40px, 5vw, 70px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title em {
+      font-style: italic;
+      font-weight: 200;
+    }
+
+    .services-subtitle {
+      max-width: 280px;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--gray-600);
+      text-align: right;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--gray-200);
+    }
+
+    .service-item {
+      background: var(--white);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+    }
+
+    .service-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--pink);
+      transition: width 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    .service-item:hover::after { width: 100%; }
+    .service-item:hover { background: var(--gray-100); }
+
+    .service-num {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--pink);
+      margin-bottom: 32px;
+    }
+
+    .service-title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--gray-600);
+      margin-bottom: 32px;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .service-tag {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border: 1px solid var(--gray-200);
+      color: var(--gray-400);
+    }
+
+    /* ========================
+       SECTION: ROI CALCULATOR
+    ======================== */
+    #roi {
+      padding: 140px 48px;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #roi::before {
+      content: '733';
+      position: absolute;
+      top: -20px; right: -20px;
+      font-size: 400px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.025);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .roi-header {
+      margin-bottom: 80px;
+    }
+
+    .roi-header .section-label {
+      color: var(--pink);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .roi-header h2 {
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .roi-header h2 em {
+      font-style: italic;
+      font-weight: 200;
+      color: var(--pink);
+    }
+
+    .roi-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .roi-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .roi-field {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 24px;
+    }
+
+    .roi-field label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+
+    .roi-input-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .roi-stepper {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: none;
+      color: white;
+      font-size: 18px;
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.3s, background 0.3s;
+      flex-shrink: 0;
+      font-family: var(--font);
+    }
+
+    .roi-stepper:hover {
+      border-color: var(--pink);
+      background: rgba(249,168,212,0.08);
+    }
+
+    .roi-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--white);
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .roi-unit {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .roi-result {
+      position: relative;
+    }
+
+    .roi-result-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 56px 48px;
+      text-align: center;
+    }
+
+    .roi-result-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 24px;
+    }
+
+    .roi-result-amount {
+      font-size: clamp(48px, 5vw, 80px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: all 0.4s;
+    }
+
+    .roi-result-sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    .roi-cta {
+      display: inline-block;
+      padding: 16px 40px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--pink);
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .roi-cta:hover { background: var(--white); }
+
+    .roi-disclaimer {
+      margin-top: 20px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.05em;
+    }
+
+    /* ========================
+       SECTION: PROTOCOLE 733 (STACKED)
+    ======================== */
+    #protocole {
+      padding: 0;
+    }
+
+    .protocole-intro {
+      padding: 140px 48px 80px;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .protocole-intro h2 {
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-top: 20px;
+    }
+
+    .protocole-intro h2 em {
+      font-style: italic;
+      font-weight: 200;
+    }
+
+    .stacked-container {
+      position: relative;
+    }
+
+    .stacked-panel {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .stacked-panel-inner {
+      width: 100%;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .panel-phase {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 24px;
+    }
+
+    .panel-num {
+      font-size: 120px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--gray-100);
+      margin-bottom: -20px;
+      display: block;
+    }
+
+    .panel-title {
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .panel-desc {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--gray-600);
+      max-width: 440px;
+    }
+
+    .panel-checklist {
+      list-style: none;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .panel-checklist li {
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--gray-600);
+      align-items: flex-start;
+    }
+
+    .panel-checklist li::before {
+      content: '—';
+      color: var(--pink);
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    .panel-visual {
+      height: 500px;
+      position: relative;
+      overflow: hidden;
+      background: var(--gray-100);
+    }
+
+    .panel-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .panel-visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.08);
+    }
+
+    .panel-1 { background: var(--white); }
+    .panel-2 { background: #fafafa; }
+    .panel-3 { background: var(--gray-100); }
+
+    /* ========================
+       SECTION: TESTIMONIALS
+    ======================== */
+    #testimonials {
+      padding: 140px 48px;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .testimonials-header {
+      margin-bottom: 80px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .testi-card {
+      padding: 48px 40px;
+      border: 1px solid var(--gray-200);
+      position: relative;
+      transition: border-color 0.4s, box-shadow 0.4s;
+    }
+
+    .testi-card:hover {
+      border-color: var(--pink);
+      box-shadow: 0 20px 60px rgba(249,168,212,0.15);
+    }
+
+    .testi-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 28px;
+    }
+
+    .testi-star {
+      width: 12px; height: 12px;
+      background: var(--pink);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    .testi-quote {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--black);
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .testi-author {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .testi-role {
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--gray-400);
+      margin-top: 4px;
+    }
+
+    .testi-mark {
+      position: absolute;
+      top: 32px; right: 36px;
+      font-size: 80px;
+      font-weight: 900;
+      color: var(--gray-100);
+      line-height: 1;
+      font-style: italic;
+    }
+
+    /* ========================
+       SECTION: CTA FINAL
+    ======================== */
+    #cta-final {
+      padding: 160px 48px;
+      text-align: center;
+      background: var(--white);
+      border-top: 1px solid var(--gray-200);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta-final::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(249,168,212,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-final-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 32px;
+    }
+
+    .cta-final-title {
+      font-size: clamp(52px, 7vw, 110px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .cta-final-title em {
+      font-style: italic;
+      font-weight: 200;
+    }
+
+    .cta-final-subtitle {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--gray-600);
+      margin-bottom: 56px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .cta-final-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 56px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s;
+    }
+
+    .cta-final-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--pink);
+      transform: translateX(-101%);
+      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    .cta-final-btn:hover::before { transform: translateX(0); }
+    .cta-final-btn:hover { color: var(--black); }
+    .cta-final-btn span { position: relative; z-index: 1; }
+
+    .cta-final-arrow {
+      width: 20px; height: 20px;
+      position: relative; z-index: 1;
+    }
+
+    /* ========================
+       FOOTER
+    ======================== */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--gray-200);
+      padding: 80px 48px 48px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 80px;
+    }
+
+    .footer-brand h3 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--gray-600);
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 24px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--gray-600);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover { color: var(--black); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 32px;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--gray-400);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-copy strong { font-weight: 600; color: var(--black); }
+
+    .footer-socials {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-socials a {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-socials a:hover { color: var(--black); }
+
+    /* ========================
+       SCROLL PROGRESS
+    ======================== */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: var(--pink);
+      z-index: 99995;
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+
+    /* ========================
+       UTILITIES
+    ======================== */
+    .text-reveal {
+      overflow: hidden;
+    }
+
+    .text-reveal > * {
+      transform: translateY(100%);
+      display: block;
+    }
+
+    /* Responsive basics */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      #hero { padding: 0 24px 60px; }
+      #stats { grid-template-columns: repeat(2,1fr); padding: 60px 24px; }
+      .projects-header { padding: 24px; }
+      .projects-scroll-track { padding: 0 24px; }
+      #services, #roi, #testimonials, #cta-final { padding: 80px 24px; }
+      .services-header { flex-direction: column; gap: 24px; }
+      .services-subtitle { text-align: left; }
+      .services-grid { grid-template-columns: 1fr; }
+      .roi-layout { grid-template-columns: 1fr; }
+      .stacked-panel-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+      .panel-visual { height: 280px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GRAIN -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+  <img class="cursor-img" id="cursorImg" src="" alt="">
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#" class="nav-logo">Maison&nbsp;Sephira</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#protocole">Protocole</a></li>
+      <li><a href="#roi">ROI</a></li>
+    </ul>
+    <a href="#cta-final" class="nav-cta">Audit Gratuit</a>
+  </nav>
+
+  <!-- ================================
+       HERO
+  ================================ -->
+  <section id="hero">
+    <div class="hero-line" id="heroLine"></div>
+
+    <div class="hero-eyebrow">
+      <span>Agence SMMA IA &mdash; Paris / Dubai &mdash; Est. 2023</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="hero-title-line"><span>Nous ne faisons</span></span>
+      <span class="hero-title-line"><span>pas de la <em>comm.</em></span></span>
+      <span class="hero-title-line"><span>Nous bâtissons</span></span>
+      <span class="hero-title-line"><span>des <em>empires.</em></span></span>
+    </h1>
+
+    <div class="hero-sub-row">
+      <p class="hero-descriptor">
+        Maison Sephira 733 est une agence SMMA IA d'élite. Nous combinons intelligence artificielle et stratégie luxe pour multiplier vos résultats &mdash; sans compromis.
+      </p>
+
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Disponible pour nouveaux mandats
+      </div>
+
+      <div class="btn-magnetic-wrap" id="heroCta">
+        <a href="#cta-final" class="btn-magnetic">
+          <span>Obtenir mon audit gratuit</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-inner">
+      <!-- repeated twice for seamless loop -->
+      <div class="ticker-item"><span>Social Media</span><span class="ticker-sep"></span><span>SEO Performance</span><span class="ticker-sep"></span><span>Ads IA</span><span class="ticker-sep"></span><span>Brand Strategy</span><span class="ticker-sep"></span><span>Content Premium</span><span class="ticker-sep"></span><span>CRM &amp; Automation</span><span class="ticker-sep"></span><span>Protocole 733</span><span class="ticker-sep"></span></div>
+      <div class="ticker-item"><span>Social Media</span><span class="ticker-sep"></span><span>SEO Performance</span><span class="ticker-sep"></span><span>Ads IA</span><span class="ticker-sep"></span><span>Brand Strategy</span><span class="ticker-sep"></span><span>Content Premium</span><span class="ticker-sep"></span><span>CRM &amp; Automation</span><span class="ticker-sep"></span><span>Protocole 733</span><span class="ticker-sep"></span></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stat-card" data-count="347">
+      <div class="stat-number">0<sup>+</sup></div>
+      <div class="stat-label">Mandats réalisés</div>
+    </div>
+    <div class="stat-card" data-count="8.4">
+      <div class="stat-number">0<sup>×</sup></div>
+      <div class="stat-label">ROAS moyen clients</div>
+    </div>
+    <div class="stat-card" data-count="98">
+      <div class="stat-number">0<sup>%</sup></div>
+      <div class="stat-label">Clients satisfaits</div>
+    </div>
+    <div class="stat-card" data-count="12">
+      <div class="stat-number">0<sup>M+</sup></div>
+      <div class="stat-label">Revenue généré</div>
+    </div>
+  </section>
+
+  <!-- ================================
+       PROJECTS — HORIZONTAL SCROLL
+  ================================ -->
+  <section id="projects">
+    <div class="projects-sticky" id="projectsSticky">
+      <div class="projects-header">
+        <span class="section-label">Nos Réalisations</span>
+        <span class="section-label" style="opacity:0.3;">Faites défiler →</span>
+      </div>
+      <div class="projects-scroll-track" id="projectsTrack">
+
+        <div class="project-card project-card--intro">
+          <div class="pi-label">Portfolio 2023–2025</div>
+          <h2>Chaque marque.<br>Une histoire.</h2>
+          <p>Des résultats concrets, des stratégies documentées, des croissances mesurables.</p>
+        </div>
+
+        <div class="project-card" data-service-img="ASSETS SEPHIRA/SEPHIRA_IMG_3.jpg">
+          <img src="ASSETS SEPHIRA/SEPHIRA_IMG_3.jpg" alt="Projet Beauté Luxe">
+          <span class="project-card-num">01</span>
+          <div class="project-card-info">
+            <div class="project-card-tag">Beauté Premium</div>
+            <div class="project-card-title">Marque Cosmétiques</div>
+            <div class="project-card-stat">+420% de CA en 6 mois · ROAS 9.2×</div>
+          </div>
+        </div>
+
+        <div class="project-card" data-service-img="ASSETS SEPHIRA/SEPHIRA_IMG_7.jpg">
+          <img src="ASSETS SEPHIRA/SEPHIRA_IMG_7.jpg" alt="Projet Mode">
+          <span class="project-card-num">02</span>
+          <div class="project-card-info">
+            <div class="project-card-tag">Mode &amp; Lifestyle</div>
+            <div class="project-card-title">Prêt-à-Porter Féminin</div>
+            <div class="project-card-stat">85K abonnés en 90 jours · ×3 conversions</div>
+          </div>
+        </div>
+
+        <div class="project-card" data-service-img="ASSETS SEPHIRA/SEPHIRA_IMG_12.jpg">
+          <img src="ASSETS SEPHIRA/SEPHIRA_IMG_12.jpg" alt="Projet E-commerce">
+          <span class="project-card-num">03</span>
+          <div class="project-card-info">
+            <div class="project-card-tag">E-commerce</div>
+            <div class="project-card-title">Boutique Bien-Être</div>
+            <div class="project-card-stat">2.3M€ de revenus · SEO Top 3</div>
+          </div>
+        </div>
+
+        <div class="project-card" data-service-img="ASSETS SEPHIRA/SEPHIRA_IMG_18.jpg">
+          <img src="ASSETS SEPHIRA/SEPHIRA_IMG_18.jpg" alt="Projet Influence">
+          <span class="project-card-num">04</span>
+          <div class="project-card-info">
+            <div class="project-card-tag">Personal Branding</div>
+            <div class="project-card-title">Coach Entrepreneuriat</div>
+            <div class="project-card-stat">140K followers · Programme sold out</div>
+          </div>
+        </div>
+
+        <div class="project-card" data-service-img="ASSETS SEPHIRA/SEPHIRA_IMG_24.jpg">
+          <img src="ASSETS SEPHIRA/SEPHIRA_IMG_24.jpg" alt="Projet Restauration">
+          <span class="project-card-num">05</span>
+          <div class="project-card-info">
+            <div class="project-card-tag">Hospitality</div>
+            <div class="project-card-title">Concept Restaurant</div>
+            <div class="project-card-stat">Réservations +300% · Liste attente 3 mois</div>
+          </div>
+        </div>
+
+        <div class="project-card" data-service-img="ASSETS SEPHIRA/SEPHIRA_IMG_31.jpg">
+          <img src="ASSETS SEPHIRA/SEPHIRA_IMG_31.jpg" alt="Projet Immobilier">
+          <span class="project-card-num">06</span>
+          <div class="project-card-info">
+            <div class="project-card-tag">Immobilier Luxe</div>
+            <div class="project-card-title">Agence Premium</div>
+            <div class="project-card-stat">18M€ de biens vendus via contenu organique</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       SERVICES
+  ================================ -->
+  <section id="services">
+    <div class="services-header">
+      <h2 class="section-title text-reveal">
+        <em>Ce que</em><br>nous faisons.
+      </h2>
+      <p class="services-subtitle">
+        Chaque service est conçu pour produire des résultats mesurables. Nous n'avons pas de forfait standard — nous avons votre stratégie.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-item"
+           data-cursor-img="ASSETS SEPHIRA/SEPHIRA_IMG_5.jpg">
+        <div class="service-num">01</div>
+        <h3 class="service-title">Social Media<br>Stratégique</h3>
+        <p class="service-desc">Contenu premium, calendrier éditorial IA, gestion de communauté. Chaque post est un actif de marque.</p>
+        <div class="service-tags">
+          <span class="service-tag">Instagram</span>
+          <span class="service-tag">TikTok</span>
+          <span class="service-tag">LinkedIn</span>
+          <span class="service-tag">Reels IA</span>
+        </div>
+      </div>
+
+      <div class="service-item"
+           data-cursor-img="ASSETS SEPHIRA/SEPHIRA_IMG_10.jpg">
+        <div class="service-num">02</div>
+        <h3 class="service-title">Publicité<br>Performance IA</h3>
+        <p class="service-desc">Meta Ads, Google Ads et TikTok Ads pilotés par nos algorithmes propriétaires. ROAS garanti ou remboursé.</p>
+        <div class="service-tags">
+          <span class="service-tag">Meta Ads</span>
+          <span class="service-tag">Google Ads</span>
+          <span class="service-tag">A/B Testing</span>
+          <span class="service-tag">Retargeting</span>
+        </div>
+      </div>
+
+      <div class="service-item"
+           data-cursor-img="ASSETS SEPHIRA/SEPHIRA_IMG_15.jpg">
+        <div class="service-num">03</div>
+        <h3 class="service-title">SEO &amp; GEO<br>Dominance</h3>
+        <p class="service-desc">Positionnement Google + Optimisation pour les IA (ChatGPT, Claude, Perplexity). Votre marque partout où vos clients cherchent.</p>
+        <div class="service-tags">
+          <span class="service-tag">SEO Technique</span>
+          <span class="service-tag">GEO IA</span>
+          <span class="service-tag">Contenu E-E-A-T</span>
+        </div>
+      </div>
+
+      <div class="service-item"
+           data-cursor-img="ASSETS SEPHIRA/SEPHIRA_IMG_20.jpg">
+        <div class="service-num">04</div>
+        <h3 class="service-title">Brand Strategy<br>Premium</h3>
+        <p class="service-desc">Positionnement, identité de marque, storytelling. Nous transformons une activité en référence de marché.</p>
+        <div class="service-tags">
+          <span class="service-tag">Positionnement</span>
+          <span class="service-tag">Storytelling</span>
+          <span class="service-tag">Direction Artistique</span>
+        </div>
+      </div>
+
+      <div class="service-item"
+           data-cursor-img="ASSETS SEPHIRA/SEPHIRA_IMG_27.jpg">
+        <div class="service-num">05</div>
+        <h3 class="service-title">CRM &amp;<br>Automation</h3>
+        <p class="service-desc">Tunnels de vente, email marketing, chatbots IA. Chaque prospect est nurturé jusqu'à la conversion.</p>
+        <div class="service-tags">
+          <span class="service-tag">Email Flows</span>
+          <span class="service-tag">Chatbot IA</span>
+          <span class="service-tag">Funnels</span>
+        </div>
+      </div>
+
+      <div class="service-item"
+           data-cursor-img="ASSETS SEPHIRA/SEPHIRA_IMG_35.jpg">
+        <div class="service-num">06</div>
+        <h3 class="service-title">Agents Vocaux<br>IA 24/7</h3>
+        <p class="service-desc">Agents vocaux Vapi.ai qui prospectent, qualifient et closent pour vous — même la nuit. ROI dès le 1er mois.</p>
+        <div class="service-tags">
+          <span class="service-tag">Vapi.ai</span>
+          <span class="service-tag">Prospection auto</span>
+          <span class="service-tag">Closing IA</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================
+       ROI CALCULATOR
+  ================================ -->
+  <section id="roi">
+    <div class="roi-header">
+      <span class="section-label">Calculateur</span>
+      <h2>Votre <em>Capital<br>Inexploité</em> Annuel</h2>
+    </div>
+
+    <div class="roi-layout">
+      <div class="roi-inputs">
+
+        <div class="roi-field">
+          <label>Panier moyen (€)</label>
+          <div class="roi-input-row">
+            <button class="roi-stepper" data-field="panier" data-dir="-1">−</button>
+            <div class="roi-value" id="valPanier">85</div>
+            <span class="roi-unit">€</span>
+            <button class="roi-stepper" data-field="panier" data-dir="1">+</button>
+          </div>
+        </div>
+
+        <div class="roi-field">
+          <label>Visiteurs mensuels</label>
+          <div class="roi-input-row">
+            <button class="roi-stepper" data-field="trafic" data-dir="-1">−</button>
+            <div class="roi-value" id="valTrafic">5 000</div>
+            <span class="roi-unit">/ mois</span>
+            <button class="roi-stepper" data-field="trafic" data-dir="1">+</button>
+          </div>
+        </div>
+
+        <div class="roi-field">
+          <label>Taux de conversion actuel (%)</label>
+          <div class="roi-input-row">
+            <button class="roi-stepper" data-field="conv" data-dir="-1">−</button>
+            <div class="roi-value" id="valConv">1.8</div>
+            <span class="roi-unit">%</span>
+            <button class="roi-stepper" data-field="conv" data-dir="1">+</button>
+          </div>
+        </div>
+
+        <div class="roi-field">
+          <label>Fréquence d'achat annuelle</label>
+          <div class="roi-input-row">
+            <button class="roi-stepper" data-field="freq" data-dir="-1">−</button>
+            <div class="roi-value" id="valFreq">2.5</div>
+            <span class="roi-unit">× / an</span>
+            <button class="roi-stepper" data-field="freq" data-dir="1">+</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="roi-result">
+        <div class="roi-result-card">
+          <div class="roi-result-label">Votre Capital Inexploité Annuel</div>
+          <div class="roi-result-amount" id="roiAmount">0 €</div>
+          <div class="roi-result-sub">
+            C'est ce que vous perdez chaque année<br>en n'optimisant pas votre acquisition digitale.
+          </div>
+          <a href="#cta-final" class="roi-cta">Récupérer ce capital →</a>
+          <p class="roi-disclaimer">Estimation basée sur l'amélioration moyenne de nos clients (+340% taux de conversion).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       PROTOCOLE 733 — STACKED
+  ================================ -->
+  <section id="protocole">
+    <div class="protocole-intro">
+      <span class="section-label">Notre Méthode</span>
+      <h2>Le <em>Protocole</em><br>733.</h2>
+    </div>
+
+    <div class="stacked-container" id="stackedContainer">
+
+      <div class="stacked-panel panel-1" id="panel1">
+        <div class="stacked-panel-inner">
+          <div>
+            <div class="panel-phase">Phase 01</div>
+            <span class="panel-num">733</span>
+            <h3 class="panel-title">Diagnostic<br>Ultra-Précis</h3>
+            <p class="panel-desc">En 72 heures, nous radiographions votre marque entière : positionnement, audience, tunnels, concurrents, opportunités cachées.</p>
+            <ul class="panel-checklist">
+              <li>Audit complet SEO + Social + Ads</li>
+              <li>Analyse concurrentielle IA sur 360°</li>
+              <li>Identification des 3 leviers prioritaires</li>
+              <li>Rapport exécutif avec quick wins immédiats</li>
+            </ul>
+          </div>
+          <div class="panel-visual">
+            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_40.jpg" alt="Diagnostic Phase">
+            <div class="panel-visual-overlay"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stacked-panel panel-2" id="panel2">
+        <div class="stacked-panel-inner">
+          <div>
+            <div class="panel-phase">Phase 02</div>
+            <span class="panel-num">733</span>
+            <h3 class="panel-title">Stratégie<br>Sur-Mesure</h3>
+            <p class="panel-desc">Nous concevons votre plan de croissance custom : roadmap 90 jours, KPIs ciblés, budget optimisé, calendrier d'exécution.</p>
+            <ul class="panel-checklist">
+              <li>Plan de contenus éditoriaux IA</li>
+              <li>Architecture publicitaire multi-canaux</li>
+              <li>Stratégie SEO + GEO 12 mois</li>
+              <li>Scénarios de croissance projetés</li>
+            </ul>
+          </div>
+          <div class="panel-visual">
+            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_47.jpg" alt="Stratégie Phase">
+            <div class="panel-visual-overlay"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stacked-panel panel-3" id="panel3">
+        <div class="stacked-panel-inner">
+          <div>
+            <div class="panel-phase">Phase 03</div>
+            <span class="panel-num">733</span>
+            <h3 class="panel-title">Exécution<br>&amp; Résultats</h3>
+            <p class="panel-desc">Notre équipe exécute, optimise en temps réel et vous livre des reportings hebdomadaires. Les résultats parlent d'eux-mêmes.</p>
+            <ul class="panel-checklist">
+              <li>Déploiement immédiat J+7</li>
+              <li>Optimisation continue par IA</li>
+              <li>Reporting hebdomadaire transparent</li>
+              <li>Accès dashboard temps réel 24/7</li>
+            </ul>
+          </div>
+          <div class="panel-visual">
+            <img src="ASSETS SEPHIRA/SEPHIRA_IMG_54.jpg" alt="Exécution Phase">
+            <div class="panel-visual-overlay"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================
+       TESTIMONIALS
+  ================================ -->
+  <section id="testimonials">
+    <div class="testimonials-header">
+      <span class="section-label">Ils nous font confiance</span>
+      <h2 class="section-title" style="margin-top:20px">
+        <em>Ce qu'ils</em><br>disent de nous.
+      </h2>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testi-card">
+        <div class="testi-mark">"</div>
+        <div class="testi-stars">
+          <div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div>
+        </div>
+        <p class="testi-quote">En 3 mois, notre CA a doublé. Ce n'est pas de la magie, c'est la méthode Sephira — chirurgicale, documentée, implacable.</p>
+        <div class="testi-author">Inès R.</div>
+        <div class="testi-role">CEO, Maison de Cosmétiques · Paris</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-mark">"</div>
+        <div class="testi-stars">
+          <div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div>
+        </div>
+        <p class="testi-quote">Nous avons travaillé avec 4 agences avant Sephira. Aucune n'a compris notre marque comme elles. ROAS 11× dès le deuxième mois.</p>
+        <div class="testi-author">Karim M.</div>
+        <div class="testi-role">Fondateur, Concept Store Luxe · Dubai</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-mark">"</div>
+        <div class="testi-stars">
+          <div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div><div class="testi-star"></div>
+        </div>
+        <p class="testi-quote">L'agent vocal IA a généré 48 rendez-vous qualifiés en une semaine. Mon équipe commerciale n'en revenait pas.</p>
+        <div class="testi-author">Sarah B.</div>
+        <div class="testi-role">Directrice, Cabinet Coaching · Lyon</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================
+       CTA FINAL
+  ================================ -->
+  <section id="cta-final">
+    <div class="cta-final-label">Prochaine étape</div>
+    <h2 class="cta-final-title">
+      Votre marque<br>mérite <em>mieux.</em>
+    </h2>
+    <p class="cta-final-subtitle">
+      Réservez votre audit stratégique gratuit. En 45 minutes, nous identifions les 3 leviers qui peuvent transformer votre activité.
+    </p>
+    <a href="mailto:contact@maison-sephira.com" class="cta-final-btn">
+      <span>Réserver mon audit — C'est gratuit</span>
+      <svg class="cta-final-arrow" viewBox="0 0 20 20" fill="none">
+        <path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ================================
+       FOOTER
+  ================================ -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Maison Sephira 733</h3>
+        <p>Agence SMMA IA d'élite. Nous transformons les marques ambitieuses en références de marché grâce à l'intelligence artificielle et la stratégie luxe.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Social Media</a></li>
+          <li><a href="#services">Performance Ads</a></li>
+          <li><a href="#services">SEO &amp; GEO</a></li>
+          <li><a href="#services">Brand Strategy</a></li>
+          <li><a href="#services">Agents Vocaux IA</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Agence</h4>
+        <ul>
+          <li><a href="#projects">Réalisations</a></li>
+          <li><a href="#protocole">Protocole 733</a></li>
+          <li><a href="#testimonials">Témoignages</a></li>
+          <li><a href="#roi">Calculateur ROI</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:contact@maison-sephira.com">Email</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#cta-final">Audit Gratuit</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 <strong>Maison Sephira 733</strong> &mdash; Tous droits réservés. Made with precision.</p>
+      <div class="footer-socials">
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">TikTok</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================
+       JAVASCRIPT
+  ================================ -->
+  <script>
+    // ========================
+    // LENIS SMOOTH SCROLL
+    // ========================
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothTouch: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Link Lenis to GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    // ========================
+    // SCROLL PROGRESS BAR
+    // ========================
+    const progressBar = document.getElementById('progressBar');
+    lenis.on('scroll', ({ progress }) => {
+      gsap.set(progressBar, { scaleX: progress });
+    });
+
+    // ========================
+    // CUSTOM CURSOR
+    // ========================
+    const cursor = document.getElementById('cursor');
+    const cursorFollower = document.getElementById('cursorFollower');
+    const cursorImg = document.getElementById('cursorImg');
+    let mouseX = 0, mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      gsap.to(cursor, { x: mouseX, y: mouseY, duration: 0.08, ease: 'power2.out' });
+      gsap.to(cursorFollower, { x: mouseX, y: mouseY, duration: 0.22, ease: 'power2.out' });
+      gsap.to(cursorImg, { x: mouseX + 24, y: mouseY + 16, duration: 0.18, ease: 'power2.out' });
+    });
+
+    // Service items: show image in cursor
+    document.querySelectorAll('[data-cursor-img]').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        const src = el.getAttribute('data-cursor-img');
+        cursorImg.src = src;
+        gsap.to(cursorImg, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' });
+        gsap.to(cursor, { scale: 0, duration: 0.3 });
+        gsap.to(cursorFollower, { scale: 0, duration: 0.3 });
+      });
+      el.addEventListener('mouseleave', () => {
+        gsap.to(cursorImg, { opacity: 0, scale: 0.9, duration: 0.3, ease: 'power2.in' });
+        gsap.to(cursor, { scale: 1, duration: 0.3 });
+        gsap.to(cursorFollower, { scale: 1, duration: 0.3 });
+      });
+    });
+
+    // Links: enlarge cursor
+    document.querySelectorAll('a, button, .roi-stepper').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        gsap.to(cursor, { scale: 2.5, background: 'var(--pink)', duration: 0.3 });
+      });
+      el.addEventListener('mouseleave', () => {
+        gsap.to(cursor, { scale: 1, background: 'var(--black)', duration: 0.3 });
+      });
+    });
+
+    // ========================
+    // HERO LINE
+    // ========================
+    gsap.to('#heroLine', {
+      height: '100%',
+      duration: 2,
+      ease: 'power2.inOut',
+      delay: 0.3,
+    });
+
+    // ========================
+    // HERO TEXT REVEAL
+    // ========================
+    const heroTl = gsap.timeline({ delay: 0.2 });
+
+    heroTl.to('.hero-eyebrow span', {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power3.out',
+    });
+
+    heroTl.to('.hero-title-line span', {
+      y: 0,
+      duration: 1,
+      ease: 'power4.out',
+      stagger: 0.12,
+    }, '-=0.4');
+
+    heroTl.to('.hero-descriptor', {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+    }, '-=0.4');
+
+    heroTl.to('.hero-badge', {
+      opacity: 1,
+      duration: 0.6,
+      ease: 'power2.out',
+    }, '-=0.6');
+
+    heroTl.to('.btn-magnetic-wrap', {
+      opacity: 1,
+      duration: 0.6,
+      ease: 'power2.out',
+    }, '-=0.5');
+
+    // ========================
+    // MAGNETIC BUTTON
+    // ========================
+    document.querySelectorAll('.btn-magnetic').forEach(btn => {
+      const wrap = btn.closest('.btn-magnetic-wrap') || btn;
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        gsap.to(btn, { x: x * 0.35, y: y * 0.35, duration: 0.4, ease: 'power2.out' });
+      });
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+      });
+    });
+
+    // ========================
+    // STATS COUNTER
+    // ========================
+    document.querySelectorAll('#stats .stat-card').forEach((card) => {
+      const target = parseFloat(card.getAttribute('data-count'));
+      const numEl = card.querySelector('.stat-number');
+      const suffix = numEl.querySelector('sup').outerHTML;
+      const isDecimal = target % 1 !== 0;
+
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top 80%',
+        once: true,
+        onEnter: () => {
+          gsap.to({ val: 0 }, {
+            val: target,
+            duration: 1.8,
+            ease: 'power2.out',
+            onUpdate: function() {
+              const v = this.targets()[0].val;
+              numEl.innerHTML = (isDecimal ? v.toFixed(1) : Math.round(v)) + suffix;
+            }
+          });
+        }
+      });
+    });
+
+    // ========================
+    // PROJECTS: HORIZONTAL SCROLL
+    // ========================
+    const track = document.getElementById('projectsTrack');
+
+    gsap.to(track, {
+      x: () => -(track.scrollWidth - window.innerWidth + 96),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#projects',
+        pin: '#projectsSticky',
+        start: 'top top',
+        end: () => '+=' + (track.scrollWidth - window.innerWidth + 96),
+        scrub: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    // ========================
+    // SERVICES: SCROLL REVEAL
+    // ========================
+    gsap.from('.service-item', {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: '.services-grid',
+        start: 'top 75%',
+      }
+    });
+
+    // ========================
+    // STACKED PANELS
+    // ========================
+    const panels = gsap.utils.toArray('.stacked-panel');
+    const panelHeight = () => window.innerHeight;
+
+    panels.forEach((panel, i) => {
+      // Pin each panel and scale previous ones
+      ScrollTrigger.create({
+        trigger: panel,
+        start: 'top top',
+        pin: true,
+        pinSpacing: false,
+      });
+
+      // Scale down previous panels as next one comes in
+      if (i > 0) {
+        gsap.to(panels[i - 1], {
+          scale: 0.94,
+          opacity: 0.6,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: panel,
+            start: 'top bottom',
+            end: 'top top',
+            scrub: true,
+          }
+        });
+      }
+    });
+
+    // Inner content of stacked panels: parallax
+    panels.forEach(panel => {
+      const inner = panel.querySelector('.stacked-panel-inner');
+      gsap.from(inner, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: panel,
+          start: 'top 80%',
+        }
+      });
+    });
+
+    // ========================
+    // TESTIMONIALS REVEAL
+    // ========================
+    gsap.from('.testi-card', {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: '.testimonials-grid',
+        start: 'top 75%',
+      }
+    });
+
+    // ========================
+    // CTA FINAL REVEAL
+    // ========================
+    gsap.from('#cta-final .cta-final-title', {
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power4.out',
+      scrollTrigger: {
+        trigger: '#cta-final',
+        start: 'top 70%',
+      }
+    });
+
+    gsap.from('#cta-final .cta-final-subtitle, #cta-final .cta-final-btn', {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '#cta-final',
+        start: 'top 65%',
+      }
+    });
+
+    // ========================
+    // ROI CALCULATOR
+    // ========================
+    const state = {
+      panier: 85,
+      trafic: 5000,
+      conv: 1.8,
+      freq: 2.5,
+    };
+
+    const config = {
+      panier: { step: 5, min: 10, max: 5000, el: document.getElementById('valPanier') },
+      trafic: { step: 500, min: 500, max: 500000, el: document.getElementById('valTrafic') },
+      conv: { step: 0.1, min: 0.1, max: 20, el: document.getElementById('valConv') },
+      freq: { step: 0.5, min: 0.5, max: 20, el: document.getElementById('valFreq') },
+    };
+
+    function formatVal(field, val) {
+      if (field === 'trafic') return val.toLocaleString('fr-FR');
+      if (field === 'conv' || field === 'freq') return val.toFixed(1);
+      return val;
+    }
+
+    function calcROI() {
+      // Current annual revenue
+      const currentRev = state.trafic * (state.conv / 100) * state.panier * state.freq;
+      // Optimized: +340% conversion rate (our client average)
+      const optimizedConv = state.conv * 4.4;
+      const optimizedRev = state.trafic * (optimizedConv / 100) * state.panier * state.freq;
+      const unexploited = Math.round(optimizedRev - currentRev);
+
+      const el = document.getElementById('roiAmount');
+      const current = parseFloat(el.getAttribute('data-value') || 0);
+
+      gsap.to({ val: current }, {
+        val: unexploited,
+        duration: 0.6,
+        ease: 'power2.out',
+        onUpdate: function() {
+          const v = Math.round(this.targets()[0].val);
+          el.textContent = v.toLocaleString('fr-FR') + ' €';
+        },
+        onComplete: () => el.setAttribute('data-value', unexploited),
+      });
+    }
+
+    document.querySelectorAll('.roi-stepper').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const field = btn.getAttribute('data-field');
+        const dir = parseInt(btn.getAttribute('data-dir'));
+        const cfg = config[field];
+        state[field] = parseFloat(
+          Math.max(cfg.min, Math.min(cfg.max, state[field] + dir * cfg.step)).toFixed(10)
+        );
+        cfg.el.textContent = formatVal(field, state[field]);
+        calcROI();
+      });
+    });
+
+    calcROI();
+
+    // ========================
+    // SECTION LABELS FADE IN
+    // ========================
+    gsap.utils.toArray('.section-label, .roi-header .section-label').forEach(el => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 12,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 85%' }
+      });
+    });
+
+    // ========================
+    // SECTION TITLES REVEAL
+    // ========================
+    gsap.utils.toArray('.section-title').forEach(el => {
+      gsap.from(el, {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power4.out',
+        scrollTrigger: { trigger: el, start: 'top 80%' }
+      });
+    });
+
+    // ========================
+    // FOOTER FADE
+    // ========================
+    gsap.from('footer .footer-top', {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: 'footer', start: 'top 85%' }
+    });
+
+    // Refresh ScrollTrigger after everything loads
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+    });
+  </script>
+
+</body>
+</html>
